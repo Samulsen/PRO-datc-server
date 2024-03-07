@@ -2,5 +2,10 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class PropertiesService {
-  // Add your service logic here
+  createProperty() {}
+  getPropertyCollection() {
+    return 'myCollection';
+  }
+  updateProperty() {}
+  deleteProperty() {}
 }

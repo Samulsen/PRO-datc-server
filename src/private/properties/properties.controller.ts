@@ -3,9 +3,25 @@ import { PropertiesService } from 'src/private/properties/properties.service';
 
 @Controller('properties')
 export class PropertiesController {
-  @Get()
-  getProperties() {
-    return 'All properties';
+  constructor(private propertiesService: PropertiesService) {}
+
+  @Post()
+  createProperty() {
+    return this.propertiesService.createProperty();
   }
-  // @Patch()
+
+  @Get(':id')
+  getPropertyCollection() {
+    return this.propertiesService.getPropertyCollection();
+  }
+
+  @Patch(':id')
+  updateProperty() {
+    return this.propertiesService.updateProperty();
+  }
+
+  @Delete(':id')
+  deleteProperty() {
+    return this.propertiesService.deleteProperty();
+  }
 }
