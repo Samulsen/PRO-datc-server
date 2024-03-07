@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PrivateModule } from 'src/private/private.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
