@@ -6,9 +6,11 @@ import { PrivateModule } from 'src/private/private.module';
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot('mongodb://mongo:27017/users', {
-      dbName: 'usersDB',
+      connectionName: 'usersDB',
     }),
-    MongooseModule.forRoot('mongodb://mongo:27017/dict', { dbName: 'dictDB' }),
+    MongooseModule.forRoot('mongodb://mongo:27017/dict', {
+      connectionName: 'dictDB',
+    }),
     PrivateModule,
   ],
 })
