@@ -8,13 +8,14 @@ import {
 
 @Injectable()
 export class PropertiesService {
-  //   constructor(
-  //     @InjectModel(Property.name) private propertyModel: Model<PropertyDocument>,
-  //   ) {}
+  constructor(
+    @InjectModel(Property.name)
+    private propertyModel: Model<PropertyDocument>,
+  ) {}
 
   createProperty() {
-    // const myTestObject = new this.propertyModel({ name: 'MyTestString' });
-    // return myTestObject.save();
+    const myTestObject = new this.propertyModel({ name: 'MyTestString' });
+    return myTestObject.save();
   }
   getPropertyCollection() {
     return 'myCollection';
