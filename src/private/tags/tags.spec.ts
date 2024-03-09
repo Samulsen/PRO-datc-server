@@ -86,6 +86,37 @@ describe('TagsController (e2e)', () => {
     expect(response.body.message).toEqual('The Tag -->tag1<-- already exists!');
   });
 
+  it('Gets the tags of a group with a correct group', async () => {
+    const dto: CreateTagDto = { name: 'tag1', group: ETagsGroup.LIBRARY };
+    const dtoTwo: CreateTagDto = { name: 'tag2', group: ETagsGroup.LIBRARY };
+    const dtoThree: CreateTagDto = { name: 'tag3', group: ETagsGroup.TOOL };
+
+    await request(app.getHttpServer()).post('/tags').send(dto);
+    await request(app.getHttpServer()).post('/tags').send(dtoTwo);
+    await request(app.getHttpServer()).post('/tags').send(dtoThree);
+    const responseOnLibrary = await request(app.getHttpServer()).get(
+      '/tags/groups/library',
+    );
+    expect(responseOnLibrary.status).toBe(HttpStatus.OK);
+    expect(responseOnLibrary.body.length).toEqual(2);
+
+    const responseOnTool = await request(app.getHttpServer()).get(
+      '/tags/groups/tool',
+    );
+    expect(responseOnTool.status).toBe(HttpStatus.OK);
+    expect(responseOnTool.body.length).toEqual(1);
+  });
+
+  it('Tries to get the tags of a group with an incorrect group, server will refuse the request', async () => {
+    const response = await request(app.getHttpServer()).get(
+      '/tags/groups/invalid',
+    );
+    expect(response.status).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body.message).toEqual(
+      'group must be one of the following values: Language, Tool, Framework, Domain, Pattern, Library (lowercased)',
+    );
+  });
+
   afterEach(async () => {
     await mongoose.connection.dropDatabase();
     await app.close();

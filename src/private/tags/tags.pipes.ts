@@ -4,11 +4,12 @@ import { ETagsGroup } from 'src/private/tags/tags.types';
 @Injectable()
 export class ValidateGroupPipe implements PipeTransform {
   transform(value: any) {
-    if (!Object.values(ETagsGroup).includes(value)) {
+    const upperCased = value.charAt(0).toUpperCase() + value.slice(1);
+    if (!Object.values(ETagsGroup).includes(upperCased)) {
       throw new BadRequestException(
-        'group must be one of the following values: Language, Tool, Framework, Domain, Pattern, Library',
+        'group must be one of the following values: Language, Tool, Framework, Domain, Pattern, Library (lowercased)',
       );
     }
-    return value as ETagsGroup;
+    return upperCased as ETagsGroup;
   }
 }
