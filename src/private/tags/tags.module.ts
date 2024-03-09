@@ -1,11 +1,8 @@
 import { Module } from '@nestjs/common';
-import { PropertiesController } from 'src/private/properties/properties.controller';
-import { PropertiesService } from 'src/private/properties/properties.service';
+import { PropertiesController } from 'src/private/tags/tags.controller';
+import { PropertiesService } from 'src/private/tags/tags.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import {
-  Property,
-  PropertySchema,
-} from 'src/private/properties/properties.schema';
+import { Property, PropertySchema } from 'src/private/tags/tags.schema';
 @Module({
   imports: [
     MongooseModule.forFeature(

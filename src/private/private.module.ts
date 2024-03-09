@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PropertiesModule } from 'src/private/properties/properties.module';
+import { PropertiesModule } from 'src/private/tags/tags.module';
 import { RouterModule } from '@nestjs/core';
 
 @Module({

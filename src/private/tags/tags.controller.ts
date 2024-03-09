@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Patch, Delete } from '@nestjs/common';
-import { PropertiesService } from 'src/private/properties/properties.service';
+import { PropertiesService } from 'src/private/tags/tags.service';
 
 @Controller('properties')
 export class PropertiesController {
