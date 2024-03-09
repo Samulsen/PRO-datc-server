@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 import { ETagsGroup } from 'src/private/tags/tags.types';
 
 @Schema()
-export class Property {
+export class Tag {
   @Prop()
   name: string;
 
@@ -11,6 +11,6 @@ export class Property {
   group: ETagsGroup;
 }
 
-export type PropertyDocument = Property & Document;
+export type TagDocument = Tag & Document;
 
-export const PropertySchema = SchemaFactory.createForClass(Property);
+export const PropertySchema = SchemaFactory.createForClass(Tag);

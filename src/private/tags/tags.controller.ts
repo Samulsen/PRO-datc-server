@@ -1,28 +1,27 @@
 import { Controller, Get, Post, Patch, Delete } from '@nestjs/common';
-import { PropertiesService } from 'src/private/tags/tags.service';
+import { TagsService } from 'src/private/tags/tags.service';
 
-@Controller('properties')
-export class PropertiesController {
-  constructor(private propertiesService: PropertiesService) {}
+@Controller('tags')
+export class TagsController {
+  constructor(private propertiesService: TagsService) {}
 
   @Post()
-  createProperty() {
-    this.propertiesService.createProperty();
-    return 'Success';
+  createTag() {
+    return this.propertiesService.createTag();
   }
 
-  @Get(':id')
+  @Get('group/:group')
   getPropertyCollection() {
-    return this.propertiesService.getPropertyCollection();
+    return this.propertiesService.getTagGroup();
   }
 
-  @Patch(':id')
-  updateProperty() {
-    return this.propertiesService.updateProperty();
-  }
+  // @Patch(':id')
+  // updateProperty() {
+  //   return this.propertiesService.deleteTag();
+  // }
 
-  @Delete(':id')
-  deleteProperty() {
-    return this.propertiesService.deleteProperty();
-  }
+  // @Delete(':id')
+  // deleteProperty() {
+  //   return this.propertiesService.deleteTag();
+  // }
 }

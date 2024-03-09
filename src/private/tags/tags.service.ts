@@ -1,17 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Property, PropertyDocument } from 'src/private/tags/tags.schema';
+import { Tag, TagDocument } from 'src/private/tags/tags.schema';
 
 @Injectable()
-export class PropertiesService {
+export class TagsService {
   constructor(
-    @InjectModel(Property.name, 'dictDB')
-    private propertyModel: Model<PropertyDocument>,
+    @InjectModel(Tag.name, 'dictDB')
+    private propertyModel: Model<TagDocument>,
   ) {}
 
-  createProperty() {}
-  updateProperty() {}
-  deleteProperty() {}
-  getPropertyCollection() {}
+  createTag() {}
+  getTagGroup() {
+    return 'myString';
+  }
+
+  //__NOTE: currently not implementable
+  updateTag() {}
+  deleteTag() {}
 }

@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
-import { PropertiesController } from 'src/private/tags/tags.controller';
-import { PropertiesService } from 'src/private/tags/tags.service';
+import { TagsController } from 'src/private/tags/tags.controller';
+import { TagsService } from 'src/private/tags/tags.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Property, PropertySchema } from 'src/private/tags/tags.schema';
+import { Tag, PropertySchema } from 'src/private/tags/tags.schema';
 @Module({
   imports: [
     MongooseModule.forFeature(
-      [{ name: Property.name, schema: PropertySchema }],
+      [{ name: Tag.name, schema: PropertySchema }],
       'dictDB',
     ),
   ],
-  controllers: [PropertiesController],
-  providers: [PropertiesService],
+  controllers: [TagsController],
+  providers: [TagsService],
 })
-export class PropertiesModule {}
+export class TagsModule {}
