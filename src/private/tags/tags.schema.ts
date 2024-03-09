@@ -22,4 +22,4 @@ export class CreateTagDto {
 
 export type TagDocument = Tag & Document;
 
-export const PropertySchema = SchemaFactory.createForClass(Tag);
+export const TagSchema = SchemaFactory.createForClass(Tag);

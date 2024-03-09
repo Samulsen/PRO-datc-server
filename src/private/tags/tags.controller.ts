@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { TagsService } from 'src/private/tags/tags.service';
 import { CreateTagDto } from 'src/private/tags/tags.schema';
-import { ValidateGroupPipe } from 'tags.pipes';
+import { ValidateGroupPipe } from 'src/private/tags/tags.pipes';
 import { ETagsGroup } from 'src/private/tags/tags.types';
 @Controller('tags')
 export class TagsController {

@@ -13,11 +13,9 @@ export class TagsService {
 
   async createTag(newTag: CreateTagDto) {
     const tagExists = await this.tagModel.findOne({ name: newTag.name });
-
     if (tagExists) {
       throw new Error(`The Tag -->${newTag.name}<-- already exists!`);
     }
-
     const newTagDoc = await new this.tagModel(newTag).save();
     return { message: 'Tag created', tag: newTagDoc };
   }
