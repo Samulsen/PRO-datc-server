@@ -7,10 +7,12 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Param,
 } from '@nestjs/common';
 import { TagsService } from 'src/private/tags/tags.service';
 import { CreateTagDto } from 'src/private/tags/tags.schema';
-
+import { ValidateGroupPipe } from 'tags.pipes';
+import { ETagsGroup } from 'src/private/tags/tags.types';
 @Controller('tags')
 export class TagsController {
   constructor(private tagsService: TagsService) {}
@@ -25,9 +27,12 @@ export class TagsController {
     }
   }
 
-  @Get('group/:group')
-  getPropertyCollection() {
-    return this.tagsService.getTagGroup();
+  @Get('groups/:group')
+  async getPropertyCollection(
+    @Param('group', ValidateGroupPipe) group: ETagsGroup,
+  ) {
+    console.log('group', group);
+    return this.tagsService.getTagGroup(group);
   }
 
   // @Patch(':id')

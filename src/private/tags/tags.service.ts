@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Tag, TagDocument, CreateTagDto } from 'src/private/tags/tags.schema';
+import { ETagsGroup } from 'src/private/tags/tags.types';
 
 @Injectable()
 export class TagsService {
@@ -20,8 +21,9 @@ export class TagsService {
     const newTagDoc = await new this.tagModel(newTag).save();
     return { message: 'Tag created', tag: newTagDoc };
   }
-  getTagGroup() {
-    return 'myString';
+  async getTagGroup(group: ETagsGroup) {
+    const tagGroup = await this.tagModel.find({ group });
+    return tagGroup;
   }
 
   // updateTag() {}
