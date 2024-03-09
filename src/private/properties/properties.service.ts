@@ -9,12 +9,12 @@ import {
 @Injectable()
 export class PropertiesService {
   constructor(
-    @InjectModel(Property.name)
+    @InjectModel(Property.name, 'dictDB')
     private propertyModel: Model<PropertyDocument>,
   ) {}
 
   createProperty() {
-    const myTestObject = new this.propertyModel({ name: 'MyTestString' });
+    const myTestObject = new this.propertyModel({ name: 'MyOtherString' });
     return myTestObject.save();
   }
   getPropertyCollection() {

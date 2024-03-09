@@ -7,7 +7,8 @@ export class PropertiesController {
 
   @Post()
   createProperty() {
-    return this.propertiesService.createProperty();
+    this.propertiesService.createProperty();
+    return 'Success';
   }
 
   @Get(':id')

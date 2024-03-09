@@ -7,8 +7,6 @@ export type PropertyDocument = Property & Document;
 export class Property {
   @Prop()
   name: string;
-
-  // Add more properties as needed
 }
 
 export const PropertySchema = SchemaFactory.createForClass(Property);
