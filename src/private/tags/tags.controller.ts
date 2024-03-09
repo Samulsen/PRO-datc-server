@@ -1,18 +1,33 @@
-import { Controller, Get, Post, Patch, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  UsePipes,
+  ValidationPipe,
+  Body,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { TagsService } from 'src/private/tags/tags.service';
+import { CreateTagDto } from 'src/private/tags/tags.schema';
 
 @Controller('tags')
 export class TagsController {
-  constructor(private propertiesService: TagsService) {}
+  constructor(private tagsService: TagsService) {}
 
   @Post()
-  createTag() {
-    return this.propertiesService.createTag();
+  @UsePipes(ValidationPipe)
+  async createTag(@Body() tagDto: CreateTagDto) {
+    try {
+      return await this.tagsService.createTag(tagDto);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
   @Get('group/:group')
   getPropertyCollection() {
-    return this.propertiesService.getTagGroup();
+    return this.tagsService.getTagGroup();
   }
 
   // @Patch(':id')
