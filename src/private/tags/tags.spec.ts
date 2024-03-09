@@ -16,7 +16,9 @@ describe('TagsController (e2e)', () => {
   let mongoServer: MongoMemoryServer;
 
   beforeAll(async () => {
-    mongoServer = new MongoMemoryServer();
+    mongoServer = await MongoMemoryServer.create({
+      instance: { dbName: 'dictDB' },
+    });
     const mongoUri = mongoServer.getUri();
 
     await mongoose.connect(mongoUri);
@@ -28,7 +30,7 @@ describe('TagsController (e2e)', () => {
       providers: [
         TagsService,
         {
-          provide: getModelToken(Tag.name),
+          provide: getModelToken(Tag.name, 'dictDB'),
           useValue: mongoose.model('Tag', TagSchema),
         },
       ],
@@ -38,18 +40,50 @@ describe('TagsController (e2e)', () => {
     await app.init();
   });
 
-  it('creates a tag and then fails to create the same tag', async () => {
+  it('Creates a single tag', async () => {
+    const dto: CreateTagDto = { name: 'tag1', group: ETagsGroup.LIBRARY };
+    const response = await request(app.getHttpServer()).post('/tags').send(dto);
+    expect(response.status).toBe(HttpStatus.CREATED);
+    const {
+      message,
+      tag: { name, group },
+    } = response.body;
+    expect({ message, name, group }).toEqual({
+      message: 'Tag created',
+      name: dto.name,
+      group: dto.group,
+    });
+  });
+
+  it('Creates a tag with an invalid group, server will refuse creation', async () => {
+    const dto: CreateTagDto = { name: 'tag1', group: 'invalid' as ETagsGroup };
+    const response = await request(app.getHttpServer()).post('/tags').send(dto);
+    expect(response.status).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body.message).toEqual([
+      'group must be one of the following values: Language, Tool, Framework, Domain, Pattern, Library',
+    ]);
+  });
+
+  it('Creates a tag and then test if server will refuse create the same tag', async () => {
     const dto: CreateTagDto = { name: 'tag1', group: ETagsGroup.LIBRARY };
 
     // Create a tag
     let response = await request(app.getHttpServer()).post('/tags').send(dto);
     expect(response.status).toBe(HttpStatus.CREATED);
-    expect(response.body).toEqual(expect.objectContaining(dto));
+    const {
+      message,
+      tag: { name, group },
+    } = response.body;
+    expect({ message, name, group }).toEqual({
+      message: 'Tag created',
+      name: dto.name,
+      group: dto.group,
+    });
 
     // Try to create the same tag
     response = await request(app.getHttpServer()).post('/tags').send(dto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
-    expect(response.body.message).toEqual('The Tag tag1 already exists!');
+    expect(response.body.message).toEqual('The Tag -->tag1<-- already exists!');
   });
 
   afterEach(async () => {

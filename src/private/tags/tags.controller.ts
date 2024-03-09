@@ -31,7 +31,6 @@ export class TagsController {
   async getPropertyCollection(
     @Param('group', ValidateGroupPipe) group: ETagsGroup,
   ) {
-    console.log('group', group);
     return this.tagsService.getTagGroup(group);
   }
 
