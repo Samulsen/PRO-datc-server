@@ -6,6 +6,7 @@ export const DBConnection = {
   USER: 'userDB',
   DICT: 'dictDB',
 };
+//
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://mongo:27017/users', {
