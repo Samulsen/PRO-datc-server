@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
-import { TagsModule } from 'src/private/tags/tags.module';
 import { RouterModule } from '@nestjs/core';
+import { TagsModule } from 'src/private/tags/tags.module';
+import { WordsModule } from 'src/private/words/words.module';
 
 @Module({
   imports: [
     TagsModule,
+    WordsModule,
     RouterModule.register([
       {
         path: 'private',
@@ -12,6 +14,12 @@ import { RouterModule } from '@nestjs/core';
           {
             path: 'admin',
             module: TagsModule,
+            children: [
+              {
+                path: 'dictionary',
+                module: WordsModule,
+              },
+            ],
           },
         ],
       },
