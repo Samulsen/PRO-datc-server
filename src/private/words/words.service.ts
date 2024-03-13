@@ -5,6 +5,7 @@ import { MWord, WordDocument } from 'src/private/words/words.schema';
 import {
   stringUtilExistsMessage as existMessage,
   stringUtilsNotExistsMessage as notExistMessage,
+  stringUtilWasDeletedMessage as wasDeletedMessage,
 } from 'src/utils/strings.utils';
 import { CreateWordDto, UpdateWordDto } from 'src/private/words/words.dto';
 
@@ -46,5 +47,11 @@ export class WordsService {
       { new: true },
     );
     return updatedWord;
+  }
+
+  async deleteWord(word: string) {
+    const wordDoc = this.getWord(word);
+    await this.wordModel.findByIdAndDelete(wordDoc);
+    return { message: wasDeletedMessage('Word', word) };
   }
 }
