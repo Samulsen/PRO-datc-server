@@ -4,7 +4,7 @@ import { ETagsGroup } from 'src/private/tags/tags.types';
 import { IsEnum, IsString } from 'class-validator';
 
 @Schema()
-export class Tag {
+export class MTag {
   @Prop()
   name: string;
 
@@ -20,6 +20,6 @@ export class CreateTagDto {
   group: ETagsGroup;
 }
 
-export type TagDocument = Tag & Document;
+export type TagDocument = MTag & Document;
 
-export const TagSchema = SchemaFactory.createForClass(Tag);
+export const TagSchema = SchemaFactory.createForClass(MTag);

@@ -6,7 +6,7 @@ import { ETagsGroup } from 'src/private/tags/tags.types';
 import * as request from 'supertest';
 import { INestApplication, HttpStatus } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
-import { Tag } from 'src/private/tags/tags.schema';
+import { MTag } from 'src/private/tags/tags.schema';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import { TagSchema } from 'src/private/tags/tags.schema';
@@ -30,7 +30,7 @@ describe('TagsController (e2e)', () => {
       providers: [
         TagsService,
         {
-          provide: getModelToken(Tag.name, 'dictDB'),
+          provide: getModelToken(MTag.name, 'dictDB'),
           useValue: mongoose.model('Tag', TagSchema),
         },
       ],
