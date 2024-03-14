@@ -1,10 +1,10 @@
 export const errorUtilThrowWrapper = (
   errorbound: { state: boolean; message: string },
-  successbound: { action: () => void },
+  successbound: { action: () => Promise<any> },
 ) => {
   if (errorbound.state) {
     throw new Error(errorbound.message);
   } else {
-    successbound.action;
+    return successbound.action();
   }
 };

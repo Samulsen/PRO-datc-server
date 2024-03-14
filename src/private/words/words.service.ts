@@ -7,6 +7,7 @@ import {
   stringUtilsNotExistsMessage as notExistMessage,
   stringUtilWasDeletedMessage as wasDeletedMessage,
 } from 'src/utils/strings.utils';
+import { errorUtilThrowWrapper as throwWrapper } from 'src/utils/error.utils';
 import { CreateWordDto, UpdateWordDto } from 'src/private/words/words.dto';
 
 @Injectable()
@@ -20,31 +21,46 @@ export class WordsService {
     const wordDoc = await this.wordModel.findOne({
       value: word,
     });
-
-    if (!wordDoc) {
-      throw new Error(notExistMessage('Word', word));
-    }
-
     return wordDoc;
   }
 
+  async wordExists(word: string) {
+    const wordDoc = await this.getWord(word);
+    return { state: wordDoc ? true : false, doc: wordDoc };
+  }
+
   async createWord(newWord: CreateWordDto) {
-    const wordExists = this.getWord(newWord.value);
-    if (!wordExists) {
-      throw new Error(existMessage('Word', newWord.value));
-    }
-    const newWordDoc = await new this.wordModel(newWord).save();
-    return { message: 'Word created', word: newWordDoc };
+    const wordExist = await this.wordExists(newWord.value);
+    const action = async () => {
+      const newWordDoc = await new this.wordModel(newWord).save();
+      return { message: 'Word created', word: newWordDoc };
+    };
+    return throwWrapper(
+      {
+        state: wordExist.state,
+        message: existMessage('Word', newWord.value),
+      },
+      { action },
+    );
   }
 
   async updateWord(update: UpdateWordDto, word: string) {
-    const wordDoc = this.getWord(word);
-    const updatedWord = await this.wordModel.findByIdAndUpdate(
-      wordDoc,
-      update,
-      { new: true },
+    const wordExist = await this.wordExists(word);
+    const action = async () => {
+      const updatedWord = await this.wordModel.findByIdAndUpdate(
+        wordExist.doc,
+        update,
+        { new: true },
+      );
+      return updatedWord;
+    };
+    return throwWrapper(
+      {
+        state: !wordExist.state,
+        message: notExistMessage('Word', word),
+      },
+      { action },
     );
-    return updatedWord;
   }
 
   async deleteWord(word: string) {

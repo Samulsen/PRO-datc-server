@@ -12,6 +12,10 @@ import {
 } from '@nestjs/common';
 import { CreateWordDto, UpdateWordDto } from 'src/private/words/words.dto';
 import { WordsService } from 'src/private/words/words.service';
+import {
+  EmptyObjectPipe,
+  StrictKeyCheckPipe,
+} from 'src/private/words/words.pipes';
 
 @Controller('words')
 export class WordsController {
@@ -28,6 +32,9 @@ export class WordsController {
   }
 
   @Patch(':word')
+  // @UsePipes(EmptyObjectPipe)
+  // @UsePipes(StrictKeyCheckPipe)
+  @UsePipes(ValidationPipe)
   async update(@Body() update: UpdateWordDto, @Param('word') word: string) {
     try {
       return await this.wordsService.updateWord(update, word);
