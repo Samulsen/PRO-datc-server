@@ -22,8 +22,10 @@ export class WordsController {
   constructor(private readonly wordsService: WordsService) {}
 
   @Post()
+  // check forbidUnknownValues
   @UsePipes(ValidationPipe)
   async create(@Body() newWord: CreateWordDto) {
+    //__NOTE: create wrapper utility that only expects a function
     try {
       return await this.wordsService.createWord(newWord);
     } catch (error) {
