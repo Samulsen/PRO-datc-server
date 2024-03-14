@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { MTag, TagDocument, CreateTagDto } from 'src/private/tags/tags.schema';
+import { Tag, TagDocument, CreateTagDto } from 'src/private/tags/tags.schema';
 import { ETagsGroup } from 'src/private/tags/tags.types';
 
 @Injectable()
 export class TagsService {
   constructor(
-    @InjectModel(MTag.name, 'dictDB')
+    @InjectModel(Tag.name, 'dictDB')
     private tagModel: Model<TagDocument>,
   ) {}
 

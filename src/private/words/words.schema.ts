@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 import { EWordType, MWordEntry } from 'src/private/words/words.types';
 
 @Schema()
-export class MWord {
+export class Word {
   @Prop()
   value: string;
   @Prop()
@@ -20,6 +20,6 @@ export class MWord {
   entries: MWordEntry[];
 }
 
-export type WordDocument = MWord & Document;
+export type WordDocument = Word & Document;
 
-export const WordSchema = SchemaFactory.createForClass(MWord);
+export const WordSchema = SchemaFactory.createForClass(Word);

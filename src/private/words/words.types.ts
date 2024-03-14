@@ -1,4 +1,4 @@
-import { MTag } from 'src/private/tags/tags.schema';
+import { Tag } from 'src/private/tags/tags.schema';
 
 export enum EWordType {
   NOUN = 'NOUN',
@@ -16,5 +16,5 @@ export type MWordEntry = {
   description: string;
   examples?: { code?: string; visual?: ExampleVisual };
   links?: string[];
-  tags?: MTag[];
+  tags?: Tag[];
 };
