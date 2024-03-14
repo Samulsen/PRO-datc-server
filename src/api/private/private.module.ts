@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { RouterModule } from '@nestjs/core';
-import { TagsModule } from 'src/private/tags/tags.module';
-import { WordsModule } from 'src/private/words/words.module';
+import { TagsModule } from 'src/api/private/tags/tags.module';
+import { WordsModule } from 'src/api/private/words/words.module';
 
 @Module({
   imports: [

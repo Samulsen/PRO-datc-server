@@ -1,4 +1,4 @@
-import { UpdateWordDto } from 'src/private/words/words.dto';
+import { UpdateWordDto } from 'src/api/private/words/words.dto';
 import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
 
 @Injectable()

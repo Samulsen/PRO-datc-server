@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Word, WordDocument } from 'src/private/words/words.schema';
+import { Word, WordDocument } from 'src/api/private/words/words.schema';
 import {
   stringUtilExistsMessage as existMessage,
   stringUtilsNotExistsMessage as notExistMessage,
   stringUtilWasDeletedMessage as wasDeletedMessage,
 } from 'src/utils/strings.utils';
 import { errorUtilThrowWrapper as throwWrapper } from 'src/utils/error.utils';
-import { CreateWordDto, UpdateWordDto } from 'src/private/words/words.dto';
+import { CreateWordDto, UpdateWordDto } from 'src/api/private/words/words.dto';
 
 @Injectable()
 export class WordsService {

@@ -1,4 +1,4 @@
-import { Tag } from 'src/private/tags/tags.schema';
+import { Tag } from 'src/api/private/tags/tags.schema';
 
 export enum EWordType {
   NOUN = 'NOUN',

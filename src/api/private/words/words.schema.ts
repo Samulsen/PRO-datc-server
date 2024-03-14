@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { EWordType, MWordEntry } from 'src/private/words/words.types';
+import { EWordType, MWordEntry } from 'src/api/private/words/words.types';
 
 @Schema()
 export class Word {
