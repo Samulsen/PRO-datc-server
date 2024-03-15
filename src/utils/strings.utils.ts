@@ -9,3 +9,7 @@ export const stringUtilsNotExistsMessage = (group: string, target: string) => {
 export const stringUtilWasDeletedMessage = (group: string, target: string) => {
   return `The ${group} -->${target}<-- was deleted!`;
 };
+
+export const stringUtilWasCreatedMessage = (group: string, target: string) => {
+  return `The ${group} -->${target}<-- was created!`;
+};
