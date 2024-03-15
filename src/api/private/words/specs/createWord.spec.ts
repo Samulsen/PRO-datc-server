@@ -10,7 +10,10 @@ import { Word, WordSchema } from 'src/api/private/words/words.schema';
 import { EWordType } from 'src/api/private/words/words.types';
 
 import { testUtilCreateE2EModule as createE2ETestModule } from 'src/utils/tests.utils';
-import { stringUtilWasCreatedMessage as wasCreatedMessage } from 'src/utils/strings.utils';
+import {
+  stringUtilWasCreatedMessage as wasCreatedMessage,
+  stringUtilExistsMessage as existMessage,
+} from 'src/utils/strings.utils';
 
 describe('WordsController - Create ops (e2e)', () => {
   let app: INestApplication;
@@ -46,10 +49,19 @@ describe('WordsController - Create ops (e2e)', () => {
     expect(response.body.message).toBe(wasCreatedMessage('Word', dto.value));
     expect(response.body.word.value).toBe(dto.value);
     expect(response.body.word.type).toBe(dto.type);
-    expect(response.body.word.tags).toEqual([]);
     expect(response.body.word.concepts).toEqual([]);
     expect(response.body.word.antagonists).toEqual([]);
     expect(response.body.word.synonyms).toEqual([]);
     expect(response.body.word.variants).toEqual([]);
+  });
+
+  it('Rejects a call with the minimum dto payload because the word does already exist', async () => {
+    const dto: CreateWordDto = { value: 'word1', type: EWordType.ADJECTIVE };
+    await request(app.getHttpServer()).post('/words').send(dto);
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(dto)
+      .expect(HttpStatus.BAD_REQUEST);
+    expect(response.body.message).toBe(existMessage('Word', dto.value));
   });
 });

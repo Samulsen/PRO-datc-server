@@ -6,6 +6,7 @@ import {
   stringUtilExistsMessage as existMessage,
   stringUtilsNotExistsMessage as notExistMessage,
   stringUtilWasDeletedMessage as wasDeletedMessage,
+  stringUtilWasCreatedMessage as wasCreatedMessage,
 } from 'src/utils/strings.utils';
 import { errorUtilThrowWrapper as throwWrapper } from 'src/utils/error.utils';
 import { CreateWordDto, UpdateWordDto } from 'src/api/private/words/words.dto';
@@ -33,7 +34,10 @@ export class WordsService {
     const wordExist = await this.wordExists(newWord.value);
     const action = async () => {
       const newWordDoc = await new this.wordModel(newWord).save();
-      return { message: 'Word created', word: newWordDoc };
+      return {
+        message: wasCreatedMessage('Word', newWord.value),
+        word: newWordDoc,
+      };
     };
     return throwWrapper(
       {
