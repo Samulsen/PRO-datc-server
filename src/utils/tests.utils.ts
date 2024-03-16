@@ -16,13 +16,15 @@ export const testUtilCreateE2EModule = async (
 
   await mongoose.connect(mongoUri);
 
+  const mongooseModel = mongoose.model(model.name, schema);
+
   const moduleRef: TestingModule = await Test.createTestingModule({
     controllers: [controller],
     providers: [
       service,
       {
         provide: getModelToken(model.name, 'dictDB'),
-        useValue: mongoose.model('Word', schema),
+        useValue: mongooseModel,
       },
     ],
   }).compile();
@@ -30,5 +32,5 @@ export const testUtilCreateE2EModule = async (
   const app = moduleRef.createNestApplication();
   await app.init();
 
-  return { app, mongoServer };
+  return { app, mongoServer, mongooseModel };
 };

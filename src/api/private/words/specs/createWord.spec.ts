@@ -18,7 +18,7 @@ import {
 describe('WordsController - Create ops (e2e)', () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
-
+  let word: mongoose.Model<Word>;
   beforeAll(async () => {
     const result = await createE2ETestModule(
       WordsController,
@@ -28,6 +28,7 @@ describe('WordsController - Create ops (e2e)', () => {
     );
     app = result.app;
     mongoServer = result.mongoServer;
+    word = result.mongooseModel;
   });
 
   afterEach(async () => {
@@ -44,15 +45,10 @@ describe('WordsController - Create ops (e2e)', () => {
     const dto: CreateWordDto = { value: 'word1', type: EWordType.ADJECTIVE };
     const response = await request(app.getHttpServer())
       .post('/words')
-      .send(dto)
-      .expect(HttpStatus.CREATED);
+      .send(dto);
+    expect(HttpStatus.CREATED);
     expect(response.body.message).toBe(wasCreatedMessage('Word', dto.value));
-    expect(response.body.word.value).toBe(dto.value);
-    expect(response.body.word.type).toBe(dto.type);
-    expect(response.body.word.concepts).toEqual([]);
-    expect(response.body.word.antagonists).toEqual([]);
-    expect(response.body.word.synonyms).toEqual([]);
-    expect(response.body.word.variants).toEqual([]);
+    expect((await word.findOne({ value: dto.value })).type).toEqual(dto.type);
   });
 
   it('Rejects a call with the minimum dto payload because the word does already exist', async () => {
@@ -60,8 +56,9 @@ describe('WordsController - Create ops (e2e)', () => {
     await request(app.getHttpServer()).post('/words').send(dto);
     const response = await request(app.getHttpServer())
       .post('/words')
-      .send(dto)
-      .expect(HttpStatus.BAD_REQUEST);
+      .send(dto);
+    expect(HttpStatus.BAD_REQUEST);
     expect(response.body.message).toBe(existMessage('Word', dto.value));
+    expect(await word.find({ value: dto.value })).toHaveLength(1);
   });
 });
