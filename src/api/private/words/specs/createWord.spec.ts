@@ -5,11 +5,11 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 
 import { WordsController } from 'src/api/private/words/words.controller';
 import { WordsService } from 'src/api/private/words/words.service';
-import { CreateWordDto } from 'src/api/private/words/words.dto';
-import { Word, WordSchema } from 'src/api/private/words/words.schema';
-import { EWordType } from 'src/api/private/words/words.types';
+import { CreateWordDto } from 'src/api/private/words/models/words.dto';
+import { Word, WordSchema } from 'src/api/private/words/models/words.schema';
+import { EWordType } from 'src/api/private/words/models/words.types';
 
-import { testUtilCreateE2EModule as createE2ETestModule } from 'src/utils/tests.utils';
+import { testUtilCreateIntegrationTestModule as createIntegrationTestModule } from 'src/utils/tests.utils';
 import {
   stringUtilWasCreatedMessage as wasCreatedMessage,
   stringUtilExistsMessage as existMessage,
@@ -20,7 +20,7 @@ describe('WordsController - Create ops (e2e)', () => {
   let mongoServer: MongoMemoryServer;
   let word: mongoose.Model<Word>;
   beforeAll(async () => {
-    const result = await createE2ETestModule(
+    const result = await createIntegrationTestModule(
       WordsController,
       WordsService,
       Word,

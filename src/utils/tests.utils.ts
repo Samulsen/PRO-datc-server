@@ -3,7 +3,7 @@ import { getModelToken } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-export const testUtilCreateE2EModule = async (
+export const testUtilCreateIntegrationTestModule = async (
   controller: any,
   service: any,
   model: any,
