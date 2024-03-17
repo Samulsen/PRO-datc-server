@@ -10,12 +10,11 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { CreateWordDto, UpdateWordDto } from 'src/api/private/words/words.dto';
-import { WordsService } from 'src/api/private/words/words.service';
 import {
-  EmptyObjectPipe,
-  StrictKeyCheckPipe,
-} from 'src/api/private/words/words.pipes';
+  CreateWordDto,
+  UpdateWordDto,
+} from 'src/api/private/words/models/words.dto';
+import { WordsService } from 'src/api/private/words/words.service';
 
 @Controller('words')
 export class WordsController {
