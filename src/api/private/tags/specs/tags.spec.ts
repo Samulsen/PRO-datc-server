@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TagsController } from './tags.controller';
-import { TagsService } from './tags.service';
-import { CreateTagDto } from 'src/api/private/tags/tags.schema';
-import { ETagsGroup } from 'src/api/private/tags/tags.types';
+import { TagsController } from '../tags.controller';
+import { TagsService } from '../tags.service';
+import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
+import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
 import * as request from 'supertest';
 import { INestApplication, HttpStatus } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
-import { Tag } from 'src/api/private/tags/tags.schema';
+import { Tag } from 'src/api/private/tags/models/tags.schema';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import { TagSchema } from 'src/api/private/tags/tags.schema';
+import { TagSchema } from 'src/api/private/tags/models/tags.schema';
 
 describe('TagsController (e2e)', () => {
   let app: INestApplication;

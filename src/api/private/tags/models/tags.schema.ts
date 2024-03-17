@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { ETagsGroup } from 'src/api/private/tags/tags.types';
-import { IsEnum, IsString } from 'class-validator';
+import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
 
 @Schema()
 export class Tag {
@@ -9,14 +8,6 @@ export class Tag {
   name: string;
 
   @Prop()
-  group: ETagsGroup;
-}
-
-export class CreateTagDto {
-  @IsString()
-  name: string;
-
-  @IsEnum(ETagsGroup)
   group: ETagsGroup;
 }
 
