@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PrivateModule } from 'src/private/private.module';
+import { PrivateModule } from 'src/api/private/private.module';
 
 export const DBConnection = {
   USER: 'userDB',
   DICT: 'dictDB',
 };
+//
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://mongo:27017/users', {

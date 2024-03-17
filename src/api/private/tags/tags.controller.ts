@@ -9,10 +9,10 @@ import {
   HttpStatus,
   Param,
 } from '@nestjs/common';
-import { TagsService } from 'src/private/tags/tags.service';
-import { CreateTagDto } from 'src/private/tags/tags.schema';
-import { ValidateGroupPipe } from 'src/private/tags/tags.pipes';
-import { ETagsGroup } from 'src/private/tags/tags.types';
+import { TagsService } from 'src/api/private/tags/tags.service';
+import { CreateTagDto } from 'src/api/private/tags/tags.schema';
+import { ValidateGroupPipe } from 'src/api/private/tags/tags.pipes';
+import { ETagsGroup } from 'src/api/private/tags/tags.types';
 @Controller('tags')
 export class TagsController {
   constructor(private tagsService: TagsService) {}

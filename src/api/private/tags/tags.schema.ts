@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { ETagsGroup } from 'src/private/tags/tags.types';
+import { ETagsGroup } from 'src/api/private/tags/tags.types';
 import { IsEnum, IsString } from 'class-validator';
 
 @Schema()
