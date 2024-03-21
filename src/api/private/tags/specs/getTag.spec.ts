@@ -14,7 +14,6 @@ import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/a
 describe('TagsController - Get ops (integration)', () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
-  let tag: mongoose.Model<Tag>;
   beforeAll(async () => {
     const result = await testUtilCreateIntegrationTestModule(
       TagsController,
@@ -24,7 +23,6 @@ describe('TagsController - Get ops (integration)', () => {
     );
     app = result.app;
     mongoServer = result.mongoServer;
-    tag = result.mongooseModel;
   });
 
   afterEach(async () => {
@@ -59,7 +57,7 @@ describe('TagsController - Get ops (integration)', () => {
 
   it('Get tags of a valid group', async () => {
     const response = await request(app.getHttpServer()).get(
-      `/tags/group/${ETagsGroup.PATTERN}`,
+      '/tags/groups/pattern',
     );
     expect(response.statusCode).toBe(HttpStatus.OK);
     expect(response.body).toBe([{ name: 'tag1', group: ETagsGroup.PATTERN }]);
@@ -67,11 +65,11 @@ describe('TagsController - Get ops (integration)', () => {
 
   it('Refuses to get tags of an invalid group', async () => {
     const response = await request(app.getHttpServer()).get(
-      '/tags/group/invalid',
+      '/tags/groups/invalid',
     );
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
     expect(response.body).toBe({
-      message: invalidGroupMessage(),
+      message: invalidGroupMessage('invalid'),
     });
   });
 });
