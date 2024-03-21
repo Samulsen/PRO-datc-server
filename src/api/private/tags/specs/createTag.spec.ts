@@ -54,13 +54,16 @@ describe('TagsController - Create ops (integration)', () => {
   });
 
   it('Reject create call when supplied a invalid group', async () => {
-    const tagDto: CreateTagDto = { name: 'tagOne', group: 'invalid' };
+    const tagDto: CreateTagDto = {
+      name: 'tagOne',
+      group: 'invalid' as ETagsGroup,
+    };
     const response = await request(app.getHttpServer())
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
     expect(response.body).toBe({
-      message: invalidGroupMessage(),
+      message: invalidGroupMessage(tagDto.group),
     });
     expect(await tag.find({ name: tagDto.name })).toHaveLength(0);
   });
