@@ -4,6 +4,10 @@ import { Model } from 'mongoose';
 import { Tag, TagDocument } from 'src/api/private/tags/models/tags.schema';
 import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
 import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
+import {
+  stringUtilExistsMessage as existMessage,
+  stringUtilWasCreatedMessage as wasCreatedMessage,
+} from 'src/utils/strings.utils';
 
 @Injectable()
 export class TagsService {
@@ -15,10 +19,10 @@ export class TagsService {
   async createTag(newTag: CreateTagDto) {
     const tagExists = await this.tagModel.findOne({ name: newTag.name });
     if (tagExists) {
-      throw new Error(`The Tag -->${newTag.name}<-- already exists!`);
+      throw new Error(existMessage('Tag', newTag.name));
     }
-    const newTagDoc = await new this.tagModel(newTag).save();
-    return { message: 'Tag created', tag: newTagDoc };
+    await new this.tagModel(newTag).save();
+    return { message: wasCreatedMessage('Tag', newTag.name) };
   }
   async getTagGroup(group: ETagsGroup) {
     const tagGroup = await this.tagModel.find({ group });
