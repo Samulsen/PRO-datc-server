@@ -26,7 +26,9 @@ export class TagsService {
   }
   async getTagGroup(group: ETagsGroup) {
     const tagGroup = await this.tagModel.find({ group });
-    return tagGroup;
+    return tagGroup.map(({ name, group }) => {
+      return { name, group };
+    });
   }
 
   // updateTag() {}
