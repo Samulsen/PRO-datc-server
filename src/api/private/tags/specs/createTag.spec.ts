@@ -63,7 +63,7 @@ describe('TagsController - Create ops (integration)', () => {
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
     expect(response.body).toMatchObject({
-      message: invalidGroupMessage(tagDto.group),
+      message: [invalidGroupMessage(tagDto.group)],
     });
     expect(await tag.find({ name: tagDto.name })).toHaveLength(0);
   });

@@ -5,7 +5,8 @@ import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/a
 export class CreateTagDto {
   @IsString()
   name: string;
-  ////__NOTE: check here
-  @IsEnum(ETagsGroup, { message: invalidGroupMessage.bind(null) })
+  @IsEnum(ETagsGroup, {
+    message: (valArgs) => invalidGroupMessage(valArgs.value),
+  })
   group: ETagsGroup;
 }
