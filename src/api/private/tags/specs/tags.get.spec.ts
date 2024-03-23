@@ -48,7 +48,7 @@ describe('TagsController - Get ops (integration)', () => {
 
   it('Get the entire tags list', async () => {
     const response = await request(app.getHttpServer()).get('/tags/groups');
-    expect(response.body).toBe([
+    expect(response.body).toMatchObject([
       { name: 'tag1', group: ETagsGroup.PATTERN },
       { name: 'tag2', group: ETagsGroup.LIBRARY },
       { name: 'tag3', group: ETagsGroup.TOOL },
@@ -60,7 +60,9 @@ describe('TagsController - Get ops (integration)', () => {
       '/tags/groups/pattern',
     );
     expect(response.statusCode).toBe(HttpStatus.OK);
-    expect(response.body).toBe([{ name: 'tag1', group: ETagsGroup.PATTERN }]);
+    expect(response.body).toMatchObject([
+      { name: 'tag1', group: ETagsGroup.PATTERN },
+    ]);
   });
 
   it('Refuses to get tags of an invalid group', async () => {
@@ -68,7 +70,7 @@ describe('TagsController - Get ops (integration)', () => {
       '/tags/groups/invalid',
     );
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
-    expect(response.body).toBe({
+    expect(response.body).toMatchObject({
       message: invalidGroupMessage('invalid'),
     });
   });
