@@ -10,9 +10,9 @@ import {
   Param,
 } from '@nestjs/common';
 import { TagsService } from 'src/api/private/tags/tags.service';
-import { CreateTagDto } from 'src/api/private/tags/tags.schema';
-import { ValidateGroupPipe } from 'src/api/private/tags/tags.pipes';
-import { ETagsGroup } from 'src/api/private/tags/tags.types';
+import { ValidateGroupPipe } from 'src/api/private/tags/helpers/tags.pipes';
+import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
+import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
 @Controller('tags')
 export class TagsController {
   constructor(private tagsService: TagsService) {}
@@ -25,6 +25,11 @@ export class TagsController {
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
+  }
+
+  @Get()
+  async getAllTags() {
+    return this.tagsService.getAllTags();
   }
 
   @Get('groups/:group')

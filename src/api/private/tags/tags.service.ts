@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Tag, TagDocument } from 'src/api/private/tags/models/tags.schema';
+import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
+import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
 import {
-  Tag,
-  TagDocument,
-  CreateTagDto,
-} from 'src/api/private/tags/tags.schema';
-import { ETagsGroup } from 'src/api/private/tags/tags.types';
+  stringUtilExistsMessage as existMessage,
+  stringUtilWasCreatedMessage as wasCreatedMessage,
+} from 'src/utils/strings.utils';
 
 @Injectable()
 export class TagsService {
@@ -18,14 +19,24 @@ export class TagsService {
   async createTag(newTag: CreateTagDto) {
     const tagExists = await this.tagModel.findOne({ name: newTag.name });
     if (tagExists) {
-      throw new Error(`The Tag -->${newTag.name}<-- already exists!`);
+      throw new Error(existMessage('Tag', newTag.name));
     }
-    const newTagDoc = await new this.tagModel(newTag).save();
-    return { message: 'Tag created', tag: newTagDoc };
+    await new this.tagModel(newTag).save();
+    return { message: wasCreatedMessage('Tag', newTag.name) };
   }
+
+  async getAllTags() {
+    const tags = await this.tagModel.find();
+    return tags.map(({ name, group }) => {
+      return { name, group };
+    });
+  }
+
   async getTagGroup(group: ETagsGroup) {
     const tagGroup = await this.tagModel.find({ group });
-    return tagGroup;
+    return tagGroup.map(({ name, group }) => {
+      return { name, group };
+    });
   }
 
   // updateTag() {}
