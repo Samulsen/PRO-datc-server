@@ -41,27 +41,24 @@ describe('WordsController - Create ops (e2e)', () => {
     await mongoServer.stop();
   });
 
-  // it('Creates a word with the mininimum dto payload if the word does not exist yet', async () => {
-  //   const dto: CreateWordDto = { value: 'word1', type: EWordType.ADJECTIVE };
-  //   const response = await request(app.getHttpServer())
-  //     .post('/words')
-  //     .send(dto);
-  //   expect(HttpStatus.CREATED);
-  //   expect(response.body.message).toBe(wasCreatedMessage('Word', dto.value));
-  //   expect((await word.findOne({ value: dto.value })).type).toEqual(dto.type);
-  // });
+  it('Creates a word with the mininimum dto payload if the word does not exist yet', async () => {
+    const dto: CreateWordDto = { value: 'word1', type: EWordType.ADJECTIVE };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(dto);
+    expect(HttpStatus.CREATED);
+    expect(response.body.message).toBe(wasCreatedMessage('Word', dto.value));
+    expect((await word.findOne({ value: dto.value })).type).toEqual(dto.type);
+  });
 
-  // it('Rejects a call with the minimum dto payload because the word does already exist', async () => {
-  //   const dto: CreateWordDto = { value: 'word1', type: EWordType.ADJECTIVE };
-  //   await request(app.getHttpServer()).post('/words').send(dto);
-  //   const response = await request(app.getHttpServer())
-  //     .post('/words')
-  //     .send(dto);
-  //   expect(HttpStatus.BAD_REQUEST);
-  //   expect(response.body.message).toBe(existMessage('Word', dto.value));
-  //   expect(await word.find({ value: dto.value })).toHaveLength(1);
-  // });
-  it('should pass', () => {
-    expect(true).toBe(true);
+  it('Rejects a call with the minimum dto payload because the word does already exist', async () => {
+    const dto: CreateWordDto = { value: 'word1', type: EWordType.ADJECTIVE };
+    await request(app.getHttpServer()).post('/words').send(dto);
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(dto);
+    expect(HttpStatus.BAD_REQUEST);
+    expect(response.body.message).toBe(existMessage('Word', dto.value));
+    expect(await word.find({ value: dto.value })).toHaveLength(1);
   });
 });
