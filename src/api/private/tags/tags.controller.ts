@@ -27,6 +27,11 @@ export class TagsController {
     }
   }
 
+  @Get()
+  async getAllTags() {
+    return this.tagsService.getAllTags();
+  }
+
   @Get('groups/:group')
   async getPropertyCollection(
     @Param('group', ValidateGroupPipe) group: ETagsGroup,

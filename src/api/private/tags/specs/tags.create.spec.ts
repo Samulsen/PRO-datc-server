@@ -47,7 +47,7 @@ describe('TagsController - Create ops (integration)', () => {
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.CREATED);
-    expect(response.body).toBe({
+    expect(response.body).toMatchObject({
       message: wasCreatedMessage('Tag', tagDto.name),
     });
     expect((await tag.findOne({ name: tagDto.name })).group).toBe(tagDto.group);
@@ -62,8 +62,8 @@ describe('TagsController - Create ops (integration)', () => {
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
-    expect(response.body).toBe({
-      message: invalidGroupMessage(tagDto.group),
+    expect(response.body).toMatchObject({
+      message: [invalidGroupMessage(tagDto.group)],
     });
     expect(await tag.find({ name: tagDto.name })).toHaveLength(0);
   });
@@ -75,7 +75,9 @@ describe('TagsController - Create ops (integration)', () => {
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
-    expect(response.body).toBe({ message: existsMessage('Tag', tagDto.name) });
+    expect(response.body).toMatchObject({
+      message: existsMessage('Tag', tagDto.name),
+    });
     expect(await tag.find({ name: tagDto.name })).toHaveLength(1);
   });
 });
