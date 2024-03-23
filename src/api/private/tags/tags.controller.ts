@@ -18,8 +18,7 @@ export class TagsController {
   constructor(private tagsService: TagsService) {}
 
   @Post()
-  //__NOTE: stopped here configuring error pipe message
-  @UsePipes(new ValidationPipe({}))
+  @UsePipes(ValidationPipe)
   async createTag(@Body() tagDto: CreateTagDto) {
     try {
       return await this.tagsService.createTag(tagDto);
@@ -28,7 +27,10 @@ export class TagsController {
     }
   }
 
-  //@Get("groups")
+  @Get()
+  async getAllTags() {
+    return this.tagsService.getAllTags();
+  }
 
   @Get('groups/:group')
   async getPropertyCollection(

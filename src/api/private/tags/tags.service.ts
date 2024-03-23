@@ -24,6 +24,14 @@ export class TagsService {
     await new this.tagModel(newTag).save();
     return { message: wasCreatedMessage('Tag', newTag.name) };
   }
+
+  async getAllTags() {
+    const tags = await this.tagModel.find();
+    return tags.map(({ name, group }) => {
+      return { name, group };
+    });
+  }
+
   async getTagGroup(group: ETagsGroup) {
     const tagGroup = await this.tagModel.find({ group });
     return tagGroup.map(({ name, group }) => {

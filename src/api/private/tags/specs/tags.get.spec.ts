@@ -47,12 +47,14 @@ describe('TagsController - Get ops (integration)', () => {
   });
 
   it('Get the entire tags list', async () => {
-    const response = await request(app.getHttpServer()).get('/tags/groups');
-    expect(response.body).toMatchObject([
-      { name: 'tag1', group: ETagsGroup.PATTERN },
-      { name: 'tag2', group: ETagsGroup.LIBRARY },
-      { name: 'tag3', group: ETagsGroup.TOOL },
-    ]);
+    const response = await request(app.getHttpServer()).get('/tags');
+    expect(response.body).toEqual(
+      expect.arrayContaining([
+        { name: 'tag1', group: ETagsGroup.PATTERN },
+        { name: 'tag2', group: ETagsGroup.LIBRARY },
+        { name: 'tag3', group: ETagsGroup.TOOL },
+      ]),
+    );
   });
 
   it('Get tags of a valid group', async () => {
