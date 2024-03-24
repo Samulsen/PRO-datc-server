@@ -10,3 +10,9 @@ export class CreateConceptDto {
   @IsString()
   icon: string;
 }
+
+export class CreateConceptIconDto {
+  @ApiProperty()
+  @IsString()
+  name: string;
+}
