@@ -15,12 +15,14 @@ describe('TagsController - Get ops (integration)', () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
   beforeAll(async () => {
-    const result = await testUtilCreateIntegrationTestModule(
-      TagsController,
-      TagsService,
-      Tag,
-      TagSchema,
-    );
+    const result = await testUtilCreateIntegrationTestModule([
+      {
+        controller: TagsController,
+        service: TagsService,
+        model: Tag,
+        schema: TagSchema,
+      },
+    ]);
     app = result.app;
     mongoServer = result.mongoServer;
   });

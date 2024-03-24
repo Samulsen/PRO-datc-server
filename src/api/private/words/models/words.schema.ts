@@ -12,6 +12,8 @@ export class Word {
   @Prop()
   type: EWordType;
   @Prop()
+  combinators: string[];
+  @Prop()
   concepts: string[];
   @Prop()
   variants: string[];

@@ -20,15 +20,17 @@ describe('TagsController - Create ops (integration)', () => {
   let mongoServer: MongoMemoryServer;
   let tag: mongoose.Model<Tag>;
   beforeAll(async () => {
-    const result = await testUtilCreateIntegrationTestModule(
-      TagsController,
-      TagsService,
-      Tag,
-      TagSchema,
-    );
+    const result = await testUtilCreateIntegrationTestModule([
+      {
+        controller: TagsController,
+        service: TagsService,
+        model: Tag,
+        schema: TagSchema,
+      },
+    ]);
     app = result.app;
     mongoServer = result.mongoServer;
-    tag = result.mongooseModel;
+    tag = result.models[0];
   });
 
   afterEach(async () => {
