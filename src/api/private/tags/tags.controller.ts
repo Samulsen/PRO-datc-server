@@ -13,6 +13,9 @@ import { TagsService } from 'src/api/private/tags/tags.service';
 import { ValidateGroupPipe } from 'src/api/private/tags/helpers/tags.pipe';
 import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
 import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
+import { ApiTags } from '@nestjs/swagger';
+
+@ApiTags('tags')
 @Controller('tags')
 export class TagsController {
   constructor(private tagsService: TagsService) {}
