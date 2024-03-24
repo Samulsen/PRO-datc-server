@@ -53,6 +53,42 @@ describe('WordsController - Create ops (e2e)', () => {
     expect((await word.findOne({ value: dto.value })).type).toEqual(dto.type);
   });
 
+  it('Creates a word with a full valid dto payload if the word does not exist yet', async () => {
+    const dto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      concepts: ['concept1'],
+      combinators: ['combinator1'],
+      variants: ['variant1'],
+      synonyms: ['synonym1'],
+      antagonists: ['antagonist1'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(dto);
+    expect(response.statusCode).toBe(HttpStatus.CREATED);
+    expect(response.body).toMatchObject({
+      message: wasCreatedMessage('Word', dto.value),
+    });
+    const newWord = await word.findOne({ value: dto.value });
+    expect(newWord.type).toEqual(dto.type);
+    expect(newWord.concepts).toEqual(dto.concepts);
+    expect(newWord.combinators).toEqual(dto.combinators);
+    expect(newWord.variants).toEqual(dto.variants);
+    expect(newWord.synonyms).toEqual(dto.synonyms);
+    expect(newWord.antagonists).toEqual(dto.antagonists);
+  });
+
+  it("Rejects a call with a wrong concept's dto payload", async () => {});
+
+  it("Rejects a call with a wrong combinator's dto payload", async () => {});
+
+  it("Rejects a call with a wrong variant's dto payload", async () => {});
+
+  it("Rejects a call with a wrong synonym's dto payload", async () => {});
+
+  it("Rejects a call with a wrong antagonist's dto payload", async () => {});
+
   it('Rejects a call with the minimum dto payload because the word does already exist', async () => {
     const dto: CreateWordDto = { value: 'word1', type: EWordType.ADJECTIVE };
     await request(app.getHttpServer()).post('/words').send(dto);
