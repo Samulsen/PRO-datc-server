@@ -15,7 +15,9 @@ import {
   UpdateWordDto,
 } from 'src/api/private/words/models/words.dto';
 import { WordsService } from 'src/api/private/words/words.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('words')
 @Controller('words')
 export class WordsController {
   constructor(private readonly wordsService: WordsService) {}
