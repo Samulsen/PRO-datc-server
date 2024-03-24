@@ -1,12 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Concept } from 'src/api/private/concepts/models/concepts.schema';
+import { CreateConceptDto } from 'src/api/private/concepts/models/concepts.dto';
 
 @Injectable()
 export class ConceptsService {
-  create(): string {
+  constructor(
+    @InjectModel(Concept.name, 'dictDB')
+    private conceptModel: Model<Concept>,
+  ) {}
+
+  async createConcept() {
     return 'Concept created';
   }
 
-  get(): string {
+  async getAllConcepts() {
     return 'Concept retrieved';
   }
 }

@@ -8,12 +8,12 @@ export class ConceptsController {
   constructor(private readonly conceptsService: ConceptsService) {}
 
   @Post()
-  create() {
-    return this.conceptsService.create();
+  async create() {
+    return this.conceptsService.createConcept();
   }
 
   @Get()
-  get() {
-    return this.conceptsService.get();
+  async get() {
+    return this.conceptsService.getAllConcepts();
   }
 }
