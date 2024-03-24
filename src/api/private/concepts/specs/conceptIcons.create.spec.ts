@@ -13,7 +13,7 @@ import {
 import { stringUtilWasCreatedMessage as wasCreatedMessage } from 'src/utils/strings.utils';
 import { stringUtilExistsMessage as existsMessage } from 'src/utils/strings.utils';
 
-describe('TagsController - Create ops (integration)', () => {
+describe('ConceptsController - Create ops for icons (integration)', () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
   let conceptIcon: mongoose.Model<ConceptIcon>;
