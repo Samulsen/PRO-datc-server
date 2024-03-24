@@ -46,8 +46,10 @@ describe('WordsController - Create ops (e2e)', () => {
     const response = await request(app.getHttpServer())
       .post('/words')
       .send(dto);
-    expect(HttpStatus.CREATED);
-    expect(response.body.message).toBe(wasCreatedMessage('Word', dto.value));
+    expect(response.statusCode).toBe(HttpStatus.CREATED);
+    expect(response.body).toMatchObject({
+      message: wasCreatedMessage('Word', dto.value),
+    });
     expect((await word.findOne({ value: dto.value })).type).toEqual(dto.type);
   });
 
@@ -57,8 +59,10 @@ describe('WordsController - Create ops (e2e)', () => {
     const response = await request(app.getHttpServer())
       .post('/words')
       .send(dto);
-    expect(HttpStatus.BAD_REQUEST);
-    expect(response.body.message).toBe(existMessage('Word', dto.value));
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: existMessage('Word', dto.value),
+    });
     expect(await word.find({ value: dto.value })).toHaveLength(1);
   });
 });
