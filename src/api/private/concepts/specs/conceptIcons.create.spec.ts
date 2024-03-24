@@ -10,11 +10,13 @@ import {
   ConceptIcon,
   ConceptIconSchema,
 } from 'src/api/private/concepts/models/concepts.schema';
+import { stringUtilWasCreatedMessage as wasCreatedMessage } from 'src/utils/strings.utils';
+import { stringUtilExistsMessage as existsMessage } from 'src/utils/strings.utils';
 
 describe('TagsController - Create ops (integration)', () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
-  let tag: mongoose.Model<ConceptIcon>;
+  let conceptIcon: mongoose.Model<ConceptIcon>;
   beforeAll(async () => {
     const result = await testUtilCreateIntegrationTestModule([
       {
@@ -26,7 +28,7 @@ describe('TagsController - Create ops (integration)', () => {
     ]);
     app = result.app;
     mongoServer = result.mongoServer;
-    tag = result.models[0];
+    conceptIcon = result.models[0];
   });
 
   afterEach(async () => {
@@ -39,5 +41,29 @@ describe('TagsController - Create ops (integration)', () => {
     await mongoServer.stop();
   });
 
-  it('test');
+  it('Creates a concept icon that does not exist', async () => {
+    const iconDto = { name: 'iconOne' };
+    const response = await request(app.getHttpServer())
+      .post('/concepts/icons')
+      .send(iconDto);
+    expect(response.status).toBe(HttpStatus.CREATED);
+    expect(response.body).toMatchObject({
+      message: wasCreatedMessage('ConceptIcon', iconDto.name),
+    });
+    expect((await conceptIcon.findOne({ name: iconDto.name })).name).toBe(
+      iconDto.name,
+    );
+  });
+
+  it('Rejects a create call when the concept icon already exists', async () => {
+    const iconDto = { name: 'iconOne' };
+    await request(app.getHttpServer()).post('/concepts/icons').send(iconDto);
+    const response = await request(app.getHttpServer())
+      .post('/concepts/icons')
+      .send(iconDto);
+    expect(response.status).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: existsMessage('ConceptIcon', iconDto.name),
+    });
+  });
 });
