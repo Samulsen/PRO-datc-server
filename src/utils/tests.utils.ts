@@ -3,11 +3,15 @@ import { getModelToken } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
+type TModule = {
+  controller: any;
+  service: any;
+  model: any;
+  schema: any;
+};
+
 export const testUtilCreateIntegrationTestModule = async (
-  controller: any,
-  service: any,
-  model: any,
-  schema: any,
+  modules: TModule[],
 ) => {
   const mongoServer = await MongoMemoryServer.create({
     instance: { dbName: 'dictDB' },
@@ -16,14 +20,17 @@ export const testUtilCreateIntegrationTestModule = async (
 
   await mongoose.connect(mongoUri);
 
-  const mongooseModel = mongoose.model(model.name, schema);
+  const mongooseModel = mongoose.model(
+    modules[0].model.name,
+    modules[0].schema,
+  );
 
   const moduleRef: TestingModule = await Test.createTestingModule({
-    controllers: [controller],
+    controllers: [modules[0].controller],
     providers: [
-      service,
+      modules[0].service,
       {
-        provide: getModelToken(model.name, 'dictDB'),
+        provide: getModelToken(modules[0].model.name, 'dictDB'),
         useValue: mongooseModel,
       },
     ],
@@ -32,5 +39,5 @@ export const testUtilCreateIntegrationTestModule = async (
   const app = moduleRef.createNestApplication();
   await app.init();
 
-  return { app, mongoServer, mongooseModel };
+  return { app, mongoServer, models: [mongooseModel] };
 };

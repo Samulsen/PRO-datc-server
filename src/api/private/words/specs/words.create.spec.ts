@@ -20,15 +20,17 @@ describe('WordsController - Create ops (e2e)', () => {
   let mongoServer: MongoMemoryServer;
   let word: mongoose.Model<Word>;
   beforeAll(async () => {
-    const result = await createIntegrationTestModule(
-      WordsController,
-      WordsService,
-      Word,
-      WordSchema,
-    );
+    const result = await createIntegrationTestModule([
+      {
+        controller: WordsController,
+        service: WordsService,
+        model: Word,
+        schema: WordSchema,
+      },
+    ]);
     app = result.app;
     mongoServer = result.mongoServer;
-    word = result.mongooseModel;
+    word = result.models[0];
   });
 
   afterEach(async () => {
