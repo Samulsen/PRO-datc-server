@@ -20,24 +20,23 @@ export const testUtilCreateIntegrationTestModule = async (
 
   await mongoose.connect(mongoUri);
 
-  const mongooseModel = mongoose.model(
-    modules[0].model.name,
-    modules[0].schema,
-  );
+  const mongooseModels = modules.map((module) => {
+    return mongoose.model(module.model.name, module.schema);
+  });
 
   const moduleRef: TestingModule = await Test.createTestingModule({
-    controllers: [modules[0].controller],
+    controllers: modules.map((module) => module.controller),
     providers: [
-      modules[0].service,
-      {
-        provide: getModelToken(modules[0].model.name, 'dictDB'),
-        useValue: mongooseModel,
-      },
+      ...modules.map((module) => module.service),
+      ...modules.map((module) => ({
+        provide: getModelToken(module.model.name, 'dictDB'),
+        useValue: mongoose.model(module.model.name, module.schema),
+      })),
     ],
   }).compile();
 
   const app = moduleRef.createNestApplication();
   await app.init();
 
-  return { app, mongoServer, models: [mongooseModel] };
+  return { app, mongoServer, models: mongooseModels };
 };
