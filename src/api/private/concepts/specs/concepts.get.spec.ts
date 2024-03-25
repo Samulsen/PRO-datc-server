@@ -10,9 +10,6 @@ import {
   Concept,
   ConceptSchema,
 } from 'src/api/private/concepts/models/concepts.schema';
-import { CreateConceptDto } from 'src/api/private/concepts/models/concepts.dto';
-import { stringUtilWasCreatedMessage as wasCreatedMessage } from 'src/utils/strings.utils';
-import { stringUtilExistsMessage as existsMessage } from 'src/utils/strings.utils';
 
 describe('ConceptsController - Create ops for icons (integration)', () => {
   let app: INestApplication;
