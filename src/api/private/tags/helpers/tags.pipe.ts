@@ -7,7 +7,7 @@ export class ValidateGroupPipe implements PipeTransform {
   transform(value: any) {
     const upperCased = value.charAt(0).toUpperCase() + value.slice(1);
     if (!Object.values(ETagsGroup).includes(upperCased)) {
-      throw new BadRequestException(invalidGroupMessage(value));
+      throw new BadRequestException({ message: invalidGroupMessage(value) });
     }
     return upperCased as ETagsGroup;
   }
