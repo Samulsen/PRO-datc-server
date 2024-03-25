@@ -5,9 +5,8 @@ import {
   UsePipes,
   ValidationPipe,
   Body,
-  HttpException,
-  HttpStatus,
   Param,
+  BadRequestException,
 } from '@nestjs/common';
 import { TagsService } from 'src/api/private/tags/tags.service';
 import { ValidateGroupPipe } from 'src/api/private/tags/helpers/tags.pipe';
@@ -21,12 +20,12 @@ export class TagsController {
   constructor(private tagsService: TagsService) {}
 
   @Post()
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ dismissDefaultMessages: true }))
   async createTag(@Body() tagDto: CreateTagDto) {
     try {
       return await this.tagsService.createTag(tagDto);
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      throw new BadRequestException({ message: error.message });
     }
   }
 

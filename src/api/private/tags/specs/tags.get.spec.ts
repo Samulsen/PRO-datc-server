@@ -64,7 +64,7 @@ describe('TagsController - Get ops (integration)', () => {
       '/tags/groups/pattern',
     );
     expect(response.statusCode).toBe(HttpStatus.OK);
-    expect(response.body).toMatchObject([
+    expect(response.body).toEqual([
       { name: 'tag1', group: ETagsGroup.PATTERN },
     ]);
   });
@@ -74,7 +74,7 @@ describe('TagsController - Get ops (integration)', () => {
       '/tags/groups/invalid',
     );
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
-    expect(response.body).toMatchObject({
+    expect(response.body).toEqual({
       message: invalidGroupMessage('invalid'),
     });
   });
