@@ -9,10 +9,19 @@ import { CreateWordDto } from 'src/api/words/models/words.dto';
 import { Word, WordSchema } from 'src/api/words/models/words.schema';
 import { EWordType } from 'src/api/words/models/words.types';
 
+import { ConceptsController } from 'src/api/concepts/concepts.controller';
+import { ConceptsService } from 'src/api/concepts/concepts.service';
+import { CreateConceptDto } from 'src/api/concepts/models/concepts.dto';
+import {
+  Concept,
+  ConceptSchema,
+} from 'src/api/concepts/models/concepts.schema';
+
 import { testUtilCreateIntegrationTestModule as createIntegrationTestModule } from 'src/utils/tests.utils';
 import {
   stringUtilWasCreatedMessage as wasCreatedMessage,
   stringUtilExistsMessage as existMessage,
+  stringUtilsNotExistsMessage as notExistMessage,
 } from 'src/utils/strings.utils';
 
 describe('WordsController - Create ops (e2e)', () => {
@@ -26,6 +35,12 @@ describe('WordsController - Create ops (e2e)', () => {
         service: WordsService,
         model: Word,
         schema: WordSchema,
+      },
+      {
+        controller: ConceptsController,
+        service: ConceptsService,
+        model: Concept,
+        schema: ConceptSchema,
       },
     ]);
     app = result.app;
@@ -81,9 +96,152 @@ describe('WordsController - Create ops (e2e)', () => {
     expect(newWord.antagonists).toEqual(dto.antagonists);
   });
 
-  it("Rejects a call with a wrong concept's dto payload", async () => {});
+  it("Rejects a call with a wrong concept's dto payload", async () => {
+    const conceptDto: CreateConceptDto = { name: 'concept1', icon: 'icon1' };
+    await request(app.getHttpServer()).post('/concepts').send(conceptDto);
+    const wordDto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      concepts: ['concept2'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(wordDto);
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: [notExistMessage('Concept', wordDto.concepts[0])],
+    });
 
-  it("Rejects a call with a wrong combinator's dto payload", async () => {});
+    const newWord = await word.findOne({ value: wordDto.value });
+    expect(newWord).toBeNull();
+  });
+
+  it('Creates a word with a valid concept and minimal dto payload if the word does not exist yet', async () => {
+    const conceptDto: CreateConceptDto = { name: 'concept1', icon: 'icon1' };
+    await request(app.getHttpServer()).post('/concepts').send(conceptDto);
+    const wordDto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      concepts: ['concept1'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(wordDto);
+    expect(response.statusCode).toBe(HttpStatus.CREATED);
+    expect(response.body).toMatchObject({
+      message: wasCreatedMessage('Word', wordDto.value),
+    });
+    const newWord = await word.findOne({ value: wordDto.value });
+    expect(newWord.type).toEqual(wordDto.type);
+    expect(newWord.concepts).toEqual(wordDto.concepts);
+  });
+
+  it("Rejects a call with a correct and a wrong concept's dto payload", async () => {
+    const conceptDto: CreateConceptDto = { name: 'concept1', icon: 'icon1' };
+    await request(app.getHttpServer()).post('/concepts').send(conceptDto);
+    const wordDto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      concepts: ['concept1', 'concept2'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(wordDto);
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: notExistMessage('Concept', wordDto.concepts[1]),
+    });
+
+    const newWord = await word.findOne({ value: wordDto.value });
+    expect(newWord).toBeNull();
+  });
+
+  it("Creates a word with multiple correct concepts' dto payload if the word does not exist yet", async () => {
+    const conceptDto1: CreateConceptDto = { name: 'concept1', icon: 'icon1' };
+    const conceptDto2: CreateConceptDto = { name: 'concept2', icon: 'icon2' };
+    await request(app.getHttpServer()).post('/concepts').send(conceptDto1);
+    await request(app.getHttpServer()).post('/concepts').send(conceptDto2);
+    const wordDto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      concepts: ['concept1', 'concept2'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(wordDto);
+    expect(response.statusCode).toBe(HttpStatus.CREATED);
+    expect(response.body).toMatchObject({
+      message: wasCreatedMessage('Word', wordDto.value),
+    });
+    const newWord = await word.findOne({ value: wordDto.value });
+    expect(newWord.type).toEqual(wordDto.type);
+    expect(newWord.concepts).toEqual(wordDto.concepts);
+  });
+
+  it("Rejects a call with a wrong combinator's dto payload", async () => {
+    const wordDto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      combinators: ['combinator1'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(wordDto);
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: [notExistMessage('Combinator', wordDto.combinators[0])],
+    });
+    await expect(word.findOne({ value: wordDto.value })).resolves.toBeNull();
+  });
+
+  it("Rejects a call with a wrong a correct combinator's dto payload", async () => {
+    const combinatorDto: CreateWordDto = {
+      value: 'combinator1',
+      type: EWordType.ADJECTIVE,
+    };
+    await request(app.getHttpServer()).post('/words').send(combinatorDto);
+    const wordDto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      combinators: ['combinator1', 'combinator2'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(wordDto);
+    expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: notExistMessage('Combinator', wordDto.combinators[1]),
+    });
+    await expect(word.findOne({ value: wordDto.value })).resolves.toBeNull();
+  });
+
+  it("Accepts a call with two correct combinators' dto payload", async () => {
+    const combinatorDto1: CreateWordDto = {
+      value: 'combinator1',
+      type: EWordType.ADJECTIVE,
+    };
+    const combinatorDto2: CreateWordDto = {
+      value: 'combinator2',
+      type: EWordType.ADJECTIVE,
+    };
+    await request(app.getHttpServer()).post('/words').send(combinatorDto1);
+    await request(app.getHttpServer()).post('/words').send(combinatorDto2);
+    const wordDto: CreateWordDto = {
+      value: 'word1',
+      type: EWordType.ADJECTIVE,
+      combinators: ['combinator1', 'combinator2'],
+    };
+    const response = await request(app.getHttpServer())
+      .post('/words')
+      .send(wordDto);
+    expect(response.statusCode).toBe(HttpStatus.CREATED);
+    expect(response.body).toMatchObject({
+      message: wasCreatedMessage('Word', wordDto.value),
+    });
+    const newWord = await word.findOne({ value: wordDto.value });
+    expect(newWord.type).toEqual(wordDto.type);
+    expect(newWord.combinators).toEqual(wordDto.combinators);
+  });
 
   it("Rejects a call with a wrong variant's dto payload", async () => {});
 

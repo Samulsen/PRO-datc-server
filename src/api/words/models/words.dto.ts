@@ -13,11 +13,6 @@ class WordDto {
   @IsString({ each: true })
   combinators?: string[];
 
-  @ApiProperty({ required: false })
-  @IsOptional()
-  @IsString({ each: true })
-  combinators?: string[];
-
   @IsOptional()
   @IsString({ each: true })
   variants?: string[];
