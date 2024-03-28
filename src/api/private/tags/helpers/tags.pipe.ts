@@ -1,9 +1,4 @@
-import {
-  PipeTransform,
-  Injectable,
-  BadRequestException,
-  ValidationPipe,
-} from '@nestjs/common';
+import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
 import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
 import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/api/private/tags/helpers/tags.string.utils';
 
@@ -15,17 +10,5 @@ export class ValidateGroupPipe implements PipeTransform {
       throw new BadRequestException({ message: invalidGroupMessage(value) });
     }
     return upperCased as ETagsGroup;
-  }
-}
-
-@Injectable()
-export class CustomValidationPipe extends ValidationPipe {
-  catch(error: Error) {
-    console.warn('does this run?');
-    if (error instanceof BadRequestException) {
-      const message = error.getResponse()['message'];
-      throw new BadRequestException({ message });
-    }
-    throw error;
   }
 }

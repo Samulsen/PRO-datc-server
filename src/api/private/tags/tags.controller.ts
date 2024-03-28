@@ -13,7 +13,6 @@ import { ValidateGroupPipe } from 'src/api/private/tags/helpers/tags.pipe';
 import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
 import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { CustomValidationPipe } from 'src/api/private/tags/helpers/tags.pipe';
 
 @ApiTags('tags')
 @Controller('tags')
