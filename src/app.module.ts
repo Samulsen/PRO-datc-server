@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PrivateModule } from 'src/api/private/private.module';
+import { PrivateModule } from 'src/api/private.module';
 
 export const DBConnection = {
   USER: 'userDB',

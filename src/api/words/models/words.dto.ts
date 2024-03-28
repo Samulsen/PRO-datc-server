@@ -1,5 +1,5 @@
 import { IsString, IsEnum, IsOptional } from 'class-validator';
-import { EWordType } from 'src/api/private/words/models/words.types';
+import { EWordType } from 'src/api/words/models/words.types';
 import { ApiProperty } from '@nestjs/swagger';
 
 class WordDto {

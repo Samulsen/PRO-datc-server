@@ -4,12 +4,12 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
 import { testUtilCreateIntegrationTestModule } from 'src/utils/tests.utils';
-import { TagsController } from 'src/api/private/tags/tags.controller';
-import { TagsService } from 'src/api/private/tags/tags.service';
-import { Tag, TagSchema } from 'src/api/private/tags/models/tags.schema';
-import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
-import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
-import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/api/private/tags/helpers/tags.string.utils';
+import { TagsController } from 'src/api/tags/tags.controller';
+import { TagsService } from 'src/api/tags/tags.service';
+import { Tag, TagSchema } from 'src/api/tags/models/tags.schema';
+import { CreateTagDto } from 'src/api/tags/models/tags.dto';
+import { ETagsGroup } from 'src/api/tags/models/tags.types';
+import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/api/tags/helpers/tags.string.utils';
 
 describe('TagsController - Get ops (integration)', () => {
   let app: INestApplication;

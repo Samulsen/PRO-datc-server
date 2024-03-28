@@ -3,11 +3,11 @@ import { INestApplication, HttpStatus } from '@nestjs/common';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import { WordsController } from 'src/api/private/words/words.controller';
-import { WordsService } from 'src/api/private/words/words.service';
-import { CreateWordDto } from 'src/api/private/words/models/words.dto';
-import { Word, WordSchema } from 'src/api/private/words/models/words.schema';
-import { EWordType } from 'src/api/private/words/models/words.types';
+import { WordsController } from 'src/api/words/words.controller';
+import { WordsService } from 'src/api/words/words.service';
+import { CreateWordDto } from 'src/api/words/models/words.dto';
+import { Word, WordSchema } from 'src/api/words/models/words.schema';
+import { EWordType } from 'src/api/words/models/words.types';
 
 import { testUtilCreateIntegrationTestModule as createIntegrationTestModule } from 'src/utils/tests.utils';
 import {
