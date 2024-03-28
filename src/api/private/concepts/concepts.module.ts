@@ -5,18 +5,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   Concept,
   ConceptSchema,
-  ConceptIcon,
-  ConceptIconSchema,
 } from 'src/api/private/concepts/models/concepts.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature(
       [{ name: Concept.name, schema: ConceptSchema }],
-      'dictDB',
-    ),
-    MongooseModule.forFeature(
-      [{ name: ConceptIcon.name, schema: ConceptIconSchema }],
       'dictDB',
     ),
   ],
