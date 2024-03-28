@@ -4,13 +4,13 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
 import { testUtilCreateIntegrationTestModule } from 'src/utils/tests.utils';
-import { ConceptsController } from 'src/api/private/concepts/concepts.controller';
-import { ConceptsService } from 'src/api/private/concepts/concepts.service';
+import { ConceptsController } from 'src/api/concepts/concepts.controller';
+import { ConceptsService } from 'src/api/concepts/concepts.service';
 import {
   Concept,
   ConceptSchema,
-} from 'src/api/private/concepts/models/concepts.schema';
-import { CreateConceptDto } from 'src/api/private/concepts/models/concepts.dto';
+} from 'src/api/concepts/models/concepts.schema';
+import { CreateConceptDto } from 'src/api/concepts/models/concepts.dto';
 import { stringUtilWasCreatedMessage as wasCreatedMessage } from 'src/utils/strings.utils';
 import { stringUtilExistsMessage as existsMessage } from 'src/utils/strings.utils';
 

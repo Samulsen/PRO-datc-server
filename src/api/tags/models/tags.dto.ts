@@ -1,6 +1,6 @@
 import { IsEnum, IsString } from 'class-validator';
-import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
-import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/api/private/tags/helpers/tags.string.utils';
+import { ETagsGroup } from 'src/api/tags/models/tags.types';
+import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/api/tags/helpers/tags.string.utils';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateTagDto {

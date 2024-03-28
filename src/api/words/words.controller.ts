@@ -10,11 +10,8 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import {
-  CreateWordDto,
-  UpdateWordDto,
-} from 'src/api/private/words/models/words.dto';
-import { WordsService } from 'src/api/private/words/words.service';
+import { CreateWordDto, UpdateWordDto } from 'src/api/words/models/words.dto';
+import { WordsService } from 'src/api/words/words.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('words')

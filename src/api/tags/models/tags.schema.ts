@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
+import { ETagsGroup } from 'src/api/tags/models/tags.types';
 
 @Schema()
 export class Tag {
