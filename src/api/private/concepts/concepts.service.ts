@@ -17,11 +17,16 @@ export class ConceptsService {
 
   async getConcept(concept: string) {
     const conceptData = await this.conceptModel.findOne({ name: concept });
-    return conceptData ? conceptData : false;
+    return conceptData;
+  }
+
+  async conceptExists(concept: string) {
+    const conceptData = await this.getConcept(concept);
+    return { state: conceptData ? true : false, doc: conceptData };
   }
 
   async createConcept(newConcept: CreateConceptDto) {
-    if (await this.getConcept(newConcept.name)) {
+    if (!(await this.conceptExists(newConcept.name)).state) {
       const concept = new this.conceptModel(newConcept);
       await concept.save();
       return { message: wasCreatedMessage('Concept', newConcept.name) };
