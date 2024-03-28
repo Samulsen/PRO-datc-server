@@ -49,7 +49,7 @@ describe('TagsController - Create ops (integration)', () => {
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.CREATED);
-    expect(response.body).toMatchObject({
+    expect(response.body).toEqual({
       message: wasCreatedMessage('Tag', tagDto.name),
     });
     expect((await tag.findOne({ name: tagDto.name })).group).toBe(tagDto.group);
@@ -58,7 +58,7 @@ describe('TagsController - Create ops (integration)', () => {
   it('Reject create call when supplied a invalid group', async () => {
     const tagDto: CreateTagDto = {
       name: 'tagOne',
-      group: 'invalid' as ETagsGroup,
+      group: 'invalidGroupNameRandom' as ETagsGroup,
     };
     const response = await request(app.getHttpServer())
       .post('/tags')
@@ -77,7 +77,7 @@ describe('TagsController - Create ops (integration)', () => {
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
-    expect(response.body).toMatchObject({
+    expect(response.body).toEqual({
       message: existsMessage('Tag', tagDto.name),
     });
     expect(await tag.find({ name: tagDto.name })).toHaveLength(1);
