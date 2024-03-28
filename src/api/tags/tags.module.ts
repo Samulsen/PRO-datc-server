@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TagsController } from 'src/api/private/tags/tags.controller';
-import { TagsService } from 'src/api/private/tags/tags.service';
+import { TagsController } from 'src/api/tags/tags.controller';
+import { TagsService } from 'src/api/tags/tags.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Tag, TagSchema } from 'src/api/private/tags/models/tags.schema';
+import { Tag, TagSchema } from 'src/api/tags/models/tags.schema';
 @Module({
   imports: [
     MongooseModule.forFeature(

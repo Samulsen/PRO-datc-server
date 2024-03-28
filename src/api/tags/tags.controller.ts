@@ -5,14 +5,16 @@ import {
   UsePipes,
   ValidationPipe,
   Body,
-  HttpException,
-  HttpStatus,
   Param,
+  BadRequestException,
 } from '@nestjs/common';
-import { TagsService } from 'src/api/private/tags/tags.service';
-import { ValidateGroupPipe } from 'src/api/private/tags/helpers/tags.pipe';
-import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
-import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
+import { TagsService } from 'src/api/tags/tags.service';
+import { ValidateGroupPipe } from 'src/api/tags/helpers/tags.pipe';
+import { ETagsGroup } from 'src/api/tags/models/tags.types';
+import { CreateTagDto } from 'src/api/tags/models/tags.dto';
+import { ApiTags } from '@nestjs/swagger';
+
+@ApiTags('tags')
 @Controller('tags')
 export class TagsController {
   constructor(private tagsService: TagsService) {}
@@ -23,7 +25,7 @@ export class TagsController {
     try {
       return await this.tagsService.createTag(tagDto);
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      throw new BadRequestException({ message: error.message });
     }
   }
 
