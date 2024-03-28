@@ -11,7 +11,7 @@ import {
   ConceptSchema,
 } from 'src/api/private/concepts/models/concepts.schema';
 
-describe('ConceptsController - Create ops for icons (integration)', () => {
+describe('ConceptsController - Get ops for concepts (integration)', () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
   let concept: mongoose.Model<Concept>;

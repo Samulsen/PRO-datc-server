@@ -14,7 +14,7 @@ import { CreateConceptDto } from 'src/api/private/concepts/models/concepts.dto';
 import { stringUtilWasCreatedMessage as wasCreatedMessage } from 'src/utils/strings.utils';
 import { stringUtilExistsMessage as existsMessage } from 'src/utils/strings.utils';
 
-describe('ConceptsController - Create ops for icons (integration)', () => {
+describe('ConceptsController - Create ops for concepts (integration)', () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
   let concept: mongoose.Model<Concept>;
