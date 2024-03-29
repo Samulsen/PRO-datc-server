@@ -120,33 +120,83 @@ describe("WordsController - Create ops (e2e)", () => {
     await mongoServer.stop();
   });
 
+  const successBoilerplate = async (wordDto: CreateWordDto) => {
+    const response = await request(app.getHttpServer())
+      .post("/words")
+      .send(wordDto);
+    expect(response.status).toBe(HttpStatus.CREATED);
+    const wordDoc = await word.findOne({ value: wordDto.value });
+    expect(wordDoc).toBeTruthy();
+    type SuccessResponse = MSuccessResponse<CreateWordDto, typeof WordSchema>;
+    const successResponse: SuccessResponse = {
+      Input: wordDto,
+      Output: wordDoc.toObject(),
+      Status: { Code: HttpStatus.CREATED, Message: "Created" },
+      Infos: [wasCreatedMessage("Word", wordDto.value)],
+    };
+    expect(response.body).toEqual<SuccessResponse>(successResponse);
+  };
+
   describe("Creates a word sucessfully", () => {
     it("when provided with the minimum payload", async () => {
       const wordDto: CreateWordDto = {
         value: "word2",
         type: EWordType.ADJECTIVE,
       };
-      const response = await request(app.getHttpServer())
-        .post("/words")
-        .send(wordDto);
-      expect(response.status).toBe(HttpStatus.CREATED);
-      const wordDoc = await word.findOne({ value: wordDto.value });
-      expect(wordDoc).toBeTruthy();
-      type SuccessResponse = MSuccessResponse<CreateWordDto, typeof WordSchema>;
-      const successResponse: SuccessResponse = {
-        Input: wordDto,
-        Output: wordDoc.toObject(),
-        Status: { Code: HttpStatus.CREATED, Message: "Created" },
-        Infos: [wasCreatedMessage("Word", wordDto.value)],
-      };
-      expect(response.body).toEqual<SuccessResponse>(successResponse);
+      await successBoilerplate(wordDto);
     });
-    it("when provided with additional concepts", async () => {});
-    it("when provided with additional combinators", async () => {});
-    it("when provided with additional variants", async () => {});
-    it("when provided with additional synonyms", async () => {});
-    it("when provided with additional antagonists", async () => {});
-    it("when provided with the maximum payload", async () => {});
+    it("when provided with additional concepts", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        concepts: ["concept1", "concept3"],
+      };
+      await successBoilerplate(wordDto);
+    });
+    it("when provided with additional combinators", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        combinators: ["combinator1", "combinator3"],
+      };
+      await successBoilerplate(wordDto);
+    });
+    it("when provided with additional variants", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        variants: ["variant1", "variant3"],
+      };
+      await successBoilerplate(wordDto);
+    });
+    it("when provided with additional synonyms", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        synonyms: ["synonym1", "synonym3"],
+      };
+      await successBoilerplate(wordDto);
+    });
+    it("when provided with additional antagonists", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        antagonists: ["antagonist1", "antagonist3"],
+      };
+      await successBoilerplate(wordDto);
+    });
+    it("when provided with the maximum payload", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        concepts: ["concept1", "concept3"],
+        combinators: ["combinator1", "combinator3"],
+        variants: ["variant1", "variant3"],
+        synonyms: ["synonym1", "synonym3"],
+        antagonists: ["antagonist1", "antagonist3"],
+      };
+      await successBoilerplate(wordDto);
+    });
   });
 
   describe("Fails to create a word", () => {
