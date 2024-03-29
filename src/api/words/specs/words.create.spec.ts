@@ -121,7 +121,7 @@ describe("WordsController - Create ops (e2e)", () => {
     await mongoServer.stop();
   });
 
-  const successBoilerplate = async (wordDto: CreateWordDto) => {
+  const testSuccessCase = async (wordDto: CreateWordDto) => {
     const response = await request(app.getHttpServer())
       .post("/words")
       .send(wordDto);
@@ -138,7 +138,7 @@ describe("WordsController - Create ops (e2e)", () => {
     expect(response.body).toEqual<SuccessResponse>(successResponse);
   };
 
-  const failureBoilerplate = async (
+  const testFailureCase = async (
     wordDto: CreateWordDto,
     errors: { origin: string; message: string }[],
   ) => {
@@ -163,7 +163,7 @@ describe("WordsController - Create ops (e2e)", () => {
         value: "word2",
         type: EWordType.ADJECTIVE,
       };
-      await successBoilerplate(wordDto);
+      await testSuccessCase(wordDto);
     });
     it("when provided with additional concepts", async () => {
       const wordDto: CreateWordDto = {
@@ -171,7 +171,7 @@ describe("WordsController - Create ops (e2e)", () => {
         type: EWordType.ADJECTIVE,
         concepts: ["concept1", "concept3"],
       };
-      await successBoilerplate(wordDto);
+      await testSuccessCase(wordDto);
     });
     it("when provided with additional combinators", async () => {
       const wordDto: CreateWordDto = {
@@ -179,7 +179,7 @@ describe("WordsController - Create ops (e2e)", () => {
         type: EWordType.ADJECTIVE,
         combinators: ["combinator1", "combinator3"],
       };
-      await successBoilerplate(wordDto);
+      await testSuccessCase(wordDto);
     });
     it("when provided with additional variants", async () => {
       const wordDto: CreateWordDto = {
@@ -187,7 +187,7 @@ describe("WordsController - Create ops (e2e)", () => {
         type: EWordType.ADJECTIVE,
         variants: ["variant1", "variant3"],
       };
-      await successBoilerplate(wordDto);
+      await testSuccessCase(wordDto);
     });
     it("when provided with additional synonyms", async () => {
       const wordDto: CreateWordDto = {
@@ -195,7 +195,7 @@ describe("WordsController - Create ops (e2e)", () => {
         type: EWordType.ADJECTIVE,
         synonyms: ["synonym1", "synonym3"],
       };
-      await successBoilerplate(wordDto);
+      await testSuccessCase(wordDto);
     });
     it("when provided with additional antagonists", async () => {
       const wordDto: CreateWordDto = {
@@ -203,7 +203,7 @@ describe("WordsController - Create ops (e2e)", () => {
         type: EWordType.ADJECTIVE,
         antagonists: ["antagonist1", "antagonist3"],
       };
-      await successBoilerplate(wordDto);
+      await testSuccessCase(wordDto);
     });
     it("when provided with the maximum payload", async () => {
       const wordDto: CreateWordDto = {
@@ -215,7 +215,7 @@ describe("WordsController - Create ops (e2e)", () => {
         synonyms: ["synonym1", "synonym3"],
         antagonists: ["antagonist1", "antagonist3"],
       };
-      await successBoilerplate(wordDto);
+      await testSuccessCase(wordDto);
     });
   });
 
@@ -226,7 +226,7 @@ describe("WordsController - Create ops (e2e)", () => {
         type: "WRONG" as EWordType,
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "type",
           message: invalidValueMessage("Type", wordDto.type, [
@@ -243,7 +243,7 @@ describe("WordsController - Create ops (e2e)", () => {
         type: EWordType.ADJECTIVE,
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "value",
           message: existMessage("Word", wordDto.value),
@@ -257,7 +257,7 @@ describe("WordsController - Create ops (e2e)", () => {
         concepts: ["concept2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "concepts",
           message: notExistMessage("Concept", "concept2"),
@@ -271,7 +271,7 @@ describe("WordsController - Create ops (e2e)", () => {
         concepts: ["concept1", "concept2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "concepts",
           message: notExistMessage("Concept", "concept2"),
@@ -285,7 +285,7 @@ describe("WordsController - Create ops (e2e)", () => {
         combinators: ["combinator2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "combinators",
           message: notExistMessage("Word", "combinator2"),
@@ -299,7 +299,7 @@ describe("WordsController - Create ops (e2e)", () => {
         combinators: ["combinator1", "combinator2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "combinators",
           message: notExistMessage("Word", "combinator2"),
@@ -313,7 +313,7 @@ describe("WordsController - Create ops (e2e)", () => {
         variants: ["variant2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "variants",
           message: notExistMessage("Word", "variant2"),
@@ -327,7 +327,7 @@ describe("WordsController - Create ops (e2e)", () => {
         variants: ["variant1", "variant2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "variants",
           message: notExistMessage("Word", "variant2"),
@@ -341,7 +341,7 @@ describe("WordsController - Create ops (e2e)", () => {
         synonyms: ["synonym2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "synonyms",
           message: notExistMessage("Word", "synonym2"),
@@ -355,7 +355,7 @@ describe("WordsController - Create ops (e2e)", () => {
         synonyms: ["synonym1", "synonym2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "synonyms",
           message: notExistMessage("Word", "synonym2"),
@@ -369,7 +369,7 @@ describe("WordsController - Create ops (e2e)", () => {
         antagonists: ["antagonist2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "antagonists",
           message: notExistMessage("Word", "antagonist2"),
@@ -383,7 +383,7 @@ describe("WordsController - Create ops (e2e)", () => {
         antagonists: ["antagonist1", "antagonist2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "antagonists",
           message: notExistMessage("Word", "antagonist2"),
@@ -397,7 +397,7 @@ describe("WordsController - Create ops (e2e)", () => {
         concepts: ["concept2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "value",
           message: existMessage("Word", wordDto.value),
@@ -417,7 +417,7 @@ describe("WordsController - Create ops (e2e)", () => {
         antagonists: ["antagonist2", "antagonist4"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "variants",
           message: notExistMessage("Word", "variant2"),
@@ -445,7 +445,7 @@ describe("WordsController - Create ops (e2e)", () => {
         antagonists: ["antagonist1", "antagonist2"],
       };
 
-      await failureBoilerplate(wordDto, [
+      await testFailureCase(wordDto, [
         {
           origin: "concepts",
           message: notExistMessage("Concept", "concept2"),
