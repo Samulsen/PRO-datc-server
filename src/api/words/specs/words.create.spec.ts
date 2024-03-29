@@ -6,7 +6,11 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { WordsController } from "src/api/words/words.controller";
 import { WordsService } from "src/api/words/words.service";
 import { CreateWordDto } from "src/api/words/models/words.dto";
-import { Word, WordSchema } from "src/api/words/models/words.schema";
+import {
+  Word,
+  WordDocument,
+  WordSchema,
+} from "src/api/words/models/words.schema";
 import { EWordType } from "src/api/words/models/words.types";
 
 import { ConceptsController } from "src/api/concepts/concepts.controller";
@@ -23,6 +27,8 @@ import {
   stringUtilExistsMessage as existMessage,
   stringUtilsNotExistsMessage as notExistMessage,
 } from "src/utils/strings.utils";
+
+import { MFailureResponse, MSuccessResponse } from "src/types/responses.types";
 
 describe("WordsController - Create ops (e2e)", () => {
   let app: INestApplication;
@@ -49,6 +55,14 @@ describe("WordsController - Create ops (e2e)", () => {
   });
 
   beforeEach(async () => {
+    const wordDto: CreateWordDto = {
+      value: "word1",
+      type: EWordType.ADJECTIVE,
+    };
+    const wordDto2: CreateWordDto = {
+      value: "word3",
+      type: EWordType.ADJECTIVE,
+    };
     const conceptDto: CreateConceptDto = { name: "concept1", icon: "icon1" };
     const conceptDto2: CreateConceptDto = { name: "concept3", icon: "icon3" };
     const combinatorDto: CreateWordDto = {
@@ -85,6 +99,8 @@ describe("WordsController - Create ops (e2e)", () => {
     };
 
     Promise.all([
+      await request(app.getHttpServer()).post("/words").send(wordDto),
+      await request(app.getHttpServer()).post("/words").send(wordDto2),
       await request(app.getHttpServer()).post("/concepts").send(conceptDto),
       await request(app.getHttpServer()).post("/concepts").send(conceptDto2),
       await request(app.getHttpServer()).post("/words").send(combinatorDto),
@@ -106,5 +122,51 @@ describe("WordsController - Create ops (e2e)", () => {
   afterAll(async () => {
     await mongoose.disconnect();
     await mongoServer.stop();
+  });
+
+  describe("Creates a word sucessfully", () => {
+    it("when provided with the minimum payload", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+      };
+      const response = await request(app.getHttpServer())
+        .post("/words")
+        .send(wordDto);
+      expect(response.status).toBe(HttpStatus.CREATED);
+      const wordDoc = await word.findOne({ value: wordDto.value });
+      expect(wordDoc).toBeTruthy();
+      const successResponse: MSuccessResponse<CreateWordDto, WordDocument> = {
+        Input: wordDto,
+        Output: wordDoc,
+        Status: { Code: HttpStatus.CREATED, Message: "Created" },
+        Infos: [wasCreatedMessage("Word", wordDto.value)],
+      };
+      expect(response.body).toEqual(successResponse);
+    });
+    it("when provided with additional concepts", async () => {});
+    it("when provided with additional combinators", async () => {});
+    it("when provided with additional variants", async () => {});
+    it("when provided with additional synonyms", async () => {});
+    it("when provided with additional antagonists", async () => {});
+    it("when provided with the maximum payload", async () => {});
+  });
+
+  describe("Fails to create a word", () => {
+    it("when provided with a wrong type", async () => {});
+    it("when provided with a word that already exists", async () => {});
+    it("when provided with a concept that does not exist", async () => {});
+    it("when provided with two concepts from which one does not exist", async () => {});
+    it("when provided with a combinator that does not exist", async () => {});
+    it("when provided with two combinators from which one does not exist", async () => {});
+    it("when provided with a variant that does not exist", async () => {});
+    it("when provided with two variants from which one does not exist", async () => {});
+    it("when provided with a synonym that does not exist", async () => {});
+    it("when provided with two synonyms from which one does not exist", async () => {});
+    it("when provided with an antagonist that does not exist", async () => {});
+    it("when provided with two antagonists from which one does not exist", async () => {});
+    it("when provided with a word that already exists and a concept that does not exist", async () => {});
+    it("when provided with a valid word, valid concepts, but invalid variants and antagonists", async () => {});
+    it("when provided with a valid word, two concepts from which one does not exist, and valid variants and two antagonists from which one does not exist", async () => {});
   });
 });
