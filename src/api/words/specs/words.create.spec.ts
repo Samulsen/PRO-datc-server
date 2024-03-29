@@ -107,32 +107,4 @@ describe("WordsController - Create ops (e2e)", () => {
     await mongoose.disconnect();
     await mongoServer.stop();
   });
-
-  it("Creates a word with the mininimum dto payload if the word does not exist yet", async () => {});
-
-  it("Creates a word with a full valid dto payload if the word does not exist yet", async () => {});
-
-  it("Rejects to create a word with a full dto payload that has a wrong combinator's and type payload", async () => {});
-
-  it("Rejects a call with a wrong concept with minimum dto payload", async () => {});
-
-  it("Creates a word with a valid concept and minimal dto payload if the word does not exist yet", async () => {});
-
-  it("Rejects a call with a correct and a wrong concept's dto payload", async () => {});
-
-  it("Creates a word with multiple correct concepts' dto payload if the word does not exist yet", async () => {});
-
-  it("Rejects a call with a wrong combinator's dto payload", async () => {});
-
-  it("Rejects a call with a wrong a correct combinator's dto payload", async () => {});
-
-  it("Accepts a call with two correct combinators' dto payload", async () => {});
-
-  it("Rejects a call with a wrong variant's dto payload", async () => {});
-
-  it("Rejects a call with a wrong synonym's dto payload", async () => {});
-
-  it("Rejects a call with a wrong antagonist's dto payload", async () => {});
-
-  it("Rejects a call with the minimum dto payload because the word does already exist", async () => {});
 });
