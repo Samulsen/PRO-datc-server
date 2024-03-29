@@ -22,6 +22,7 @@ import {
   stringUtilWasCreatedMessage as wasCreatedMessage,
   stringUtilExistsMessage as existMessage,
   stringUtilsNotExistsMessage as notExistMessage,
+  stringUtilInvalidValueMessage as invalidValueMessage,
 } from "src/utils/strings.utils";
 
 import { MFailureResponse, MSuccessResponse } from "src/types/responses.types";
@@ -135,6 +136,25 @@ describe("WordsController - Create ops (e2e)", () => {
       Infos: [wasCreatedMessage("Word", wordDto.value)],
     };
     expect(response.body).toEqual<SuccessResponse>(successResponse);
+  };
+
+  const failureBoilerplate = async (
+    wordDto: CreateWordDto,
+    errors: { origin: string; message: string }[],
+  ) => {
+    const response = await request(app.getHttpServer())
+      .post("/words")
+      .send(wordDto);
+    expect(response.status).toBe(HttpStatus.BAD_REQUEST);
+    const wordDoc = await word.findOne({ value: wordDto.value });
+    expect(wordDoc).toBeFalsy();
+    type FailureResponse = MFailureResponse<CreateWordDto, typeof errors>;
+    const failureResponse: FailureResponse = {
+      Input: wordDto,
+      Errors: errors,
+      Status: { Code: HttpStatus.BAD_REQUEST, Message: "Bad Request" },
+    };
+    expect(response.body).toEqual<FailureResponse>(failureResponse);
   };
 
   describe("Creates a word sucessfully", () => {
