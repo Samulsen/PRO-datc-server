@@ -6,11 +6,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { WordsController } from "src/api/words/words.controller";
 import { WordsService } from "src/api/words/words.service";
 import { CreateWordDto } from "src/api/words/models/words.dto";
-import {
-  Word,
-  WordDocument,
-  WordSchema,
-} from "src/api/words/models/words.schema";
+import { Word, WordSchema } from "src/api/words/models/words.schema";
 import { EWordType } from "src/api/words/models/words.types";
 
 import { ConceptsController } from "src/api/concepts/concepts.controller";
@@ -136,13 +132,14 @@ describe("WordsController - Create ops (e2e)", () => {
       expect(response.status).toBe(HttpStatus.CREATED);
       const wordDoc = await word.findOne({ value: wordDto.value });
       expect(wordDoc).toBeTruthy();
-      const successResponse: MSuccessResponse<CreateWordDto, WordDocument> = {
+      type SuccessResponse = MSuccessResponse<CreateWordDto, typeof WordSchema>;
+      const successResponse: SuccessResponse = {
         Input: wordDto,
-        Output: wordDoc,
+        Output: wordDoc.toObject(),
         Status: { Code: HttpStatus.CREATED, Message: "Created" },
         Infos: [wasCreatedMessage("Word", wordDto.value)],
       };
-      expect(response.body).toEqual(successResponse);
+      expect(response.body).toEqual<SuccessResponse>(successResponse);
     });
     it("when provided with additional concepts", async () => {});
     it("when provided with additional combinators", async () => {});
