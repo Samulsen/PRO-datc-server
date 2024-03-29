@@ -220,20 +220,241 @@ describe("WordsController - Create ops (e2e)", () => {
   });
 
   describe("Fails to create a word", () => {
-    it("when provided with a wrong type", async () => {});
-    it("when provided with a word that already exists", async () => {});
-    it("when provided with a concept that does not exist", async () => {});
-    it("when provided with two concepts from which one does not exist", async () => {});
-    it("when provided with a combinator that does not exist", async () => {});
-    it("when provided with two combinators from which one does not exist", async () => {});
-    it("when provided with a variant that does not exist", async () => {});
-    it("when provided with two variants from which one does not exist", async () => {});
-    it("when provided with a synonym that does not exist", async () => {});
-    it("when provided with two synonyms from which one does not exist", async () => {});
-    it("when provided with an antagonist that does not exist", async () => {});
-    it("when provided with two antagonists from which one does not exist", async () => {});
-    it("when provided with a word that already exists and a concept that does not exist", async () => {});
-    it("when provided with a valid word, valid concepts, but invalid variants and antagonists", async () => {});
-    it("when provided with a valid word, two concepts from which one does not exist, and valid variants and two antagonists from which one does not exist", async () => {});
+    it("when provided with a wrong type", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: "WRONG" as EWordType,
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "type",
+          message: invalidValueMessage("Type", wordDto.type, [
+            EWordType.ADJECTIVE,
+            EWordType.NOUN,
+            EWordType.VERB,
+          ]),
+        },
+      ]);
+    });
+    it("when provided with a word that already exists", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word1",
+        type: EWordType.ADJECTIVE,
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "value",
+          message: existMessage("Word", wordDto.value),
+        },
+      ]);
+    });
+    it("when provided with a concept that does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        concepts: ["concept2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "concepts",
+          message: notExistMessage("Concept", "concept2"),
+        },
+      ]);
+    });
+    it("when provided with two concepts from which one does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        concepts: ["concept1", "concept2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "concepts",
+          message: notExistMessage("Concept", "concept2"),
+        },
+      ]);
+    });
+    it("when provided with a combinator that does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        combinators: ["combinator2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "combinators",
+          message: notExistMessage("Word", "combinator2"),
+        },
+      ]);
+    });
+    it("when provided with two combinators from which one does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        combinators: ["combinator1", "combinator2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "combinators",
+          message: notExistMessage("Word", "combinator2"),
+        },
+      ]);
+    });
+    it("when provided with a variant that does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        variants: ["variant2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "variants",
+          message: notExistMessage("Word", "variant2"),
+        },
+      ]);
+    });
+    it("when provided with two variants from which one does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        variants: ["variant1", "variant2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "variants",
+          message: notExistMessage("Word", "variant2"),
+        },
+      ]);
+    });
+    it("when provided with a synonym that does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        synonyms: ["synonym2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "synonyms",
+          message: notExistMessage("Word", "synonym2"),
+        },
+      ]);
+    });
+    it("when provided with two synonyms from which one does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        synonyms: ["synonym1", "synonym2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "synonyms",
+          message: notExistMessage("Word", "synonym2"),
+        },
+      ]);
+    });
+    it("when provided with an antagonist that does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        antagonists: ["antagonist2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "antagonists",
+          message: notExistMessage("Word", "antagonist2"),
+        },
+      ]);
+    });
+    it("when provided with two antagonists from which one does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        antagonists: ["antagonist1", "antagonist2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "antagonists",
+          message: notExistMessage("Word", "antagonist2"),
+        },
+      ]);
+    });
+    it("when provided with a word that already exists and a concept that does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word1",
+        type: EWordType.ADJECTIVE,
+        concepts: ["concept2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "value",
+          message: existMessage("Word", wordDto.value),
+        },
+        {
+          origin: "concepts",
+          message: notExistMessage("Concept", "concept2"),
+        },
+      ]);
+    });
+    it("when provided with a valid word, valid concepts, but invalid variants and antagonists", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        concepts: ["concept1", "concept3"],
+        variants: ["variant2", "variant4"],
+        antagonists: ["antagonist2", "antagonist4"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "variants",
+          message: notExistMessage("Word", "variant2"),
+        },
+        {
+          origin: "variants",
+          message: notExistMessage("Word", "variant4"),
+        },
+        {
+          origin: "antagonists",
+          message: notExistMessage("Word", "antagonist2"),
+        },
+        {
+          origin: "antagonists",
+          message: notExistMessage("Word", "antagonist4"),
+        },
+      ]);
+    });
+    it("when provided with a valid word, two concepts from which one does not exist, and valid variants and two antagonists from which one does not exist", async () => {
+      const wordDto: CreateWordDto = {
+        value: "word2",
+        type: EWordType.ADJECTIVE,
+        concepts: ["concept1", "concept2"],
+        variants: ["variant1", "variant3"],
+        antagonists: ["antagonist1", "antagonist2"],
+      };
+
+      await failureBoilerplate(wordDto, [
+        {
+          origin: "concepts",
+          message: notExistMessage("Concept", "concept2"),
+        },
+        {
+          origin: "antagonists",
+          message: notExistMessage("Word", "antagonist2"),
+        },
+      ]);
+    });
   });
 });
