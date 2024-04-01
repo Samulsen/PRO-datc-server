@@ -10,6 +10,7 @@ import {
 } from 'src/utils/strings.utils';
 import { errorUtilThrowWrapper as throwWrapper } from 'src/utils/error.utils';
 import { CreateWordDto, UpdateWordDto } from 'src/api/words/models/words.dto';
+import { MFailureResponse, MSuccessResponse } from 'src/types/responses.types';
 
 @Injectable()
 export class WordsService {
@@ -31,21 +32,7 @@ export class WordsService {
   }
 
   async createWord(newWord: CreateWordDto) {
-    const wordExist = await this.wordExists(newWord.value);
-    const action = async () => {
-      const newWordDoc = await new this.wordModel(newWord).save();
-      return {
-        message: wasCreatedMessage('Word', newWord.value),
-        word: newWordDoc,
-      };
-    };
-    return throwWrapper(
-      {
-        state: wordExist.state,
-        message: existMessage('Word', newWord.value),
-      },
-      { action },
-    );
+    const 
   }
 
   async updateWord(update: UpdateWordDto, word: string) {
