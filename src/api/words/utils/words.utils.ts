@@ -18,6 +18,10 @@ enum WordProps {
 type SuccessResponse = MSuccessResponse<CreateWordDto, typeof WordSchema>;
 type FailureResponse = MFailureResponse<CreateWordDto, ErrorObject>;
 
+type SuccessState = { hasError: false; errors?: never };
+type ErrorState = { hasError: true; errors: ErrorObject[] };
+type ResultState = SuccessState | ErrorState;
+
 const validateWordsExistenceFromProperty = async (
   words: string[],
   property: WordProps,
@@ -57,7 +61,7 @@ const validateWordsExistenceFromProperty = async (
 export const wordsUtilValidatePayloadValues = async (
   wordModel: WordModel,
   newWord: CreateWordDto,
-): Promise<SuccessResponse | FailureResponse> => {
+): Promise<ResultState> => {
   const { value, combinators, concepts, antagonists, variants, synonyms } =
     newWord;
 
@@ -79,6 +83,7 @@ export const wordsUtilValidatePayloadValues = async (
   ]);
 
   const errors = validateAllProperties
+    .flatMap((values) => values)
     .filter((validationObject) => validationObject.hasErrors)
     .map((validationObject) => validationObject.errors);
 
