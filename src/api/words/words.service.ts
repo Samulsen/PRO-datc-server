@@ -21,7 +21,7 @@ import {
 } from "src/types/responses.types";
 import { wordsUtilValidatePayloadValues as validatePayloadValues } from "src/api/words/utils/words.utils";
 
-type SuccessResponse = TSuccessResponse<CreateWordDto, typeof WordSchema>;
+type SuccessResponse = TSuccessResponse<CreateWordDto, WordDocument>;
 type FailureResponse = TFailureResponse<CreateWordDto, TStandardErrorObject[]>;
 
 @Injectable()
@@ -58,7 +58,7 @@ export class WordsService {
         Status: { Code: HttpStatus.BAD_REQUEST, Message: "Bad Request" },
       } as FailureResponse;
     } else {
-      const newWordDoc = (await this.wordModel.create(newWord)).save();
+      const newWordDoc = await (await this.wordModel.create(newWord)).save();
       return {
         Input: newWord,
         Output: newWordDoc,
