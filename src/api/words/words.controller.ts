@@ -2,7 +2,6 @@ import {
   Controller,
   Post,
   Patch,
-  Param,
   Delete,
   Body,
   ValidationPipe,
@@ -10,7 +9,7 @@ import {
   HttpException,
   HttpStatus,
 } from "@nestjs/common";
-import { CreateWordDto, UpdateWordDto } from "src/api/words/models/words.dto";
+import { CreateWordDto } from "src/api/words/models/words.dto";
 import { WordsService } from "src/api/words/words.service";
 import { ApiTags } from "@nestjs/swagger";
 
@@ -30,21 +29,8 @@ export class WordsController {
   }
 
   @Patch(":word")
-  @UsePipes(ValidationPipe)
-  async update(@Body() update: UpdateWordDto, @Param("word") word: string) {
-    try {
-      return await this.wordsService.updateWord(update, word);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
-  }
+  async update() {}
 
   @Delete(":word")
-  async delete(@Param("word") word: string) {
-    try {
-      return await this.wordsService.deleteWord(word);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
-  }
+  async delete() {}
 }
