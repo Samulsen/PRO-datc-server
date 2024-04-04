@@ -25,7 +25,7 @@ import {
   stringUtilInvalidValueMessage as invalidValueMessage,
 } from "src/utils/strings.utils";
 
-import { MFailureResponse, MSuccessResponse } from "src/types/responses.types";
+import { TFailureResponse, TSuccessResponse } from "src/types/responses.types";
 
 describe("WordsController - Create ops (e2e)", () => {
   let app: INestApplication;
@@ -128,7 +128,7 @@ describe("WordsController - Create ops (e2e)", () => {
     expect(response.status).toBe(HttpStatus.CREATED);
     const wordDoc = await word.findOne({ value: wordDto.value });
     expect(wordDoc).toBeTruthy();
-    type SuccessResponse = MSuccessResponse<CreateWordDto, typeof WordSchema>;
+    type SuccessResponse = TSuccessResponse<CreateWordDto, typeof WordSchema>;
     const successResponse: SuccessResponse = {
       Input: wordDto,
       Output: wordDoc.toObject(),
@@ -148,7 +148,7 @@ describe("WordsController - Create ops (e2e)", () => {
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
     const wordDoc = await word.findOne({ value: wordDto.value });
     expect(wordDoc).toBeFalsy();
-    type FailureResponse = MFailureResponse<CreateWordDto, typeof errors>;
+    type FailureResponse = TFailureResponse<CreateWordDto, typeof errors>;
     const failureResponse: FailureResponse = {
       Input: wordDto,
       Errors: errors,

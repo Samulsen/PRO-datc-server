@@ -1,13 +1,15 @@
 import { HttpStatus } from "@nestjs/common";
 
-export type MSuccessResponse<T, E> = {
+export type TStandardErrorObject = { origin: string; message: string };
+
+export type TSuccessResponse<T, E> = {
   Input: T;
   Output: E;
   Status: { Code: HttpStatus; Message: string };
   Infos: string[];
 };
 
-export type MFailureResponse<T, E> = {
+export type TFailureResponse<T, E> = {
   Input: T;
   Errors: E;
   Status: { Code: HttpStatus; Message: string };

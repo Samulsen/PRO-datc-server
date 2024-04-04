@@ -1,11 +1,10 @@
 import { CreateWordDto } from "src/api/words/models/words.dto";
 import { Model } from "mongoose";
-import { WordDocument, WordSchema } from "src/api/words/models/words.schema";
+import { WordDocument } from "src/api/words/models/words.schema";
 import { stringUtilsNotExistsMessage as notExistMessage } from "src/utils/strings.utils";
-import { MFailureResponse, MSuccessResponse } from "src/types/responses.types";
+import { TStandardErrorObject as ErrorObject } from "src/types/responses.types";
 
 type WordModel = Model<WordDocument>;
-type ErrorObject = { origin: string; message: string };
 enum WordProps {
   WORD = "word",
   CONCEPT = "concept",
@@ -15,9 +14,6 @@ enum WordProps {
   ANTAGONIST = "antagonist",
 }
 
-type SuccessResponse = MSuccessResponse<CreateWordDto, typeof WordSchema>;
-type FailureResponse = MFailureResponse<CreateWordDto, ErrorObject>;
-
 type SuccessState = { hasError: false; errors?: never };
 type ErrorState = { hasError: true; errors: ErrorObject[] };
 type ResultState = SuccessState | ErrorState;
@@ -26,11 +22,7 @@ const validateWordsExistenceFromProperty = async (
   words: string[],
   property: WordProps,
   wordModel: WordModel,
-): Promise<{
-  property: WordProps;
-  hasErrors: boolean;
-  errors?: ErrorObject[];
-}> => {
+): Promise<ResultState> => {
   const wordsExistence = await Promise.all(
     words.map(async (word) => {
       return {
@@ -51,11 +43,11 @@ const validateWordsExistenceFromProperty = async (
       };
     });
 
-  return {
-    property: property,
-    hasErrors: errors.length > 0,
-    errors: errors.length > 0 ? errors : undefined,
-  };
+  if (errors.length > 0) {
+    return { hasError: true, errors };
+  } else {
+    return { hasError: false };
+  }
 };
 
 export const wordsUtilValidatePayloadValues = async (
@@ -65,7 +57,7 @@ export const wordsUtilValidatePayloadValues = async (
   const { value, combinators, concepts, antagonists, variants, synonyms } =
     newWord;
 
-  const validateAllProperties = await Promise.all([
+  const validationPropertyList = await Promise.all([
     validateWordsExistenceFromProperty([value], WordProps.WORD, wordModel),
     validateWordsExistenceFromProperty(
       combinators,
@@ -82,12 +74,14 @@ export const wordsUtilValidatePayloadValues = async (
     validateWordsExistenceFromProperty(synonyms, WordProps.SYNONYM, wordModel),
   ]);
 
-  const errors = validateAllProperties
-    .flatMap((values) => values)
-    .filter((validationObject) => validationObject.hasErrors)
-    .map((validationObject) => validationObject.errors);
+  const errors = validationPropertyList
+    .filter((validation) => validation.hasError)
+    .map((validation) => validation.errors)
+    .flat();
 
   if (errors.length > 0) {
-    // return {Input: newWord, Output:}; //
+    return { hasError: true, errors };
+  } else {
+    return { hasError: false };
   }
 };
