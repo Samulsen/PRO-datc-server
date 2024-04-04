@@ -21,11 +21,7 @@ export class WordsController {
   @Post()
   @UsePipes(ValidationPipe)
   async create(@Body() newWord: CreateWordDto) {
-    try {
-      return await this.wordsService.createWord(newWord);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+    return this.wordsService.createWord(newWord);
   }
 
   @Patch(":word")
