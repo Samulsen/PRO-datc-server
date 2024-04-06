@@ -57,31 +57,33 @@ export const wordsUtilValidatePayloadValues = async (
   const { value, combinators, concepts, antagonists, variants, synonyms } =
     newWord;
 
-  const validationPropertyList = await Promise.all([
-    validateWordsExistenceFromProperty([value], WordProps.WORD, wordModel),
-    validateWordsExistenceFromProperty(
-      combinators,
-      WordProps.COMBINATOR,
-      wordModel
-    ),
-    validateWordsExistenceFromProperty(concepts, WordProps.CONCEPT, wordModel),
-    validateWordsExistenceFromProperty(
-      antagonists,
-      WordProps.ANTAGONIST,
-      wordModel
-    ),
-    validateWordsExistenceFromProperty(variants, WordProps.VARIANT, wordModel),
-    validateWordsExistenceFromProperty(synonyms, WordProps.SYNONYM, wordModel),
-  ]);
+  // const validationPropertyList = await Promise.all([
+  //   validateWordsExistenceFromProperty([value], WordProps.WORD, wordModel),
+  //   validateWordsExistenceFromProperty(
+  //     combinators,
+  //     WordProps.COMBINATOR,
+  //     wordModel
+  //   ),
+  //   validateWordsExistenceFromProperty(concepts, WordProps.CONCEPT, wordModel),
+  //   validateWordsExistenceFromProperty(
+  //     antagonists,
+  //     WordProps.ANTAGONIST,
+  //     wordModel
+  //   ),
+  //   validateWordsExistenceFromProperty(variants, WordProps.VARIANT, wordModel),
+  //   validateWordsExistenceFromProperty(synonyms, WordProps.SYNONYM, wordModel),
+  // ]);
 
-  const errors = validationPropertyList
-    .filter((validation) => validation.hasError)
-    .map((validation) => validation.errors)
-    .flat();
+  // const errors = validationPropertyList
+  //   .filter((validation) => validation.hasError)
+  //   .map((validation) => validation.errors)
+  //   .flat();
 
-  if (errors.length > 0) {
-    return { hasError: true, errors };
-  } else {
-    return { hasError: false };
-  }
+  // if (errors.length > 0) {
+  //   return { hasError: true, errors };
+  // } else {
+  //   return { hasError: false };
+  // }
+
+  return { hasError: false };
 };

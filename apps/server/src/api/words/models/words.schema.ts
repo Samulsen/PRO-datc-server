@@ -6,7 +6,7 @@ import { EWordType } from '@server/api/words/models/words.types';
 export class Word {
   @Prop()
   value: string;
-  @Prop()
+  @Prop({ type: String })
   type: EWordType;
   @Prop()
   combinators: string[];

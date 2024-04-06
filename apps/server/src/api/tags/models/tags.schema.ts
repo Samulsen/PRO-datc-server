@@ -7,7 +7,7 @@ export class Tag {
   @Prop()
   name: string;
 
-  @Prop()
+  @Prop({ type: String })
   group: ETagsGroup;
 }
 
