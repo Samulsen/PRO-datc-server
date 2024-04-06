@@ -46,7 +46,8 @@ describe('ConceptsController - Get ops for concepts (integration)', () => {
   });
 
   it('Gets all the concepts', async () => {
-    const response = await request(app.getHttpServer())
+    const response = await request
+      .agent(app.getHttpServer())
       .get('/concepts')
       .expect(HttpStatus.OK);
     expect(response.body).toEqual(

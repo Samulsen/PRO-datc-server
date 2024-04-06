@@ -2,7 +2,7 @@ import { CreateWordDto } from '@server/api/words/models/words.dto';
 import { Model } from 'mongoose';
 import { WordDocument } from '@server/api/words/models/words.schema';
 import { stringUtilsNotExistsMessage as notExistMessage } from '@server/utils/strings.utils';
-import { TStandardErrorObject as ErrorObject } from 'src/types/responses.types';
+import { TStandardErrorObject as ErrorObject } from '@server/types/responses.types';
 
 type WordModel = Model<WordDocument>;
 enum WordProps {

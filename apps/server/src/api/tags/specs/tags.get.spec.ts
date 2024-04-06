@@ -42,14 +42,14 @@ describe('TagsController - Get ops (integration)', () => {
     const dtoTwo: CreateTagDto = { name: 'tag2', group: ETagsGroup.LIBRARY };
     const dtoThree: CreateTagDto = { name: 'tag3', group: ETagsGroup.TOOL };
     Promise.all([
-      request(app.getHttpServer()).post('/tags').send(dto),
-      request(app.getHttpServer()).post('/tags').send(dtoTwo),
-      request(app.getHttpServer()).post('/tags').send(dtoThree),
+      request.agent(app.getHttpServer()).post('/tags').send(dto),
+      request.agent(app.getHttpServer()).post('/tags').send(dtoTwo),
+      request.agent(app.getHttpServer()).post('/tags').send(dtoThree),
     ]);
   });
 
   it('Get the entire tags list', async () => {
-    const response = await request(app.getHttpServer()).get('/tags');
+    const response = await request.agent(app.getHttpServer()).get('/tags');
     expect(response.body).toEqual(
       expect.arrayContaining([
         { name: 'tag1', group: ETagsGroup.PATTERN },
@@ -60,9 +60,9 @@ describe('TagsController - Get ops (integration)', () => {
   });
 
   it('Get tags of a valid group', async () => {
-    const response = await request(app.getHttpServer()).get(
-      '/tags/groups/pattern'
-    );
+    const response = await request
+      .agent(app.getHttpServer())
+      .get('/tags/groups/pattern');
     expect(response.statusCode).toBe(HttpStatus.OK);
     expect(response.body).toEqual([
       { name: 'tag1', group: ETagsGroup.PATTERN },
@@ -70,9 +70,9 @@ describe('TagsController - Get ops (integration)', () => {
   });
 
   it('Refuses to get tags of an invalid group', async () => {
-    const response = await request(app.getHttpServer()).get(
-      '/tags/groups/invalid'
-    );
+    const response = await request
+      .agent(app.getHttpServer())
+      .get('/tags/groups/invalid');
     expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
     expect(response.body).toEqual({
       message: invalidGroupMessage('invalid'),

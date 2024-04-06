@@ -45,7 +45,8 @@ describe('TagsController - Create ops (integration)', () => {
 
   it('Create a single tag with a valid group', async () => {
     const tagDto: CreateTagDto = { name: 'tagOne', group: ETagsGroup.LIBRARY };
-    const response = await request(app.getHttpServer())
+    const response = await request
+      .agent(app.getHttpServer())
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.CREATED);
@@ -60,7 +61,8 @@ describe('TagsController - Create ops (integration)', () => {
       name: 'tagOne',
       group: 'invalidGroupNameRandom' as ETagsGroup,
     };
-    const response = await request(app.getHttpServer())
+    const response = await request
+      .agent(app.getHttpServer())
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
@@ -72,8 +74,9 @@ describe('TagsController - Create ops (integration)', () => {
 
   it('Reject create call when the tag already exists', async () => {
     const tagDto: CreateTagDto = { name: 'tagOne', group: ETagsGroup.LIBRARY };
-    await request(app.getHttpServer()).post('/tags').send(tagDto);
-    const response = await request(app.getHttpServer())
+    await request.agent(app.getHttpServer()).post('/tags').send(tagDto);
+    const response = await request
+      .agent(app.getHttpServer())
       .post('/tags')
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);

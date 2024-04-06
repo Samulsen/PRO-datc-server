@@ -99,18 +99,36 @@ describe('WordsController - Create ops (e2e)', () => {
     };
 
     Promise.all([
-      await request(app.getHttpServer()).post('/words').send(wordDto),
-      await request(app.getHttpServer()).post('/words').send(wordDto2),
-      await request(app.getHttpServer()).post('/concepts').send(conceptDto),
-      await request(app.getHttpServer()).post('/concepts').send(conceptDto2),
-      await request(app.getHttpServer()).post('/words').send(combinatorDto),
-      await request(app.getHttpServer()).post('/words').send(combinatorDto2),
-      await request(app.getHttpServer()).post('/words').send(variantDto),
-      await request(app.getHttpServer()).post('/words').send(variantDto2),
-      await request(app.getHttpServer()).post('/words').send(synonymDto),
-      await request(app.getHttpServer()).post('/words').send(synonymDto2),
-      await request(app.getHttpServer()).post('/words').send(antagonistDto),
-      await request(app.getHttpServer()).post('/words').send(antagonistDto2),
+      await request.agent(app.getHttpServer()).post('/words').send(wordDto),
+      await request.agent(app.getHttpServer()).post('/words').send(wordDto2),
+      await request
+        .agent(app.getHttpServer())
+        .post('/concepts')
+        .send(conceptDto),
+      await request
+        .agent(app.getHttpServer())
+        .post('/concepts')
+        .send(conceptDto2),
+      await request
+        .agent(app.getHttpServer())
+        .post('/words')
+        .send(combinatorDto),
+      await request
+        .agent(app.getHttpServer())
+        .post('/words')
+        .send(combinatorDto2),
+      await request.agent(app.getHttpServer()).post('/words').send(variantDto),
+      await request.agent(app.getHttpServer()).post('/words').send(variantDto2),
+      await request.agent(app.getHttpServer()).post('/words').send(synonymDto),
+      await request.agent(app.getHttpServer()).post('/words').send(synonymDto2),
+      await request
+        .agent(app.getHttpServer())
+        .post('/words')
+        .send(antagonistDto),
+      await request
+        .agent(app.getHttpServer())
+        .post('/words')
+        .send(antagonistDto2),
     ]);
   });
 
@@ -125,7 +143,8 @@ describe('WordsController - Create ops (e2e)', () => {
   });
 
   const successBoilerplate = async (wordDto: CreateWordDto) => {
-    const response = await request(app.getHttpServer())
+    const response = await request
+      .agent(app.getHttpServer())
       .post('/words')
       .send(wordDto);
     expect(response.status).toBe(HttpStatus.CREATED);
@@ -145,7 +164,8 @@ describe('WordsController - Create ops (e2e)', () => {
     wordDto: CreateWordDto,
     errors: { origin: string; message: string }[]
   ) => {
-    const response = await request(app.getHttpServer())
+    const response = await request
+      .agent(app.getHttpServer())
       .post('/words')
       .send(wordDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);

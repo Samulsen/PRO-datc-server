@@ -44,7 +44,8 @@ describe('ConceptsController - Create ops for concepts (integration)', () => {
 
   it('Creates a concept that does not exist yet', async () => {
     const conceptDto: CreateConceptDto = { name: 'concept1', icon: 'icon1' };
-    const response = await request(app.getHttpServer())
+    const response = await request
+      .agent(app.getHttpServer())
       .post('/concepts')
       .send(conceptDto)
       .expect(HttpStatus.CREATED);
@@ -59,7 +60,8 @@ describe('ConceptsController - Create ops for concepts (integration)', () => {
   it('Rejects creating a concept that already exists', async () => {
     const conceptDto: CreateConceptDto = { name: 'concept1', icon: 'icon1' };
     await concept.create(conceptDto);
-    const response = await request(app.getHttpServer())
+    const response = await request
+      .agent(app.getHttpServer())
       .post('/concepts')
       .send(conceptDto)
       .expect(HttpStatus.BAD_REQUEST);
