@@ -25,7 +25,10 @@ import {
   stringUtilInvalidValueMessage as invalidValueMessage,
 } from '@server/utils/strings.utils';
 
-import { TFailureResponse, TSuccessResponse } from 'src/types/responses.types';
+import {
+  TFailureResponse,
+  TSuccessResponse,
+} from '@server/types/responses.types';
 
 describe('WordsController - Create ops (e2e)', () => {
   let app: INestApplication;
