@@ -5,4 +5,4 @@ import { ConceptsModule } from '@server/api/concepts/concepts.module';
 @Module({
   imports: [TagsModule, WordsModule, ConceptsModule],
 })
-export class PrivateModule {}
+export class AppModule {}

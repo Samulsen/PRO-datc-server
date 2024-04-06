@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
+    "@nestjs/config": "3.2.2",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/swagger": "^7.3.1",
     "@nestjs/testing": "^10.0.2",
