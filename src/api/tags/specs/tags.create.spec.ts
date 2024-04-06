@@ -1,21 +1,21 @@
-import * as request from 'supertest';
-import { INestApplication, HttpStatus } from '@nestjs/common';
-import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import * as request from "supertest";
+import { INestApplication, HttpStatus } from "@nestjs/common";
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
-import { testUtilCreateIntegrationTestModule } from 'src/utils/tests.utils';
-import { TagsController } from 'src/api/tags/tags.controller';
-import { TagsService } from 'src/api/tags/tags.service';
-import { Tag, TagSchema } from 'src/api/tags/models/tags.schema';
-import { CreateTagDto } from 'src/api/tags/models/tags.dto';
-import { ETagsGroup } from 'src/api/tags/models/tags.types';
+import { testUtilCreateIntegrationTestModule } from "src/utils/tests.utils";
+import { TagsController } from "src/api/tags/tags.controller";
+import { TagsService } from "src/api/tags/tags.service";
+import { Tag, TagSchema } from "src/api/tags/models/tags.schema";
+import { CreateTagDto } from "src/api/tags/models/tags.dto";
+import { ETagsGroup } from "src/api/tags/models/tags.types";
 import {
   stringUtilWasCreatedMessage as wasCreatedMessage,
   stringUtilExistsMessage as existsMessage,
-} from 'src/utils/strings.utils';
-import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from 'src/api/tags/helpers/tags.string.utils';
+} from "src/utils/strings.utils";
+import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from "src/api/tags/utils/tags.string.utils";
 
-describe('TagsController - Create ops (integration)', () => {
+describe("TagsController - Create ops (integration)", () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
   let tag: mongoose.Model<Tag>;
@@ -43,25 +43,25 @@ describe('TagsController - Create ops (integration)', () => {
     await mongoServer.stop();
   });
 
-  it('Create a single tag with a valid group', async () => {
-    const tagDto: CreateTagDto = { name: 'tagOne', group: ETagsGroup.LIBRARY };
+  it("Create a single tag with a valid group", async () => {
+    const tagDto: CreateTagDto = { name: "tagOne", group: ETagsGroup.LIBRARY };
     const response = await request(app.getHttpServer())
-      .post('/tags')
+      .post("/tags")
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.CREATED);
     expect(response.body).toEqual({
-      message: wasCreatedMessage('Tag', tagDto.name),
+      message: wasCreatedMessage("Tag", tagDto.name),
     });
     expect((await tag.findOne({ name: tagDto.name })).group).toBe(tagDto.group);
   });
 
-  it('Reject create call when supplied a invalid group', async () => {
+  it("Reject create call when supplied a invalid group", async () => {
     const tagDto: CreateTagDto = {
-      name: 'tagOne',
-      group: 'invalidGroupNameRandom' as ETagsGroup,
+      name: "tagOne",
+      group: "invalidGroupNameRandom" as ETagsGroup,
     };
     const response = await request(app.getHttpServer())
-      .post('/tags')
+      .post("/tags")
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
     expect(response.body).toMatchObject({
@@ -70,15 +70,15 @@ describe('TagsController - Create ops (integration)', () => {
     expect(await tag.find({ name: tagDto.name })).toHaveLength(0);
   });
 
-  it('Reject create call when the tag already exists', async () => {
-    const tagDto: CreateTagDto = { name: 'tagOne', group: ETagsGroup.LIBRARY };
-    await request(app.getHttpServer()).post('/tags').send(tagDto);
+  it("Reject create call when the tag already exists", async () => {
+    const tagDto: CreateTagDto = { name: "tagOne", group: ETagsGroup.LIBRARY };
+    await request(app.getHttpServer()).post("/tags").send(tagDto);
     const response = await request(app.getHttpServer())
-      .post('/tags')
+      .post("/tags")
       .send(tagDto);
     expect(response.status).toBe(HttpStatus.BAD_REQUEST);
     expect(response.body).toEqual({
-      message: existsMessage('Tag', tagDto.name),
+      message: existsMessage("Tag", tagDto.name),
     });
     expect(await tag.find({ name: tagDto.name })).toHaveLength(1);
   });

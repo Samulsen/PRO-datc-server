@@ -1,9 +1,9 @@
-import { Tag } from 'src/api/tags/models/tags.schema';
+import { Tag } from "src/api/tags/models/tags.schema";
 
 export enum EWordType {
-  NOUN = 'NOUN',
-  VERB = 'VERB',
-  ADJECTIVE = 'ADJECTIVE',
+  NOUN = "NOUN",
+  VERB = "VERB",
+  ADJECTIVE = "ADJECTIVE",
 }
 
 type ExampleVisual = {
