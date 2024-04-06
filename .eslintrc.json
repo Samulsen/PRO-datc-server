@@ -9,14 +9,15 @@
         "@nx/enforce-module-boundaries": [
           "error",
           {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
+            "allowCircularSelfDependency": true
+            // "enforceBuildableLibDependency": true,
+            // "allow": [],
+            // "depConstraints": [
+            //   {
+            //     "sourceTag": "*",
+            //     "onlyDependOnLibsWithTags": ["*"]
+            //   }
+            // ]
           }
         ]
       }
