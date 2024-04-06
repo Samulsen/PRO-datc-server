@@ -3,13 +3,13 @@ import { INestApplication, HttpStatus } from '@nestjs/common';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import { testUtilCreateIntegrationTestModule } from 'src/utils/tests.utils';
-import { ConceptsController } from 'src/api/concepts/concepts.controller';
-import { ConceptsService } from 'src/api/concepts/concepts.service';
+import { testUtilCreateIntegrationTestModule } from '@server/utils/tests.utils';
+import { ConceptsController } from '@server/api/concepts/concepts.controller';
+import { ConceptsService } from '@server/api/concepts/concepts.service';
 import {
   Concept,
   ConceptSchema,
-} from 'src/api/concepts/models/concepts.schema';
+} from '@server/api/concepts/models/concepts.schema';
 
 describe('ConceptsController - Get ops for concepts (integration)', () => {
   let app: INestApplication;
@@ -54,7 +54,7 @@ describe('ConceptsController - Get ops for concepts (integration)', () => {
         { name: 'concept1', icon: 'icon1' },
         { name: 'concept2', icon: 'icon2' },
         { name: 'concept3', icon: 'icon3' },
-      ]),
+      ])
     );
   });
 });

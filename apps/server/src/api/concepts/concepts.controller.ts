@@ -5,9 +5,9 @@ import {
   Body,
   BadRequestException,
 } from '@nestjs/common';
-import { ConceptsService } from 'src/api/concepts/concepts.service';
+import { ConceptsService } from '@server/api/concepts/concepts.service';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateConceptDto } from 'src/api/concepts/models/concepts.dto';
+import { CreateConceptDto } from '@server/api/concepts/models/concepts.dto';
 
 @ApiTags('concepts')
 @Controller('concepts')

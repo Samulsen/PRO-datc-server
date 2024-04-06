@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Tag, TagDocument } from 'src/api/tags/models/tags.schema';
-import { ETagsGroup } from 'src/api/tags/models/tags.types';
-import { CreateTagDto } from 'src/api/tags/models/tags.dto';
+import { Tag, TagDocument } from '@server/api/tags/models/tags.schema';
+import { ETagsGroup } from '@server/api/tags/models/tags.types';
+import { CreateTagDto } from '@server/api/tags/models/tags.dto';
 import {
   stringUtilExistsMessage as existMessage,
   stringUtilWasCreatedMessage as wasCreatedMessage,
-} from 'src/utils/strings.utils';
+} from '@server/utils/strings.utils';
 
 @Injectable()
 export class TagsService {
   constructor(
     @InjectModel(Tag.name, 'dictDB')
-    private tagModel: Model<TagDocument>,
+    private tagModel: Model<TagDocument>
   ) {}
 
   async createTag(newTag: CreateTagDto) {

@@ -6,25 +6,16 @@ import {
   ValidationPipe,
   Body,
   Param,
-<<<<<<< HEAD:src/api/private/tags/tags.controller.ts
-} from '@nestjs/common';
-import { TagsService } from 'src/api/private/tags/tags.service';
-import { ValidateGroupPipe } from 'src/api/private/tags/helpers/tags.pipes';
-import { ETagsGroup } from 'src/api/private/tags/models/tags.types';
-import { CreateTagDto } from 'src/api/private/tags/models/tags.dto';
-@Controller('tags')
-=======
   BadRequestException,
 } from "@nestjs/common";
-import { TagsService } from "src/api/tags/tags.service";
-import { ValidateGroupPipe } from "src/api/tags/pipes/tags.pipe";
-import { ETagsGroup } from "src/api/tags/models/tags.types";
-import { CreateTagDto } from "src/api/tags/models/tags.dto";
+import { TagsService } from "@server/api/tags/tags.service";
+import { ValidateGroupPipe } from "@server/api/tags/pipes/tags.pipe";
+import { ETagsGroup } from "@server/api/tags/models/tags.types";
+import { CreateTagDto } from "@server/api/tags/models/tags.dto";
 import { ApiTags } from "@nestjs/swagger";
 
 @ApiTags("tags")
 @Controller("tags")
->>>>>>> development:apps/server/src/api/tags/tags.controller.ts
 export class TagsController {
   constructor(private tagsService: TagsService) {}
 
@@ -43,11 +34,11 @@ export class TagsController {
     return this.tagsService.getAllTags();
   }
 
-<<<<<<< HEAD:src/api/private/tags/tags.controller.ts
+<<<<<<< HEAD:@server/api/private/tags/tags.controller.ts
   @Get('groups/:group')
 =======
   @Get("groups/:group")
->>>>>>> development:apps/server/src/api/tags/tags.controller.ts
+>>>>>>> development:apps/server/@server/api/tags/tags.controller.ts
   async getPropertyCollection(
     @Param("group", ValidateGroupPipe) group: ETagsGroup,
   ) {

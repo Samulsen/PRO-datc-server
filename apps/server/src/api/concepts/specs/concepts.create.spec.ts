@@ -3,16 +3,16 @@ import { INestApplication, HttpStatus } from '@nestjs/common';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import { testUtilCreateIntegrationTestModule } from 'src/utils/tests.utils';
-import { ConceptsController } from 'src/api/concepts/concepts.controller';
-import { ConceptsService } from 'src/api/concepts/concepts.service';
+import { testUtilCreateIntegrationTestModule } from '@server/utils/tests.utils';
+import { ConceptsController } from '@server/api/concepts/concepts.controller';
+import { ConceptsService } from '@server/api/concepts/concepts.service';
 import {
   Concept,
   ConceptSchema,
-} from 'src/api/concepts/models/concepts.schema';
-import { CreateConceptDto } from 'src/api/concepts/models/concepts.dto';
-import { stringUtilWasCreatedMessage as wasCreatedMessage } from 'src/utils/strings.utils';
-import { stringUtilExistsMessage as existsMessage } from 'src/utils/strings.utils';
+} from '@server/api/concepts/models/concepts.schema';
+import { CreateConceptDto } from '@server/api/concepts/models/concepts.dto';
+import { stringUtilWasCreatedMessage as wasCreatedMessage } from '@server/utils/strings.utils';
+import { stringUtilExistsMessage as existsMessage } from '@server/utils/strings.utils';
 
 describe('ConceptsController - Create ops for concepts (integration)', () => {
   let app: INestApplication;
@@ -52,7 +52,7 @@ describe('ConceptsController - Create ops for concepts (integration)', () => {
       message: wasCreatedMessage('Concept', conceptDto.name),
     });
     expect((await concept.findOne({ name: conceptDto.name })).icon).toEqual(
-      conceptDto.icon,
+      conceptDto.icon
     );
   });
 

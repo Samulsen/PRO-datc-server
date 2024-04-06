@@ -1,17 +1,17 @@
-import { CreateWordDto } from "src/api/words/models/words.dto";
-import { Model } from "mongoose";
-import { WordDocument } from "src/api/words/models/words.schema";
-import { stringUtilsNotExistsMessage as notExistMessage } from "src/utils/strings.utils";
-import { TStandardErrorObject as ErrorObject } from "src/types/responses.types";
+import { CreateWordDto } from '@server/api/words/models/words.dto';
+import { Model } from 'mongoose';
+import { WordDocument } from '@server/api/words/models/words.schema';
+import { stringUtilsNotExistsMessage as notExistMessage } from '@server/utils/strings.utils';
+import { TStandardErrorObject as ErrorObject } from 'src/types/responses.types';
 
 type WordModel = Model<WordDocument>;
 enum WordProps {
-  WORD = "word",
-  CONCEPT = "concept",
-  COMBINATOR = "combinator",
-  VARIANT = "variant",
-  SYNONYM = "synonym",
-  ANTAGONIST = "antagonist",
+  WORD = 'word',
+  CONCEPT = 'concept',
+  COMBINATOR = 'combinator',
+  VARIANT = 'variant',
+  SYNONYM = 'synonym',
+  ANTAGONIST = 'antagonist',
 }
 
 type SuccessState = { hasError: false; errors?: never };
@@ -21,7 +21,7 @@ type ResultState = SuccessState | ErrorState;
 const validateWordsExistenceFromProperty = async (
   words: string[],
   property: WordProps,
-  wordModel: WordModel,
+  wordModel: WordModel
 ): Promise<ResultState> => {
   const wordsExistence = await Promise.all(
     words.map(async (word) => {
@@ -31,7 +31,7 @@ const validateWordsExistenceFromProperty = async (
         }),
         target: word,
       };
-    }),
+    })
   );
 
   const errors = wordsExistence
@@ -52,7 +52,7 @@ const validateWordsExistenceFromProperty = async (
 
 export const wordsUtilValidatePayloadValues = async (
   wordModel: WordModel,
-  newWord: CreateWordDto,
+  newWord: CreateWordDto
 ): Promise<ResultState> => {
   const { value, combinators, concepts, antagonists, variants, synonyms } =
     newWord;
@@ -62,13 +62,13 @@ export const wordsUtilValidatePayloadValues = async (
     validateWordsExistenceFromProperty(
       combinators,
       WordProps.COMBINATOR,
-      wordModel,
+      wordModel
     ),
     validateWordsExistenceFromProperty(concepts, WordProps.CONCEPT, wordModel),
     validateWordsExistenceFromProperty(
       antagonists,
       WordProps.ANTAGONIST,
-      wordModel,
+      wordModel
     ),
     validateWordsExistenceFromProperty(variants, WordProps.VARIANT, wordModel),
     validateWordsExistenceFromProperty(synonyms, WordProps.SYNONYM, wordModel),
