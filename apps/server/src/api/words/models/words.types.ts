@@ -1,13 +1,9 @@
-<<<<<<< HEAD:src/api/private/words/models/words.types.ts
-import { Tag } from 'src/api/private/tags/models/tags.schema';
-=======
-import { Tag } from "src/api/tags/models/tags.schema";
->>>>>>> development:apps/server/src/api/words/models/words.types.ts
+import { Tag } from '@server/api/tags/models/tags.schema';
 
 export enum EWordType {
-  NOUN = "NOUN",
-  VERB = "VERB",
-  ADJECTIVE = "ADJECTIVE",
+  NOUN = 'NOUN',
+  VERB = 'VERB',
+  ADJECTIVE = 'ADJECTIVE',
 }
 
 type ExampleVisual = {

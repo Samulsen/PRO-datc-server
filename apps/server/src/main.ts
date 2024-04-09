@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { MainModule } from './main.module';
 import mongoose from 'mongoose';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(MainModule);
   mongoose.pluralize(null);
   const config = new DocumentBuilder()
     .setTitle('Dictionary of abstraction terms for code')
