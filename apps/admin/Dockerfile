@@ -4,10 +4,15 @@ WORKDIR /src
 
 COPY . .
 
-RUN npm install
-
 RUN npm install -g nx
 
-EXPOSE 4200
+RUN npm install -g pnpm
+
+RUN pnpm install
+
+RUN npx nx@latest init
+
+
+EXPOSE 4201
 
 CMD ["nx", "serve", "admin"]
