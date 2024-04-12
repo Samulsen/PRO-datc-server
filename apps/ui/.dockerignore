@@ -1,9 +1,9 @@
-/node_modules
-/.nx
-/.vscode
-/dist
+# /node_modules
+# /.nx
+# /.vscode
+# /dist
 
-/apps/server
-/apps/server-e2e
-/apps/admin
-/apps/admin-e2e
+# /apps/server
+# /apps/server-e2e
+# /apps/admin
+# /apps/admin-e2e

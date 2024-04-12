@@ -1,12 +1,12 @@
-/node_modules
-/.nx
-/.vscode
-/dist
+# /node_modules
+# /.nx
+# /.vscode
+# /dist
 
-/apps/admin
-/apps/admin-e2e
-/apps/ui
-/apps/ui-e2e
+# /apps/admin
+# /apps/admin-e2e
+# /apps/ui
+# /apps/ui-e2e
 
-/libs/theme
-/libs/components
+# /libs/theme
+# /libs/components

@@ -10,8 +10,7 @@ RUN npm install -g pnpm
 
 RUN pnpm install
 
-RUN npx nx@latest init
-
+# RUN pnpx nx@latest init
 
 EXPOSE 4201
 
