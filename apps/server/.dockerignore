@@ -3,8 +3,10 @@
 /.vscode
 /dist
 
-
 /apps/admin
 /apps/admin-e2e
 /apps/ui
 /apps/ui-e2e
+
+/libs/theme
+/libs/components

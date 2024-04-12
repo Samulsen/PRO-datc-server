@@ -1,0 +1,12 @@
+name: datc-dev
+
+services:
+  datc-server:
+    build: ./apps/server
+    container_name: datc-server-container
+    ports:
+      - '4000:4000'
+    volumes:
+      - /node_modules
+      - ./apps/server:/src
+      - ./libs/
