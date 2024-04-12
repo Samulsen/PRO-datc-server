@@ -2,11 +2,35 @@ name: datc-dev
 
 services:
   datc-server:
-    build: ./apps/server
+    build:
+      context: .
+      dockerfile: ./apps/server
     container_name: datc-server-container
     ports:
       - '4000:4000'
     volumes:
-      - /node_modules
+      - ./node_modules
       - ./apps/server:/src
-      - ./libs/
+      - ./libs/models:/src/libs/models
+  datc-admin:
+    build:
+      context: .
+      dockerfile: .apps/admin
+    container_name: datc-admin-container
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./node_modules
+      - ./apps/admin:/src
+      - ./libs:/src/libs
+  datc-ui:
+    build:
+      context: .
+      dockerfile: .apps/ui
+    container_name: datc-ui-container
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./node_modules
+      - ./apps/ui:/src
+      - ./libs:/src/libs
