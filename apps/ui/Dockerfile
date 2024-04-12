@@ -10,8 +10,6 @@ RUN npm install -g pnpm
 
 RUN pnpm install
 
-# RUN pnpx nx@latest init
-
 EXPOSE 4200
 
 CMD ["nx", "serve", "ui"]
