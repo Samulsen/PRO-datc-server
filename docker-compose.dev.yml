@@ -1,4 +1,4 @@
-name: datc-dev
+name: datc-development
 
 services:
   datc-server:
