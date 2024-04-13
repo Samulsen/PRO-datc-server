@@ -1,13 +1,19 @@
 name: datc-development
 
 services:
+  datc-mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    # volumes:
+    #   - mongodb_data:/data/db
   datc-server:
     build:
       context: .
       dockerfile: ./apps/server/Dockerfile
     container_name: datc-server-container
     ports:
-      - 4000:4000
+      - '4000:4000'
     # volumes:
     #   - /node_modules
     #   - /apps/server:/src
@@ -18,7 +24,9 @@ services:
       dockerfile: ./apps/admin/Dockerfile
     container_name: datc-admin-container
     ports:
-      - 4201:4201
+      - '4201:4201'
+    # stdin_open: true
+    # tty: true
     # volumes:
     #   - /node_modules
     #   - /apps/admin:/src
@@ -29,8 +37,12 @@ services:
       dockerfile: ./apps/ui/Dockerfile
     container_name: datc-ui-container
     ports:
-      - 4200:4200
+      - '4200:4200'
+    # stdin_open: true
+    # tty: true
     # volumes:
     #   - /node_modules
     #   - /apps/ui:/src
     #   - /libs:/src/libs
+# volumes:
+#   mongodb_data:
