@@ -10,6 +10,9 @@ services:
     ports:
       - '27017:27017'
     container_name: database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin.dev
+      MONGO_INITDB_ROOT_PASSWORD: dev1234
     networks:
       - datc-network
   server:
