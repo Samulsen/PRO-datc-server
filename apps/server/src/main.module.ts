@@ -15,18 +15,12 @@ export const DBConnection = {
       isGlobal: true,
       envFilePath: path.resolve(`.env.${process.env.NODE_ENV}`),
     }),
-    MongooseModule.forRoot(
-      `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mongodb:27017/users`,
-      {
-        connectionName: DBConnection.USER,
-      }
-    ),
-    MongooseModule.forRoot(
-      `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mongodb:27017/dict`,
-      {
-        connectionName: DBConnection.DICT,
-      }
-    ),
+    MongooseModule.forRoot(`mongodb://admin.dev:dev1234@localhost:27017/user`, {
+      connectionName: DBConnection.USER,
+    }),
+    MongooseModule.forRoot(`mongodb://admin.dev:dev1234@localhost:27017/dict`, {
+      connectionName: DBConnection.DICT,
+    }),
     AppModule,
   ],
 })
