@@ -1,0 +1,52 @@
+name: datc-development
+
+networks:
+  datc-network:
+    driver: bridge
+
+services:
+  datc-mongo:
+    image: mongo:6.0
+    ports:
+      - '27017:27017'
+    # volumes:
+    #   - mongodb_data:/data/db
+  datc-server:
+    build:
+      context: .
+      dockerfile: ./apps/server/Dockerfile
+    container_name: datc-server-container
+    ports:
+      - '4000:4000'
+      # volumes:
+      #   - /node_modules
+      #   - /apps/server:/src
+      #   - /libs/models:/src/libs/models
+      # datc-admin:
+      #   build:
+      #     context: .
+      #     dockerfile: ./apps/admin/Dockerfile
+      #   container_name: datc-admin-container
+      #   ports:
+      # - '4201:4201'
+      # stdin_open: true
+      # tty: true
+      # volumes:
+      #   - /node_modules
+      #   - /apps/admin:/src
+      #   - /libs:/src/libs
+      # datc-ui:
+      #   build:
+      #     context: .
+      #     dockerfile: ./apps/ui/Dockerfile
+      #   container_name: datc-ui-container
+      #   ports:
+      # - '4200:4200'
+    # stdin_open: true
+    # tty: true
+    # volumes:
+    #   - /node_modules
+    #   - /apps/ui:/src
+    #   - /libs:/src/libs
+# volumes:
+#   mongodb_data:

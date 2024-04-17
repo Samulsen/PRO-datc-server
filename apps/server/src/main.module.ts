@@ -15,10 +15,10 @@ export const DBConnection = {
       isGlobal: true,
       envFilePath: path.resolve(`.env.${process.env.NODE_ENV}`),
     }),
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/users', {
+    MongooseModule.forRoot('mongodb://mongodb:27017/users', {
       connectionName: DBConnection.USER,
     }),
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/dict', {
+    MongooseModule.forRoot('mongodb://mongodb:27017/dict', {
       connectionName: DBConnection.DICT,
     }),
     AppModule,
