@@ -19,5 +19,3 @@ MAKEFILES=$(find "$MAKEFILES_DIR" -type f -name "*.mk")
         echo "include $FILE"
     done
 } > "$MAIN_MAKEFILE"
-
-echo "Makefiles included successfully into $MAIN_MAKEFILE"

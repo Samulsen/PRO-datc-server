@@ -1,5 +1,8 @@
 include_makefiles:
-	./scripts/include_makefiles.sh
+	$(call exec_script,include_makefiles.sh)
+
+set-scripts-executable:
+	find scripts -type f -exec chmod +x {} \;
 
 test:
 	echo "myTest"
