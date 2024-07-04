@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ..
+
 # Define the directory containing the makefiles
 MAKEFILES_DIR="makefiles"
 MAIN_MAKEFILE="makefile"
