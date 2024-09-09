@@ -10,6 +10,9 @@
       "version": "lts",
       "pnpmVersion": "latest",
       "nvmVersion": "latest"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": "tmux"
     }
   },
   "customizations": {
@@ -25,13 +28,13 @@
         "esbenp.prettier-vscode",
         "ms-playwright.playwright",
         "firsttris.vscode-jest-runner",
-        "Orta.vscode-jest"
+        "Orta.vscode-jest",
+        "Bubulus.copilot-inline-toggle"
       ]
     }
   },
   "postCreateCommand": "pnpm install"
   // Features to add to the dev container. More info: https://containers.dev/features.
-  // "features": {},
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Configure tool-specific properties.
