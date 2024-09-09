@@ -21,10 +21,15 @@
         "vitaliymaz.vscode-svg-previewer",
         "nrwl.angular-console",
         "usernamehw.errorlens",
-        "naumovs.color-highlight"
+        "naumovs.color-highlight",
+        "esbenp.prettier-vscode",
+        "ms-playwright.playwright",
+        "firsttris.vscode-jest-runner",
+        "Orta.vscode-jest"
       ]
     }
-  }
+  },
+  "postCreateCommand": "pnpm install"
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
