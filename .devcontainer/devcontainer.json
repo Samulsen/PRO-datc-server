@@ -33,11 +33,11 @@
       ]
     }
   },
-  "postCreateCommand": "pnpm install",
-  "runArgs": ["--name", "datc-dev-env"]
+  "postCreateCommand": ["pnpm install", "npm install -g nx"],
+  "runArgs": ["--name", "datc-dev-env"],
   // Features to add to the dev container. More info: https://containers.dev/features.
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [4201]
+  "forwardPorts": [4201, 4200]
   // Configure tool-specific properties.
   // "customizations": {},
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
