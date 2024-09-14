@@ -1,17 +1,17 @@
-import * as request from 'supertest';
-import { INestApplication, HttpStatus } from '@nestjs/common';
-import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import * as request from "supertest";
+import { INestApplication, HttpStatus } from "@nestjs/common";
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
-import { testUtilCreateIntegrationTestModule } from '@server/utils/tests.utils';
-import { ConceptsController } from '@server/api/concepts/concepts.controller';
-import { ConceptsService } from '@server/api/concepts/concepts.service';
+import { testUtilCreateIntegrationTestModule } from "@server/utils/tests.utils";
+import { ConceptsController } from "@server/api/concepts/concepts.controller";
+import { ConceptsService } from "@server/api/concepts/concepts.service";
 import {
   Concept,
   ConceptSchema,
-} from '@server/api/concepts/models/concepts.schema';
+} from "@server/api/concepts/models/concepts.schema";
 
-describe('ConceptsController - Get ops for concepts (integration)', () => {
+describe("ConceptsController - Get ops for concepts (integration)", () => {
   let app: INestApplication;
   let mongoServer: MongoMemoryServer;
   let concept: mongoose.Model<Concept>;
@@ -30,9 +30,9 @@ describe('ConceptsController - Get ops for concepts (integration)', () => {
   });
 
   beforeEach(async () => {
-    await concept.create({ name: 'concept1', icon: 'icon1' });
-    await concept.create({ name: 'concept2', icon: 'icon2' });
-    await concept.create({ name: 'concept3', icon: 'icon3' });
+    await concept.create({ name: "concept1", icon: "icon1" });
+    await concept.create({ name: "concept2", icon: "icon2" });
+    await concept.create({ name: "concept3", icon: "icon3" });
   });
 
   afterEach(async () => {
@@ -45,16 +45,16 @@ describe('ConceptsController - Get ops for concepts (integration)', () => {
     await mongoServer.stop();
   });
 
-  it('Gets all the concepts', async () => {
+  it("Gets all the concepts", async () => {
     const response = await request
       .agent(app.getHttpServer())
-      .get('/concepts')
+      .get("/concepts")
       .expect(HttpStatus.OK);
     expect(response.body).toEqual(
       expect.arrayContaining([
-        { name: 'concept1', icon: 'icon1' },
-        { name: 'concept2', icon: 'icon2' },
-        { name: 'concept3', icon: 'icon3' },
+        { name: "concept1", icon: "icon1" },
+        { name: "concept2", icon: "icon2" },
+        { name: "concept3", icon: "icon3" },
       ])
     );
   });

@@ -4,13 +4,13 @@ import {
   Get,
   Body,
   BadRequestException,
-} from '@nestjs/common';
-import { ConceptsService } from '@server/api/concepts/concepts.service';
-import { ApiTags } from '@nestjs/swagger';
-import { CreateConceptDto } from '@server/api/concepts/models/concepts.dto';
+} from "@nestjs/common";
+import { ConceptsService } from "@server/api/concepts/concepts.service";
+import { ApiTags } from "@nestjs/swagger";
+import { CreateConceptDto } from "@server/api/concepts/models/concepts.dto";
 
-@ApiTags('concepts')
-@Controller('concepts')
+@ApiTags("concepts")
+@Controller("concepts")
 export class ConceptsController {
   constructor(private readonly conceptsService: ConceptsService) {}
 

@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { AppModule } from '@server/api/app.module';
-import { ConfigModule } from '@nestjs/config';
-import * as path from 'path';
+import { Module } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
+import { AppModule } from "@server/api/app.module";
+import { ConfigModule } from "@nestjs/config";
+import * as path from "path";
 
 export const DBConnection = {
-  USER: 'userDB',
-  DICT: 'dictDB',
+  USER: "userDB",
+  DICT: "dictDB",
 };
 
 @Module({

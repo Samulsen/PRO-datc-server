@@ -17,7 +17,9 @@ export const stringUtilWasCreatedMessage = (group: string, target: string) => {
 export const stringUtilInvalidValueMessage = (
   group: string,
   target: string,
-  valid: string[],
+  valid: string[]
 ) => {
-  return `The supplied value for the type: ${group} -->${target}<-- is not a valid member! Valid members are: ${valid.join(', ')}`;
+  return `The supplied value for the type: ${group} -->${target}<-- is not a valid member! Valid members are: ${valid.join(
+    ", "
+  )}`;
 };

@@ -8,7 +8,7 @@ services:
   mongodb:
     image: mongo:6.0
     ports:
-      - '27017:27017'
+      - "27017:27017"
     container_name: database
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin.dev
@@ -21,6 +21,6 @@ services:
       dockerfile: ./apps/server/dockerfile.dev
     container_name: server
     ports:
-      - '4000:4000'
+      - "4000:4000"
     networks:
       - datc-network

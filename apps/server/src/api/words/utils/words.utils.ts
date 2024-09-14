@@ -1,17 +1,17 @@
-import { CreateWordDto } from '@server/api/words/models/words.dto';
-import { Model } from 'mongoose';
-import { WordDocument } from '@server/api/words/models/words.schema';
-import { stringUtilsNotExistsMessage as notExistMessage } from '@server/utils/strings.utils';
-import { TStandardErrorObject as ErrorObject } from '@server/types/responses.types';
+import { CreateWordDto } from "@server/api/words/models/words.dto";
+import { Model } from "mongoose";
+import { WordDocument } from "@server/api/words/models/words.schema";
+import { stringUtilsNotExistsMessage as notExistMessage } from "@server/utils/strings.utils";
+import { TStandardErrorObject as ErrorObject } from "@server/types/responses.types";
 
 type WordModel = Model<WordDocument>;
 enum WordProps {
-  WORD = 'word',
-  CONCEPT = 'concept',
-  COMBINATOR = 'combinator',
-  VARIANT = 'variant',
-  SYNONYM = 'synonym',
-  ANTAGONIST = 'antagonist',
+  WORD = "word",
+  CONCEPT = "concept",
+  COMBINATOR = "combinator",
+  VARIANT = "variant",
+  SYNONYM = "synonym",
+  ANTAGONIST = "antagonist",
 }
 
 type SuccessState = { hasError: false; errors?: never };

@@ -1,6 +1,6 @@
-import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
-import { ETagsGroup } from '@server/api/tags/models/tags.types';
-import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from '@server/api/tags/utils/tags.string.utils';
+import { PipeTransform, Injectable, BadRequestException } from "@nestjs/common";
+import { ETagsGroup } from "@server/api/tags/models/tags.types";
+import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from "@server/api/tags/utils/tags.string.utils";
 
 @Injectable()
 export class ValidateGroupPipe implements PipeTransform {
