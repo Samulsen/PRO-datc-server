@@ -33,7 +33,7 @@
       ]
     }
   },
-  "postCreateCommand": ["pnpm install", "npm install -g nx"],
+  "postCreateCommand": "pnpm install",
   "runArgs": ["--name", "datc-dev-env"],
   // Features to add to the dev container. More info: https://containers.dev/features.
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
