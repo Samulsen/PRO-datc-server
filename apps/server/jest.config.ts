@@ -1,6 +1,8 @@
-/* eslint-disable */
 export default {
-  displayName: "server",
+  displayName: {
+    name: "server",
+    color: "blue",
+  },
   preset: "../../jest.preset.js",
   testEnvironment: "node",
   transform: {
