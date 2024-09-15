@@ -1,0 +1,24 @@
+name: datc-development
+
+services:
+  admin:
+    image: node-base-image
+    command: ["pnpm", "exec", "nx", "run", "admin:serve"]
+    volumes:
+      - ../../libs:/workspace/libs
+      - ../../apps/admin:/workspace/apps/admin
+    ports:
+      - "4201:4201"
+  ui:
+    image: node-base-image
+    command: ["pnpm", "exec", "nx", "run", "ui:serve"]
+    volumes:
+      - ../../libs:/workspace/libs
+      - ../../apps/ui:/workspace/apps/ui
+    ports:
+      - "4200:4200"
+  # server:
+  #   image: node-base-image
+  #   command: ["node", "app3.js"]
+  #   volumes:
+  #     - ./app3:/usr/src/app
