@@ -52,7 +52,7 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "jsdom": "~22.1.0",
-    "nx": "18.2.3",
+    "nx": "19.7.3",
     "prettier": "^2.6.2",
     "sass": "^1.55.0",
     "supertest": "^6.3.4",
