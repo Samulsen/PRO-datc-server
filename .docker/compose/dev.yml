@@ -3,6 +3,7 @@ name: datc-development
 services:
   admin:
     image: node-base-image
+    container_name: admin-app
     command: ["pnpm", "exec", "nx", "run", "admin:serve"]
     volumes:
       - ../../libs:/workspace/libs
@@ -11,6 +12,7 @@ services:
       - "4201:4201"
   ui:
     image: node-base-image
+    container_name: ui-app
     command: ["pnpm", "exec", "nx", "run", "ui:serve"]
     volumes:
       - ../../libs:/workspace/libs
@@ -22,3 +24,13 @@ services:
   #   command: ["node", "app3.js"]
   #   volumes:
   #     - ./app3:/usr/src/app
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
