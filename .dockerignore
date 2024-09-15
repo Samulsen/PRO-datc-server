@@ -1,3 +1,6 @@
 /apps
 /libs
 /tmp
+/.nx
+/pnpm-store
+/dist
