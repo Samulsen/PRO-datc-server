@@ -1,8 +1,5 @@
 export default {
-  displayName: {
-    name: "server",
-    color: "blue",
-  },
+  displayName: "server",
   preset: "../../jest.preset.js",
   testEnvironment: "node",
   transform: {
