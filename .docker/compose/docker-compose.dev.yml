@@ -1,26 +1,21 @@
 name: datc-development
 
-networks:
-  datc-network:
-    driver: bridge
-
 services:
-  mongodb:
-    image: mongo:6.0
-    ports:
-      - "27017:27017"
-    container_name: database
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin.dev
-      MONGO_INITDB_ROOT_PASSWORD: dev1234
-    networks:
-      - datc-network
-  server:
-    build:
-      context: .
-      dockerfile: ./apps/server/dockerfile.dev
-    container_name: server
-    ports:
-      - "4000:4000"
-    networks:
-      - datc-network
+  admin:
+    image: node-base-image
+    command: ["pnpm", "exec", "nx", "run", "admin:serve"]
+    volumes:
+      - ../libs:/workspace/libs
+      - ../apps/admin:/workspace/apps/admin
+
+  # ui:
+  #   image: node-base-image
+  #   command: ["node", "app2.js"]
+  #   volumes:
+  #     - ./app2:/usr/src/app
+
+  # server:
+  #   image: node-base-image
+  #   command: ["node", "app3.js"]
+  #   volumes:
+  #     - ./app3:/usr/src/app

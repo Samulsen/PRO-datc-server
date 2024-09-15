@@ -1,3 +1,2 @@
 import chalk from "chalk";
-
-console.log(chalk.yellow("My chalked test"));
+import { exec } from "child_process";
