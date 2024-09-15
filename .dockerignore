@@ -2,5 +2,6 @@
 /libs
 /tmp
 /.nx
-/pnpm-store
+/.pnpm-store
 /dist
+/node_modules
