@@ -10,6 +10,7 @@ services:
       - ../../apps/admin:/workspace/apps/admin
     ports:
       - "4201:4201"
+
   ui:
     image: node-base-image
     container_name: ui-app
@@ -19,17 +20,29 @@ services:
       - ../../apps/ui:/workspace/apps/ui
     ports:
       - "4200:4200"
+
   db:
     image: postgres:16
     container_name: postgres-db
     environment:
-      POSTGRES_USER: ex_user
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev1234
       POSTGRES_DB: test
     ports:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+
+  pg4admin:
+    image: dpage/pgadmin4
+    container_name: admin-db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 
 volumes:
   postgres-data:
