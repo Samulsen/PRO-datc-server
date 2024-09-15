@@ -9,8 +9,8 @@ import {
   // HttpException,
   // HttpStatus,
 } from "@nestjs/common";
-import { CreateWordDto } from "@server/api/words/models/words.dto";
-import { WordsService } from "@server/api/words/words.service";
+import { CreateWordDto } from './models/words.dto';
+import { WordsService } from './words.service';
 import { ApiTags } from "@nestjs/swagger";
 
 @ApiTags("words")

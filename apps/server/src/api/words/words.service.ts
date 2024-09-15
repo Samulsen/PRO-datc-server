@@ -1,15 +1,11 @@
 import { HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { Word, WordDocument } from "@server/api/words/models/words.schema";
-import { stringUtilWasCreatedMessage as wasCreatedMessage } from "@server/utils/strings.utils";
-import { CreateWordDto } from "@server/api/words/models/words.dto";
-import {
-  TFailureResponse,
-  TSuccessResponse,
-  TStandardErrorObject,
-} from "@server/types/responses.types";
-import { wordsUtilValidatePayloadValues as validatePayloadValues } from "@server/api/words/utils/words.utils";
+import { Word, WordDocument } from './models/words.schema';
+import { stringUtilWasCreatedMessage } from '../../utils/strings.utils';
+import { CreateWordDto } from './models/words.dto';
+import { TFailureResponse, TSuccessResponse, TStandardErrorObject } from '../../types/responses.types';
+import { wordsUtilValidatePayloadValues } from './utils/words.utils';
 
 type SuccessResponse = TSuccessResponse<CreateWordDto, WordDocument>;
 type FailureResponse = TFailureResponse<CreateWordDto, TStandardErrorObject[]>;

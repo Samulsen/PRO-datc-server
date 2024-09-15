@@ -1,4 +1,4 @@
-import { Tag } from "@server/api/tags/models/tags.schema";
+import { Tag } from '../../tags/models/tags.schema';
 
 export enum EWordType {
   NOUN = "NOUN",

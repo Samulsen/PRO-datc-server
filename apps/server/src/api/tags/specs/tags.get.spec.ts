@@ -3,13 +3,13 @@ import { INestApplication, HttpStatus } from "@nestjs/common";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
-import { testUtilCreateIntegrationTestModule } from "@server/utils/tests.utils";
-import { TagsController } from "@server/api/tags/tags.controller";
-import { TagsService } from "@server/api/tags/tags.service";
-import { Tag, TagSchema } from "@server/api/tags/models/tags.schema";
-import { CreateTagDto } from "@server/api/tags/models/tags.dto";
-import { ETagsGroup } from "@server/api/tags/models/tags.types";
-import { tagsStringUtilsInvalidGroupMessage as invalidGroupMessage } from "@server/api/tags/utils/tags.string.utils";
+import { testUtilCreateIntegrationTestModule } from '../../../utils/tests.utils';
+import { TagsController } from '../tags.controller';
+import { TagsService } from '../tags.service';
+import { Tag, TagSchema } from '../models/tags.schema';
+import { CreateTagDto } from '../models/tags.dto';
+import { ETagsGroup } from '../models/tags.types';
+import { tagsStringUtilsInvalidGroupMessage } from '../utils/tags.string.utils';
 
 describe("TagsController - Get ops (integration)", () => {
   let app: INestApplication;

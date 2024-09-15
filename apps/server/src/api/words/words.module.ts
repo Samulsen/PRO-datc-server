@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { WordsController } from "@server/api/words/words.controller";
-import { WordsService } from "@server/api/words/words.service";
+import { WordsController } from "./words.controller";
+import { WordsService } from "./words.service";
 import { MongooseModule } from "@nestjs/mongoose";
-import { Word, WordSchema } from "@server/api/words/models/words.schema";
+import { Word, WordSchema } from './models/words.schema';
 
 @Module({
   imports: [

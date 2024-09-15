@@ -1,12 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { Concept } from "@server/api/concepts/models/concepts.schema";
-import { CreateConceptDto } from "@server/api/concepts/models/concepts.dto";
-import {
-  stringUtilExistsMessage as existMessage,
-  stringUtilWasCreatedMessage as wasCreatedMessage,
-} from "@server/utils/strings.utils";
+import { Concept } from './models/concepts.schema';
+import { CreateConceptDto } from './models/concepts.dto';
+import { stringUtilExistsMessage, stringUtilWasCreatedMessage } from '../../utils/strings.utils';
 
 @Injectable()
 export class ConceptsService {

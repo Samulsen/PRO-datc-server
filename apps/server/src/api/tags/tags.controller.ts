@@ -8,10 +8,10 @@ import {
   Param,
   BadRequestException,
 } from "@nestjs/common";
-import { TagsService } from "@server/api/tags/tags.service";
-import { ValidateGroupPipe } from "@server/api/tags/pipes/tags.pipe";
-import { ETagsGroup } from "@server/api/tags/models/tags.types";
-import { CreateTagDto } from "@server/api/tags/models/tags.dto";
+import { TagsService } from './tags.service';
+import { ValidateGroupPipe } from './pipes/tags.pipe';
+import { ETagsGroup } from './models/tags.types';
+import { CreateTagDto } from './models/tags.dto';
 import { ApiTags } from "@nestjs/swagger";
 
 @ApiTags("tags")

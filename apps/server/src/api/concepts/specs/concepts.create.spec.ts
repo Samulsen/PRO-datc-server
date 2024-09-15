@@ -3,16 +3,13 @@ import { INestApplication, HttpStatus } from "@nestjs/common";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
-import { testUtilCreateIntegrationTestModule } from "@server/utils/tests.utils";
-import { ConceptsController } from "@server/api/concepts/concepts.controller";
-import { ConceptsService } from "@server/api/concepts/concepts.service";
-import {
-  Concept,
-  ConceptSchema,
-} from "@server/api/concepts/models/concepts.schema";
-import { CreateConceptDto } from "@server/api/concepts/models/concepts.dto";
-import { stringUtilWasCreatedMessage as wasCreatedMessage } from "@server/utils/strings.utils";
-import { stringUtilExistsMessage as existsMessage } from "@server/utils/strings.utils";
+import { testUtilCreateIntegrationTestModule } from '../../../utils/tests.utils';
+import { ConceptsController } from '../concepts.controller';
+import { ConceptsService } from '../concepts.service';
+import { Concept, ConceptSchema } from '../models/concepts.schema';
+import { CreateConceptDto } from '../models/concepts.dto';
+import { stringUtilWasCreatedMessage } from '../../../utils/strings.utils';
+import { stringUtilExistsMessage } from '../../../utils/strings.utils';
 
 describe("ConceptsController - Create ops for concepts (integration)", () => {
   let app: INestApplication;

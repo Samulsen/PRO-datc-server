@@ -3,32 +3,21 @@ import { INestApplication, HttpStatus } from "@nestjs/common";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
-import { WordsController } from "@server/api/words/words.controller";
-import { WordsService } from "@server/api/words/words.service";
-import { CreateWordDto } from "@server/api/words/models/words.dto";
-import { Word, WordSchema } from "@server/api/words/models/words.schema";
-import { EWordType } from "@server/api/words/models/words.types";
+import { WordsController } from '../words.controller';
+import { WordsService } from '../words.service';
+import { CreateWordDto } from '../models/words.dto';
+import { Word, WordSchema } from '../models/words.schema';
+import { EWordType } from '../models/words.types';
 
-import { ConceptsController } from "@server/api/concepts/concepts.controller";
-import { ConceptsService } from "@server/api/concepts/concepts.service";
-import { CreateConceptDto } from "@server/api/concepts/models/concepts.dto";
-import {
-  Concept,
-  ConceptSchema,
-} from "@server/api/concepts/models/concepts.schema";
+import { ConceptsController } from '../../concepts/concepts.controller';
+import { ConceptsService } from '../../concepts/concepts.service';
+import { CreateConceptDto } from '../../concepts/models/concepts.dto';
+import { Concept, ConceptSchema } from '../../concepts/models/concepts.schema';
 
-import { testUtilCreateIntegrationTestModule as createIntegrationTestModule } from "@server/utils/tests.utils";
-import {
-  stringUtilWasCreatedMessage as wasCreatedMessage,
-  stringUtilExistsMessage as existMessage,
-  stringUtilsNotExistsMessage as notExistMessage,
-  stringUtilInvalidValueMessage as invalidValueMessage,
-} from "@server/utils/strings.utils";
+import { testUtilCreateIntegrationTestModule } from '../../../utils/tests.utils';
+import { stringUtilWasCreatedMessage, stringUtilExistsMessage, stringUtilsNotExistsMessage, stringUtilInvalidValueMessage } from '../../../utils/strings.utils';
 
-import {
-  TFailureResponse,
-  TSuccessResponse,
-} from "@server/types/responses.types";
+import { TFailureResponse, TSuccessResponse } from '../../../types/responses.types';
 
 describe("WordsController - Create ops (e2e)", () => {
   let app: INestApplication;
