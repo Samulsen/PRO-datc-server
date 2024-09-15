@@ -33,6 +33,18 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
+  server:
+    image: node-base-image
+    container_name: server-app
+    command: ["pnpm", "exec", "nx", "run", "server:serve"]
+    volumes:
+      - ../../libs:/workspace/libs
+      - ../../apps/server:/workspace/apps/server
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
   pg4admin:
     image: dpage/pgadmin4
     container_name: admin-db
