@@ -3,7 +3,7 @@ name: datc-development
 services:
   admin:
     image: node-base-image
-    container_name: admin-app
+    container_name: app-admin
     command: ["pnpm", "exec", "nx", "run", "admin:serve"]
     volumes:
       - ../../libs:/workspace/libs
@@ -13,7 +13,7 @@ services:
 
   ui:
     image: node-base-image
-    container_name: ui-app
+    container_name: app-ui
     command: ["pnpm", "exec", "nx", "run", "ui:serve"]
     volumes:
       - ../../libs:/workspace/libs
@@ -23,7 +23,7 @@ services:
 
   db:
     image: postgres:16
-    container_name: postgres-db
+    container_name: db-postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -35,7 +35,7 @@ services:
 
   server:
     image: node-base-image
-    container_name: server-app
+    container_name: app-server
     command: ["pnpm", "exec", "nx", "run", "server:serve"]
     volumes:
       - ../../libs:/workspace/libs
@@ -47,7 +47,7 @@ services:
 
   pg4admin:
     image: dpage/pgadmin4
-    container_name: admin-db
+    container_name: db-pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
