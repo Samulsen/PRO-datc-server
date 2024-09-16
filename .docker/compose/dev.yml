@@ -47,10 +47,13 @@ services:
 
   pg4admin:
     image: dpage/pgadmin4
+    user: root
     container_name: db-pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - ../../pgadmin:/var/lib/pgadmin/server.json
     ports:
       - "8080:80"
     depends_on:
