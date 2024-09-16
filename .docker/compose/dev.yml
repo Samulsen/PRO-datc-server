@@ -53,7 +53,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
-      - ../../pgadmin4/server.json:/pgadmin4/servers.json
+      - ../../pgadmin4/servers.json:/pgadmin4/servers.json
+      - ../../pgadmin4/pgpass:/pgadmin4/pgpass
+
     ports:
       - "8080:80"
     depends_on:
