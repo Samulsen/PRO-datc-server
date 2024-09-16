@@ -1,16 +1,24 @@
-# ------------------- DOCKER ---------------------
+# ---------------------- VARS ---------------------
+var_env_file_dev=env/.env.development
 
-docker-build-base-image:
-	@docker build -f .docker/base -t node-base-image .
+# ------------------- IMAGES ---------------------
+
+docker_base_image_name=node-base-image
+
+docker-setup:
+	@docker build -f .docker/base -t $(docker_base_image_name) .
 
 # --------------------- DEV ----------------------
 
+dev_compose_base=docker-compose --env-file $(var_env_file_dev) -f .docker/compose/dev.yml
+
 dev:
-	@docker-compose --env-file env/.env.development -f .docker/compose/dev.yml up
+	@$(dev_compose_base) up
 
 dev-stop:
-	@docker-compose -f .docker/compose/dev.yml down
+	@$(dev_compose_base) down
 
-dev-reset-db:
-	@docker volume rm datc_development_postgres-data
-# --------------------- PROD ----------------------
+# --------------------- DB ----------------------
+
+dev-db-volume-reset:
+	@docker volume rm datc-development_postgres-data
