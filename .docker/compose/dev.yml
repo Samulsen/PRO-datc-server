@@ -13,9 +13,8 @@ services:
       - ${NX_ADMIN_VOLUME_MAP}
 
   ui:
-    image: node-base
+    image: ${docker_DEV_ui_image}
     container_name: app-ui
-    command: ["pnpm", "exec", "nx", "run", "ui:serve"]
     volumes:
       - ${NX_LIBS_VOLUME_MAP}
       - ${NX_UI_VOLUME_MAP}
@@ -35,9 +34,8 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   server:
-    image: node-base
+    image: ${docker_DEV_server_image}
     container_name: app-server
-    command: ["pnpm", "exec", "nx", "run", "server:serve"]
     volumes:
       - ${NX_LIBS_VOLUME_MAP}
       - ${NX_SERVER_VOLUME_MAP}
@@ -47,13 +45,12 @@ services:
       - db
 
   pg4admin:
-    image: pg4admin-dev
-    user: root
+    image: ${docker_DEV_pg4admin_image}
     container_name: db-pgadmin
+    user: root
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-
     ports:
       - "8080:80"
     depends_on:

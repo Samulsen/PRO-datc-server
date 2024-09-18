@@ -20,13 +20,18 @@ docker-build-DEV-pg4admin:
 docker-build-DEV-admin:
 	@docker build -f .docker/dev/admin -t $(docker_DEV_admin_image) .
 
-# docker-build-DEV-ui:
-# 	@docker build -f .docker/dev/ui -t $(docker_DEV_ui_image) .
+docker-build-DEV-ui:
+	@docker build -f .docker/dev/ui -t $(docker_DEV_ui_image) .
 
-# docker-build-DEV-server:
-# 	@docker build -f .docker/dev/server -t $(docker_DEV_server_image) .
+docker-build-DEV-server:
+	@docker build -f .docker/dev/server -t $(docker_DEV_server_image) .
+
 dkB=docker-build
-docker-rebuild-DEV-all: $(dkB)-base $(dkB)-DEV-pg4admin $(dkB)-DEV-admin
+docker-rebuild-DEV-all: $(dkB)-base 
+	make $(dkB)-DEV-pg4admin 
+	make $(dkB)-DEV-admin 
+	make $(dkB)-DEV-ui 
+	make $(dkB)-DEV-server
 
 # --------------------- DEV ----------------------
 

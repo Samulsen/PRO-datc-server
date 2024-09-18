@@ -6,4 +6,5 @@ WORKDIR /pgadmin4
 
 # Copy the static files into the image
 COPY ../../pgadmin4/servers.json /pgadmin4/servers.json
+# not sure if this currently works
 COPY ../../pgadmin4/pgpass /pgadmin4/pgpass

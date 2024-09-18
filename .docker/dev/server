@@ -1,0 +1,5 @@
+FROM node-base-image
+
+WORKDIR /workspace
+
+CMD ["pnpm", "exec", "nx", "run", "server:serve"]
