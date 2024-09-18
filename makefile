@@ -11,7 +11,7 @@ docker-build-base:
 	@docker build -f .docker/base -t $(docker_base_image_name) .
 
 docker-build-pg4admin:
-	@docker build -f .docker/pg4admin -t $(docker_custom_pg4admin_image_name) .
+	@docker build -f .docker/dev/pg4admin -t $(docker_custom_pg4admin_image_name) .
 
 docker-build-admin:
 	@docker build -f .docker/dev/admin -t $(docker_custom_admin_image_name) .

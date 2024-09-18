@@ -11,7 +11,7 @@ export default defineConfig({
   cacheDir: "../../node_modules/.vite/apps/admin",
 
   server: {
-    port: process.env.SERVE_PORT ? parseInt(process.env.SERVE_PORT) : 4201,
+    port: process.env.SERVE_PORT ? parseInt(process.env.SERVE_PORT) : 5555,
     host: true,
   },
 

@@ -5,7 +5,7 @@ services:
     image: admin-custom-image
     container_name: app-admin
     environment:
-      - SERVE_PORT=${VITE_ADMIN_SERVE_PORT}
+      SERVE_PORT: ${VITE_ADMIN_SERVE_PORT}
     ports:
       - "${VITE_ADMIN_SERVE_PORT_FWD}"
     volumes:
