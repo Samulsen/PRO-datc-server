@@ -9,16 +9,16 @@ services:
     ports:
       - "${VITE_ADMIN_SERVE_PORT_FWD}"
     volumes:
-      - ../../libs:/workspace/libs
-      - ../../apps/admin:/workspace/apps/admin
+      - ${NX_LIBS_VOLUME_MAP}
+      - ${NX_ADMIN_VOLUME_MAP}
 
   ui:
     image: node-base-image
     container_name: app-ui
     command: ["pnpm", "exec", "nx", "run", "ui:serve"]
     volumes:
-      - ../../libs:/workspace/libs
-      - ../../apps/ui:/workspace/apps/ui
+      - ${NX_LIBS_VOLUME_MAP}
+      - ${NX_UI_VOLUME_MAP}
     ports:
       - "4200:4200"
 
@@ -39,8 +39,8 @@ services:
     container_name: app-server
     command: ["pnpm", "exec", "nx", "run", "server:serve"]
     volumes:
-      - ../../libs:/workspace/libs
-      - ../../apps/server:/workspace/apps/server
+      - ${NX_LIBS_VOLUME_MAP}
+      - ${NX_SERVER_VOLUME_MAP}
     ports:
       - "4000:4000"
     depends_on:
