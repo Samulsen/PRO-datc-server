@@ -2,14 +2,15 @@ name: datc-development
 
 services:
   admin:
-    image: node-base-image
+    image: admin-custom-image
     container_name: app-admin
-    command: ["pnpm", "exec", "nx", "run", "admin:serve"]
+    environment:
+      - SERVE_PORT=${VITE_ADMIN_SERVE_PORT}
+    ports:
+      - "${VITE_ADMIN_SERVE_PORT_FWD}"
     volumes:
       - ../../libs:/workspace/libs
       - ../../apps/admin:/workspace/apps/admin
-    ports:
-      - "4201:4201"
 
   ui:
     image: node-base-image

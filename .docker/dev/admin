@@ -1,0 +1,12 @@
+# Use the base image
+FROM node-base-image
+
+# Set the working directory
+WORKDIR /workspace
+
+# Set environment variable for the port
+ARG SERVE_PORT
+ENV PORT=${SERVE_PORT}
+
+# Set the command to run the server
+CMD ["pnpm", "exec", "nx", "run", "admin:serve"]
