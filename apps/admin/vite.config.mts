@@ -6,8 +6,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-console.log("VITE CONFIG", process.env.SERVE_PORT);
-
 export default defineConfig({
   root: __dirname,
   cacheDir: "../../node_modules/.vite/apps/admin",
