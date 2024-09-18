@@ -2,7 +2,7 @@ name: datc-development
 
 services:
   admin:
-    image: admin-custom-image
+    image: ${docker_DEV_admin_image}
     container_name: app-admin
     environment:
       SERVE_PORT: ${VITE_ADMIN_SERVE_PORT}
@@ -13,7 +13,7 @@ services:
       - ${NX_ADMIN_VOLUME_MAP}
 
   ui:
-    image: node-base-image
+    image: node-base
     container_name: app-ui
     command: ["pnpm", "exec", "nx", "run", "ui:serve"]
     volumes:
@@ -35,7 +35,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   server:
-    image: node-base-image
+    image: node-base
     container_name: app-server
     command: ["pnpm", "exec", "nx", "run", "server:serve"]
     volumes:
@@ -47,7 +47,7 @@ services:
       - db
 
   pg4admin:
-    image: pg4admin-custom-image
+    image: pg4admin-dev
     user: root
     container_name: db-pgadmin
     environment:

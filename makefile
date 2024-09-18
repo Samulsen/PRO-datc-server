@@ -3,20 +3,30 @@ var_env_file_dev=env/.env.development
 
 # ------------------- IMAGES ---------------------
 
-docker_base_image_name=node-base-image
-docker_custom_pg4admin_image_name=pg4admin-custom-image
-docker_custom_admin_image_name=admin-custom-image
+export docker_BASE_node_image=node-base
+
+export docker_DEV_environment_image=environment-dev
+export docker_DEV_admin_image=admin-dev
+export docker_DEV_ui_image=ui-dev
+export docker_DEV_server_image=server-dev
+export docker_DEV_pg4admin_image=pg4admin-dev
 
 docker-build-base:
-	@docker build -f .docker/base -t $(docker_base_image_name) .
+	@docker build -f .docker/base -t $(docker_BASE_node_image) .
 
-docker-build-pg4admin:
-	@docker build -f .docker/dev/pg4admin -t $(docker_custom_pg4admin_image_name) .
+docker-build-DEV-pg4admin:
+	@docker build -f .docker/dev/pg4admin -t $(docker_DEV_pg4admin_image) .
 
-docker-build-admin:
-	@docker build -f .docker/dev/admin -t $(docker_custom_admin_image_name) .
+docker-build-DEV-admin:
+	@docker build -f .docker/dev/admin -t $(docker_DEV_admin_image) .
 
-docker-rebuild-all: docker-build-base docker-build-pg4admin docker-build-admin
+# docker-build-DEV-ui:
+# 	@docker build -f .docker/dev/ui -t $(docker_DEV_ui_image) .
+
+# docker-build-DEV-server:
+# 	@docker build -f .docker/dev/server -t $(docker_DEV_server_image) .
+dkB=docker-build
+docker-rebuild-DEV-all: $(dkB)-base $(dkB)-DEV-pg4admin $(dkB)-DEV-admin
 
 # --------------------- DEV ----------------------
 
