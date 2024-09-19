@@ -1,5 +1,5 @@
 # ---------------------- VARS ---------------------
-var_env_file_dev=env/.env.development
+export var_env_file_dev=env/.env.development
 
 # ------------------- IMAGES ---------------------
 
@@ -38,6 +38,9 @@ dev_compose_base=docker-compose --env-file $(var_env_file_dev) -f .docker/compos
 
 dev:
 	@$(dev_compose_base) up
+
+dev-logs:
+	./scripts/dev.sh
 
 dev-stop:
 	@$(dev_compose_base) down
