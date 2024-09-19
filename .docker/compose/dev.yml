@@ -15,11 +15,13 @@ services:
   ui:
     image: ${docker_DEV_ui_image}
     container_name: app-ui
+    environment:
+      SERVE_PORT: ${VITE_UI_SERVE_PORT}
     volumes:
       - ${NX_LIBS_VOLUME_MAP}
       - ${NX_UI_VOLUME_MAP}
     ports:
-      - "4200:4200"
+      - "${VITE_UI_SERVE_PORT_FWD}"
 
   db:
     image: postgres:16

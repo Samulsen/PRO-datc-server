@@ -2,13 +2,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
   root: __dirname,
   cacheDir: "../../node_modules/.vite/apps/ui",
 
   server: {
-    port: 4200,
+    port: process.env.SERVE_PORT ? parseInt(process.env.SERVE_PORT) : 6666,
     host: true,
   },
 
