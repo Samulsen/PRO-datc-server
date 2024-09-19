@@ -1,0 +1,64 @@
+name: datc-development
+
+services:
+  admin:
+    image: ${docker_DEV_admin_image}
+    container_name: app-admin
+    environment:
+      SERVE_PORT: ${VITE_ADMIN_SERVE_PORT}
+    ports:
+      - "${VITE_ADMIN_SERVE_PORT_FWD}"
+    volumes:
+      - ${NX_LIBS_VOLUME_MAP}
+      - ${NX_ADMIN_VOLUME_MAP}
+
+  ui:
+    image: ${docker_DEV_ui_image}
+    container_name: app-ui
+    environment:
+      SERVE_PORT: ${VITE_UI_SERVE_PORT}
+    volumes:
+      - ${NX_LIBS_VOLUME_MAP}
+      - ${NX_UI_VOLUME_MAP}
+    ports:
+      - "${VITE_UI_SERVE_PORT_FWD}"
+
+  db:
+    image: postgres:16
+    container_name: db-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - ${POSTGRES_PORT_FWD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  server:
+    image: ${docker_DEV_server_image}
+    container_name: app-server
+    environment:
+      SERVER_PORT: ${NESTJS_SERVER_PORT}
+    ports:
+      - "${NESTJS_SERVER_PORT_FWD}"
+    depends_on:
+      - db
+    volumes:
+      - ${NX_LIBS_VOLUME_MAP}
+      - ${NX_SERVER_VOLUME_MAP}
+
+  pg4admin:
+    image: ${docker_DEV_pg4admin_image}
+    container_name: db-pgadmin
+    user: root
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres-data:

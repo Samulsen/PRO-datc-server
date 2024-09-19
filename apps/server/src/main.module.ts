@@ -1,27 +1,26 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { AppModule } from '@server/api/app.module';
-import { ConfigModule } from '@nestjs/config';
-import * as path from 'path';
-
-export const DBConnection = {
-  USER: 'userDB',
-  DICT: 'dictDB',
-};
-
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: path.resolve(`.env.${process.env.NODE_ENV}`),
+      envFilePath: "env/.env.development",
     }),
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/users', {
-      connectionName: DBConnection.USER,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: "postgres",
+        host: configService.get("POSTGRES_HOST"),
+        port: configService.get("POSTGRES_PORT"),
+        username: configService.get("POSTGRES_USER"),
+        password: configService.get("POSTGRES_PASSWORD"),
+        database: configService.get("POSTGRES_DB"),
+        entities: [],
+        synchronize: true,
+      }),
     }),
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/dict', {
-      connectionName: DBConnection.DICT,
-    }),
-    AppModule,
   ],
 })
 export class MainModule {}

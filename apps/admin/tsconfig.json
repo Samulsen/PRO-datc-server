@@ -9,6 +9,7 @@
   },
   "files": [],
   "include": [],
+  // https://github.com/nrwl/nx/issues/4508
   "references": [
     {
       "path": "./tsconfig.app.json"
