@@ -44,7 +44,7 @@ dev-logs:
 
 dev-stop:
 	@$(dev_compose_base) down
-
+	@tmux kill-session
 # --------------------- DB ----------------------
 
 dev-db-volume-reset:

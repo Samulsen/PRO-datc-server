@@ -11,6 +11,10 @@ tmux split-window -v
 tmux select-pane -t 2
 tmux split-window -v
 
+# Split the last pane to create a sixth pane for user interaction
+tmux select-pane -t 4
+tmux split-window -v
+
 # Start the admin service and redirect logs to the first pane
 tmux send-keys -t my_docker_logs:0.0 "docker-compose --env-file $var_env_file_dev -f .docker/compose/dev.yml up admin" C-m
 
@@ -25,6 +29,8 @@ tmux send-keys -t my_docker_logs:0.3 "docker-compose --env-file $var_env_file_de
 
 # Start the pg4admin service and redirect logs to the fifth pane
 tmux send-keys -t my_docker_logs:0.4 "docker-compose --env-file $var_env_file_dev -f .docker/compose/dev.yml up pg4admin" C-m
+
+# Sixth pane is left for user interaction
 
 # Attach to the tmux session
 tmux attach-session -t my_docker_logs
