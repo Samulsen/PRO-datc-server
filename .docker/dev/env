@@ -1,0 +1,5 @@
+FROM node-base-image
+
+WORKDIR /workspace
+
+RUN apt-get update && apt-get install -y tmux

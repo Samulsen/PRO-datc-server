@@ -26,6 +26,9 @@ docker-build-DEV-ui:
 docker-build-DEV-server:
 	@docker build -f .docker/dev/server -t $(docker_DEV_server_image) .
 
+docker-build-DEV-env:
+	@docker build -f .docker/dev/env -t $(docker_DEV_environment_image) .
+
 dkB=docker-build
 docker-rebuild-DEV-all: $(dkB)-base 
 	make $(dkB)-DEV-pg4admin 
