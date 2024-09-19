@@ -5,7 +5,6 @@ var_env_file_dev=env/.env.development
 
 export docker_BASE_node_image=node-base
 
-export docker_DEV_environment_image=environment-dev
 export docker_DEV_admin_image=admin-dev
 export docker_DEV_ui_image=ui-dev
 export docker_DEV_server_image=server-dev
@@ -26,14 +25,11 @@ docker-build-DEV-ui:
 docker-build-DEV-server:
 	@docker build -f .docker/dev/server -t $(docker_DEV_server_image) .
 
-docker-build-DEV-env:
-	@docker build -f .docker/dev/env -t $(docker_DEV_environment_image) .
-
 dkB=docker-build
-docker-rebuild-DEV-all: $(dkB)-base 
-	make $(dkB)-DEV-pg4admin 
-	make $(dkB)-DEV-admin 
-	make $(dkB)-DEV-ui 
+docker-rebuild-DEV-all: $(dkB)-base
+	make $(dkB)-DEV-pg4admin
+	make $(dkB)-DEV-admin
+	make $(dkB)-DEV-ui
 	make $(dkB)-DEV-server
 
 # --------------------- DEV ----------------------
