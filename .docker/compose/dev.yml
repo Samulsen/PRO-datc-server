@@ -38,13 +38,15 @@ services:
   server:
     image: ${docker_DEV_server_image}
     container_name: app-server
+    environment:
+      SERVER_PORT: ${NESTJS_SERVER_PORT}
+    ports:
+      - "${NESTJS_SERVER_PORT_FWD}"
+    depends_on:
+      - db
     volumes:
       - ${NX_LIBS_VOLUME_MAP}
       - ${NX_SERVER_VOLUME_MAP}
-    ports:
-      - "4000:4000"
-    depends_on:
-      - db
 
   pg4admin:
     image: ${docker_DEV_pg4admin_image}

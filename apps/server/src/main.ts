@@ -1,9 +1,11 @@
 import { NestFactory } from "@nestjs/core";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import dotenv from "dotenv";
 
 import { MainModule } from "./main.module";
 
 async function bootstrap() {
+  dotenv.config();
   const app = await NestFactory.create(MainModule);
   const config = new DocumentBuilder()
     .setTitle("Dictionary of abstraction terms for code")
@@ -14,6 +16,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);
-  await app.listen(4000);
+  const port = process.env.SERVER_PORT ?  parseInt(process.env.SERVER_PORT) : 4444;
+  await app.listen(port);
 }
 bootstrap();
