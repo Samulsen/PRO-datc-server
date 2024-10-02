@@ -9,6 +9,7 @@ services:
     ports:
       - "${VITE_ADMIN_SERVE_PORT_FWD}"
     volumes:
+      - ${NODE_MODULES_VOLUME_MAP}
       - ${NX_LIBS_VOLUME_MAP}
       - ${NX_ADMIN_VOLUME_MAP}
 
@@ -18,6 +19,7 @@ services:
     environment:
       SERVE_PORT: ${VITE_UI_SERVE_PORT}
     volumes:
+      - ${NODE_MODULES_VOLUME_MAP}
       - ${NX_LIBS_VOLUME_MAP}
       - ${NX_UI_VOLUME_MAP}
     ports:
@@ -45,6 +47,7 @@ services:
     depends_on:
       - db
     volumes:
+      - ${NODE_MODULES_VOLUME_MAP}
       - ${NX_LIBS_VOLUME_MAP}
       - ${NX_SERVER_VOLUME_MAP}
 
