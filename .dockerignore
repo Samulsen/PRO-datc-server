@@ -1,7 +1,5 @@
 /apps
 /libs
 /tmp
-/.nx
-/.pnpm-store
 /dist
 /node_modules
