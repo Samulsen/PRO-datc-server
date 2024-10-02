@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { createTheme, MantineProvider } from "@mantine/core";
 import type { MantineColorsTuple } from "@mantine/core";
 
+import "@mantine/core/styles.css";
+
 const primary: MantineColorsTuple = [
   "#e1faff",
   "#cdf0ff",
