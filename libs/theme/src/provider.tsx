@@ -25,5 +25,9 @@ const theme = createTheme({
 });
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  return <MantineProvider theme={theme}>{children}</MantineProvider>;
+  return (
+    <MantineProvider defaultColorScheme="dark" theme={theme}>
+      {children}
+    </MantineProvider>
+  );
 }
