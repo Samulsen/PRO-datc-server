@@ -30,7 +30,8 @@
         "firsttris.vscode-jest-runner",
         "Orta.vscode-jest",
         "Bubulus.copilot-inline-toggle",
-        "vunguyentuan.vscode-postcss"
+        "vunguyentuan.vscode-postcss",
+        "vunguyentuan.vscode-css-variables"
       ]
     }
   },
