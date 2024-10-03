@@ -29,7 +29,8 @@
         "ms-playwright.playwright",
         "firsttris.vscode-jest-runner",
         "Orta.vscode-jest",
-        "Bubulus.copilot-inline-toggle"
+        "Bubulus.copilot-inline-toggle",
+        "vunguyentuan.vscode-postcss"
       ]
     }
   },
