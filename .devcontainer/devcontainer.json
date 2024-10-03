@@ -31,7 +31,9 @@
         "Orta.vscode-jest",
         "Bubulus.copilot-inline-toggle",
         "stylelint.vscode-stylelint",
-        "styled-components.vscode-styled-components"
+        "styled-components.vscode-styled-components",
+        "mgmcdermott.vscode-language-babel",
+        "EditorConfig.EditorConfig"
       ]
     }
   },
