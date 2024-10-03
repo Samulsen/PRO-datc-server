@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 import dotenv from "dotenv";
+import wyw from "@wyw-in-js/vite";
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ export default defineConfig({
     host: "localhost",
   },
 
-  plugins: [react(), nxViteTsPaths()],
+  plugins: [react(), nxViteTsPaths(), wyw()],
 
   // Uncomment this if you are using workers.
   // worker: {

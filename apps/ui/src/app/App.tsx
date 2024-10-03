@@ -1,12 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from "./App.module.scss";
+import { styled } from "@linaria/react";
 
-import NxWelcome from "./nx-welcome";
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="ui" />
+      <Title>Hello World!</Title>
     </div>
   );
 }
