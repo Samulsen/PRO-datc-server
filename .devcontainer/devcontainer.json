@@ -1,0 +1,37 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+  "name": "Debian",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "version": "20",
+      "pnpmVersion": "latest",
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": "tmux"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "eamodio.gitlens",
+        "vitaliymaz.vscode-svg-previewer",
+        "usernamehw.errorlens",
+        "naumovs.color-highlight",
+        "esbenp.prettier-vscode",
+        "Bubulus.copilot-inline-toggle",
+        "stylelint.vscode-stylelint",
+        "mgmcdermott.vscode-language-babel",
+        "EditorConfig.EditorConfig"
+      ]
+    }
+  },
+  // "postCreateCommand": "pnpm install",
+  "runArgs": ["--name", "datc-dev-env"]
+}
