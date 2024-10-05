@@ -14,10 +14,4 @@ RUN npm install -g pnpm@8.15.9
 # Set the working directory
 WORKDIR /workspace
 
-# Copy package.json and pnpm-lock.yaml to the working directory
-COPY package.json pnpm-lock.yaml ./
-
-# Ensure node_modules are static in the image
-RUN pnpm install
-
 COPY . .

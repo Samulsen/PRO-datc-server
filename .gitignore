@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# tmps
+**/vite.config.mts.timestamp-*.mjs
+
 # compiled output
 dist
 tmp
