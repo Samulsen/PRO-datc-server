@@ -1,5 +1,7 @@
 {
-  "name": "datc-root",
-  "dependencies": {},
-  "devDependencies": {}
+  "name": "core",
+  "devDependencies": {},
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
 }
