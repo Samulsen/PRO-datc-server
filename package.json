@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@nestjs/cli": "^10.4.5",
     "@nestjs/config": "3.2.2",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/swagger": "^7.3.1",
