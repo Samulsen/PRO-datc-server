@@ -1,5 +1,0 @@
-FROM node-base
-
-WORKDIR /workspace
-
-CMD ["pnpm", "exec", "nx", "run", "admin:serve"]
