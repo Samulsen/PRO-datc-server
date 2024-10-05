@@ -1,4 +1,4 @@
-FROM node-base-image
+FROM node-base
 
 WORKDIR /workspace
 

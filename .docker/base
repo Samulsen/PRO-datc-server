@@ -18,6 +18,6 @@ WORKDIR /workspace
 COPY package.json pnpm-lock.yaml ./
 
 # Ensure node_modules are static in the image
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 COPY . .
