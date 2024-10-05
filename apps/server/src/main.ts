@@ -1,11 +1,8 @@
 import { NestFactory } from "@nestjs/core";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
-import dotenv from "dotenv";
-
 import { MainModule } from "./main.module";
 
 async function bootstrap() {
-  dotenv.config();
   const app = await NestFactory.create(MainModule);
   const config = new DocumentBuilder()
     .setTitle("Dictionary of abstraction terms for code")
