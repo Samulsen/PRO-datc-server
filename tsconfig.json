@@ -20,12 +20,12 @@
     "baseUrl": ".",
     "paths": {
       // apps
-      "app-admin/*": ["apps/frontend/admin/src/*"],
-      "app-ui/*": ["apps/frontend/ui/src/*"],
-      "app-server/*": ["apps/server/src/*"],
+      "@app-admin/*": ["apps/frontend/admin/src/*"],
+      "@app-ui/*": ["apps/frontend/ui/src/*"],
+      "@app-server/*": ["apps/backend/server/src/*"],
       // libs
-      "lib-models/*": ["libs/models/src/*"],
-      "lib-theme/*": ["libs/theme/src/*"]
+      "@lib-models/*": ["libs/models/*"],
+      "@lib-theme/*": ["libs/theme/*"]
     }
   },
 
