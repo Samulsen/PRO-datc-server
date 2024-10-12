@@ -25,7 +25,7 @@
         "paths": {
           // apps
           "app-admin/*": ["apps/frontend/admin/src/*"],
-          "app-ui/*": ["apps/ui/src/*"],
+          "app-ui/*": ["apps/frontend/ui/src/*"],
           "app-server/*": ["apps/server/src/*"],
           // libs
           "lib-models/*": ["libs/models/src/*"],
