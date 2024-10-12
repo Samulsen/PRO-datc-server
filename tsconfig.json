@@ -1,41 +1,33 @@
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "useDefineForClassFields": true,
-        "lib": [
-            "ES2020",
-            "DOM",
-            "DOM.Iterable"
-        ],
-        "module": "ESNext",
-        "skipLibCheck": true,
-        /* Bundler mode */
-        "moduleResolution": "bundler",
-        "allowImportingTsExtensions": true,
-        "isolatedModules": true,
-        "moduleDetection": "force",
-        "noEmit": true,
-        "jsx": "react-jsx",
-        /* Linting */
-        "strict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        "baseUrl": ".",
-        "paths": {
-          // apps
-          "app-admin/*": ["apps/frontend/admin/src/*"],
-          "app-ui/*": ["apps/frontend/ui/src/*"],
-          "app-server/*": ["apps/server/src/*"],
-          // libs
-          "lib-models/*": ["libs/models/src/*"],
-          "lib-theme/*": ["libs/theme/src/*"],
-        }
-    },
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      // apps
+      "app-admin/*": ["apps/frontend/admin/src/*"],
+      "app-ui/*": ["apps/frontend/ui/src/*"],
+      "app-server/*": ["apps/server/src/*"],
+      // libs
+      "lib-models/*": ["libs/models/src/*"],
+      "lib-theme/*": ["libs/theme/src/*"]
+    }
+  },
 
-    "include": [
-        "apps",
-        "libs",
-        "config",
-    ]
+  "include": ["apps", "libs", "config"]
 }
