@@ -5,10 +5,14 @@
     "dev-server": ""
   },
   "dependencies": {
+    "@fluentui/react-components": "^9.55.0",
+    "@griffel/react": "^1.5.25",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@griffel/tag-processor": "^1.0.7",
+    "@griffel/vite-plugin": "^0.1.7",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
