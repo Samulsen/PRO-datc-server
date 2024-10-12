@@ -1,9 +1,0 @@
-/node_modules
-# /.nx
-# /.vscode
-# /dist
-
-# /apps/server
-# /apps/server-e2e
-# /apps/ui
-# /apps/ui-e2e
