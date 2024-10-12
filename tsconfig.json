@@ -24,7 +24,9 @@
       "@app-ui/*": ["apps/frontend/ui/src/*"],
       "@app-server/*": ["apps/backend/server/src/*"],
       // libs
-      "@lib-models/*": ["libs/models/*"],
+      "@lib-components": ["libs/components"],
+      "@lib-components/*": ["libs/components/*"],
+      "@lib-theme": ["libs/theme"],
       "@lib-theme/*": ["libs/theme/*"]
     }
   },
