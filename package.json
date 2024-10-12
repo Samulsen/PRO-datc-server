@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "dev-admin": "npx vite apps/admin/",
-    "dev-ui": "npx vite apps/ui/",
-    "dev-server": ""
+    "dev:admin": "npx vite apps/frontend/admin/",
+    "dev:ui": "npx vite apps/frontend/ui/",
+    "dev:server": ""
   },
   "dependencies": {
     "@fluentui/react-components": "^9.55.0",
