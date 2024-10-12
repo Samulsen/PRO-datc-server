@@ -1,5 +1,9 @@
 {
-  "scripts": {},
+  "scripts": {
+    "dev-admin": "npx vite apps/admin/",
+    "dev-ui": "npx vite apps/ui/",
+    "dev-server": ""
+  },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -9,6 +13,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
     "globals": "^15.10.0",
+    "prettier": "^3.3.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
     "vite-tsconfig-paths": "^5.0.1"
