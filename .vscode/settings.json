@@ -2,7 +2,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
 
-  "eslint.workingDirectories": ["apps/frontend"],
+  "eslint.workingDirectories": ["apps", "libs"],
 
   "material-icon-theme.files.associations": {
     "stories.ts": "Storybook"
