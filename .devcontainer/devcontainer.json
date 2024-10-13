@@ -25,7 +25,9 @@
         "naumovs.color-highlight",
         "kaiwood.center-editor-window",
         "eamodio.gitlens",
-        "wayou.vscode-todo-highlight"
+        "wayou.vscode-todo-highlight",
+        "PKief.material-icon-theme",
+        "yoavbls.pretty-ts-errors"
       ]
     }
   },

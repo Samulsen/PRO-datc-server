@@ -61,7 +61,6 @@ extends:
 rules:
   # --------------------------- RESTORATION -------------------------------
   # Note: restoring airbnb rules
-
   # overwrites are introduced by import/resolver
   import/order: off
   import/extensions:
@@ -75,6 +74,9 @@ rules:
   # the default type-definitions from typescript-eslint enforces interfaces (for OOP usage), but because we are in react 16+ functional component context we should stick with types
   "@typescript-eslint/consistent-type-definitions": ["error", "type"]
 
+  # react is brought default into scope, so we can disable this rule
+  "react/react-in-jsx-scope": off
+
   # --------------------------- ADDITIONS -------------------------------
   # In order to ensure consistency in type imports and exports we enforce the consistent type imports and exports rules
   # these will make sure that imports and exports that concern types are prefixed with the word "type"
@@ -84,7 +86,7 @@ rules:
   "@typescript-eslint/consistent-type-imports": "error"
 
   # --------------------------- FORMATTING --------------------------
-  # lints falsely formated code, easier to fix and will be subsequently enforced by pronto
+  # lints falsely formated code, easier to fix and will be subsequently enforced by ci/cd as well
   prettier/prettier: "error"
 
 settings:
@@ -99,3 +101,13 @@ settings:
   react:
     # corresponding to the package.json version
     version: "detect"
+
+# --------------------------- Overrides ------------------------------
+# Note: In general, always denote the reasoning for the override, so that the next person can understand the context
+overrides:
+  - files: ["**/*"]
+    rules:
+      # because we are not using defaultProps but defaultArguments, we need to augment the rule to resolve when default arguments are provided for the props
+      react/require-default-props:
+        - error
+        - functions: "defaultArguments"
