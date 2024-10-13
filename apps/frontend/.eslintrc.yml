@@ -57,3 +57,45 @@ extends:
   # --------------------------- Formatting -------------------------
   # NOTE: Needs to go very last, because the formatting rules should be enforced ONLY by prettier, overwriting some AirBnB rules
   - "plugin:prettier/recommended"
+
+rules:
+  # --------------------------- RESTORATION -------------------------------
+  # Note: restoring airbnb rules
+
+  # overwrites are introduced by import/resolver
+  import/order: off
+  import/extensions:
+    - error
+    - ignorePackages
+    - { js: never, jsx: never, ts: never, tsx: never }
+
+  # --------------------------- DEVIATIONS -------------------------------
+  # Note: deviations from rules which are required because default community guidelines might not consider the stack context
+
+  # the default type-definitions from typescript-eslint enforces interfaces (for OOP usage), but because we are in react 16+ functional component context we should stick with types
+  "@typescript-eslint/consistent-type-definitions": ["error", "type"]
+
+  # --------------------------- ADDITIONS -------------------------------
+  # In order to ensure consistency in type imports and exports we enforce the consistent type imports and exports rules
+  # these will make sure that imports and exports that concern types are prefixed with the word "type"
+  # also these imports / exports must not be mixed with actual runtime code related imports / exports
+  # essentially the defaults of both rules are enforced
+  "@typescript-eslint/consistent-type-exports": "error"
+  "@typescript-eslint/consistent-type-imports": "error"
+
+  # --------------------------- FORMATTING --------------------------
+  # lints falsely formated code, easier to fix and will be subsequently enforced by pronto
+  prettier/prettier: "error"
+
+settings:
+  # makes sure that eslint can resolve aliased imports derived from the paths config in tsconfig
+  import/resolver:
+    typescript:
+      # in case third party packages dont ship their types with them, but with a seperate package, this will help resolve eslint errors
+      # example: lodash might have types in @types/lodash
+      alwaysTryTypes: true
+      # project key is not specified, because if omited, it will default to the tsconfig in the root of the project
+      # meaning: project: "./tsconfig.json"
+  react:
+    # corresponding to the package.json version
+    version: "detect"
