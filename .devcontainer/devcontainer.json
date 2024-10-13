@@ -1,6 +1,7 @@
 // https://containers.dev/implementors/json_reference/
 {
   "build": {
+    //__BUG: do not get applied for some reason
     // "args": {
     //   "current_branch": "my_branch"
     // },
@@ -23,7 +24,8 @@
         "redhat.vscode-yaml",
         "naumovs.color-highlight",
         "kaiwood.center-editor-window",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "wayou.vscode-todo-highlight"
       ]
     }
   },
