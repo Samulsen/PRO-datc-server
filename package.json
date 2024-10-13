@@ -16,6 +16,7 @@
   "devDependencies": {
     "@griffel/tag-processor": "^1.0.7",
     "@griffel/vite-plugin": "^0.1.7",
+    "@storybook/react-vite": "^8.3.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.1",
     "@types/react": "^18.3.11",
