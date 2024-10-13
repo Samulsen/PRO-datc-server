@@ -1,0 +1,19 @@
+{
+  "name": "Debian",
+  "image": "dev_base",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "Bubulus.copilot-inline-toggle",
+        "EditorConfig.EditorConfig",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "dbaeumer.vscode-eslint",
+        "mgmcdermott.vscode-language-babel",
+        "firsttris.vscode-jest-runner"
+      ]
+    }
+  },
+  "runArgs": ["--name", "datc-dev-env"]
+}
