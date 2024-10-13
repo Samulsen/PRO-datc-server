@@ -1,0 +1,59 @@
+parser: "@typescript-eslint/parser"
+
+parserOptions:
+  # allows for ES Modules
+  sourceType: "module"
+  # maps our tsconfig with appropriate settings (e.g. paths) to eslint
+  project: "./tsconfig.json"
+  # default recommended settings from vite // alligned with tsconfig
+  ecmaVersion: 2020
+  ecmaFeatures:
+    # enables to parse jsx code (react components)
+    jsx: true
+
+env:
+  # allows for browser specific globals like window, document etc.
+  browser: true
+  # allows for jest specific globals like test, expect etc.
+  jest: true
+
+plugins:
+  - "prettier"
+  - "jest"
+  - "promise"
+  - "@typescript-eslint"
+
+# Important Note: The order of rules IS NOT ARBITRARY, but follows a specific order of precedence
+extends:
+  # --------------------------- Core ------------------------------
+  # create basis for all JS rules, neutral opinions
+  - "eslint:recommended"
+
+  # create basis for all TS rules, neutral opinions, enhanced with typed-linting
+  - "plugin:@typescript-eslint/strict-type-checked"
+  - "plugin:@typescript-eslint/stylistic-type-checked"
+
+  # this introduces React rules and overrides some of the JS and TS rules in favor of AirBnB opinions
+  - airbnb
+  - airbnb-typescript
+  - airbnb/hooks
+
+  # --------------------------- Additional JS ---------------------
+  # NOTE: Make sure that none of the introduced rules conflict with the airbnb rules
+  # suprisingly AirBnB has neither opinions on promises nor deprecations
+  - "plugin:promise/recommended"
+  - "plugin:deprecation/recommended"
+
+  # --------------------------- Additional Libraries ---------------
+  # -- JEST --
+  - "plugin:jest/recommended"
+  - "plugin:jest/style"
+  # -- STORYBOOK --
+  # NOTE: Quote from docs: "This plugin will only be applied to files following the *.stories.* (we recommend this) or *.story.* pattern."
+  # Its recommended to lint also the config files in .storybook, which in our current file context, is painfull to achieve, so this is emmited.
+  # It would not have made any major difference anyhow, can only help with mistyped addon names, we will survive without it...
+  - "plugin:storybook/recommended"
+
+  # --------------------------- Formatting -------------------------
+  # NOTE: Needs to go very last, because the formatting rules should be enforced ONLY by prettier, overwriting some AirBnB rules
+  - "plugin:prettier/recommended"
