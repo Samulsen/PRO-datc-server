@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "dev:storybook": "storybook dev -p 6006",
     "dev:admin": "npx vite apps/frontend/admin/",
     "dev:ui": "npx vite apps/frontend/ui/",
     "dev:server": ""
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@griffel/tag-processor": "^1.0.7",
     "@griffel/vite-plugin": "^0.1.7",
+    "@storybook/addon-essentials": "^8.3.5",
     "@storybook/react-vite": "^8.3.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.1",
@@ -24,6 +26,7 @@
     "@vitejs/plugin-react": "^4.3.2",
     "globals": "^15.10.0",
     "prettier": "^3.3.3",
+    "storybook": "^8.3.5",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
     "vite-tsconfig-paths": "^5.0.1"
