@@ -1,6 +1,13 @@
+// https://containers.dev/implementors/json_reference/
 {
-  "name": "Debian",
-  "image": "dev_base",
+  "build": {
+    // "args": {
+    //   "current_branch": "my_branch"
+    // },
+    // "options": ["-t", "datc-dev-env"],
+    "dockerfile": "../env/docker/base",
+    "context": ".."
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -11,9 +18,15 @@
         "GitHub.copilot-chat",
         "dbaeumer.vscode-eslint",
         "mgmcdermott.vscode-language-babel",
-        "firsttris.vscode-jest-runner"
+        "firsttris.vscode-jest-runner",
+        "vitaliymaz.vscode-svg-previewer",
+        "redhat.vscode-yaml",
+        "naumovs.color-highlight",
+        "kaiwood.center-editor-window",
+        "eamodio.gitlens"
       ]
     }
   },
   "runArgs": ["--name", "datc-dev-env"]
+  // "postCreateCommand": "npm install"
 }
