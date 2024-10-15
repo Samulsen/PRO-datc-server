@@ -6,3 +6,5 @@ dev-admin:
 dev-ui:
 	$(npmPrefix) dev:ui
 
+dev-storybook:
+	$(npmPrefix) dev:storybook
