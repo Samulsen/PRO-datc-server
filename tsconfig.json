@@ -12,8 +12,8 @@
       "@app-ui/*": ["apps/frontend/ui/src/*"],
       "@app-server/*": ["apps/backend/server/src/*"],
       // libs
-      "@lib-components": ["libs/components"],
-      "@lib-components/*": ["libs/components/*"],
+      "@lib-components": ["libs/components/src"],
+      "@lib-components/*": ["libs/components/src/*"],
       "@lib-theme": ["libs/theme"],
       "@lib-theme/*": ["libs/theme/*"]
     }

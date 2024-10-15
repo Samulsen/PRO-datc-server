@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@lib-theme";
-import { Button } from "@lib-components";
+import { Button } from "@lib-components/src";
 
 export default function App() {
   return (
