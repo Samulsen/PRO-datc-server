@@ -1,10 +1,10 @@
-npmPrefix=npm run
+npmPfx=npm run
 
 dev-admin:
-	$(npmPrefix) dev:admin
+	$(npmPfx) dev:admin
 
 dev-ui:
-	$(npmPrefix) dev:ui
+	$(npmPfx) dev:ui
 
 dev-storybook:
-	$(npmPrefix) dev:storybook
+	$(npmPfx) dev:storybook
