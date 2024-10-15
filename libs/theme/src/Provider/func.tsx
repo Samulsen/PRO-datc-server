@@ -9,7 +9,7 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
   const classes = useClasses();
   return (
-    <FluentProvider className={classes.root} theme={colors["dark"]}>
+    <FluentProvider className={classes.root} theme={colors.dark}>
       {children}
     </FluentProvider>
   );
