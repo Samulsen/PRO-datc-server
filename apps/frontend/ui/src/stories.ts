@@ -7,7 +7,7 @@ const meta: Meta = {
   component: App,
 };
 
-// export default meta;
+export default meta;
 
 type Story = StoryObj<typeof App>;
 
