@@ -14,8 +14,8 @@
       // libs
       "@lib-components": ["libs/components/src"],
       "@lib-components/*": ["libs/components/src/*"],
-      "@lib-theme": ["libs/theme"],
-      "@lib-theme/*": ["libs/theme/*"]
+      "@lib-theme": ["libs/theme/src"],
+      "@lib-theme/*": ["libs/theme/src/*"]
     }
   },
 
