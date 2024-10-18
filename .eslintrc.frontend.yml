@@ -105,6 +105,10 @@ settings:
 # --------------------------- Overrides ------------------------------
 # Note: In general, always denote the reasoning for the override, so that the next person can understand the context
 overrides:
+  # is located at src location, but runs devDeps only
+  - files: ["vite.config.mts"]
+    rules:
+      import/no-extraneous-dependencies: off
   - files: ["**/*"]
     rules:
       # because we are not using defaultProps but defaultArguments, we need to augment the rule to resolve when default arguments are provided for the props
