@@ -17,7 +17,5 @@
       "@lib-theme": ["libs/theme/src"],
       "@lib-theme/*": ["libs/theme/src/*"]
     }
-  },
-
-  "include": ["apps", "libs", "config"]
+  }
 }
