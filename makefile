@@ -1,10 +1,5 @@
-npmPfx=npm run
+include ./env/dev.mk
+include ./config/ci/lint.mk
 
-dev-admin:
-	$(npmPfx) dev:admin
-
-dev-ui:
-	$(npmPfx) dev:ui
-
-dev-storybook:
-	$(npmPfx) dev:storybook
+# VARS
+run=npm run
