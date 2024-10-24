@@ -7,6 +7,8 @@
     // Aliases
     "baseUrl": ".",
     "paths": {
+      //config
+      "@tests-unit-browser/*": ["config/tests/unit/browser/*"],
       // apps
       "@app-admin/*": ["apps/frontend/admin/src/*"],
       "@app-ui/*": ["apps/frontend/ui/src/*"],
