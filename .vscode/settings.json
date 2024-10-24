@@ -9,6 +9,18 @@
   ],
 
   "material-icon-theme.files.associations": {
-    "stories.ts": "Storybook"
+    "stories.ts": "Storybook",
+    "tests.tsx": "Test-jsx",
+    "styles.ts": "Css",
+    "func.tsx": "SVGr",
+    "index.ts": "Typescript-def",
+    "redux/action.ts": "Redux-action",
+    "redux/thunks.ts": "Redux-reducer",
+    "redux/selector.ts": "Redux-selector",
+    "redux/slice.ts": "Redux-store"
+  },
+
+  "material-icon-theme.folders.associations": {
+    "redux": "Redux-store"
   }
 }
