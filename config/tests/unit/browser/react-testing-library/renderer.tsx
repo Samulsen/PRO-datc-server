@@ -1,16 +1,17 @@
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
+
+import { render } from "@testing-library/react";
+import type { RenderOptions } from "@testing-library/react";
 
 import { ThemeProvider } from "@lib-theme";
-import { render } from "@testing-library/react";
 
-function AllTheProviders({ children }: { children: ReactElement }) {
+function AllTheProviders({ children }: { children: ReactNode }) {
   return <ThemeProvider>{children}</ThemeProvider>;
 }
 
-// @ts-ignore
-const customRender = (ui, options) =>
-  render(ui, { wrapper: AllTheProviders, ...options });
-
-// override render method
+const customRender = (
+  ui: ReactNode,
+  options?: Omit<RenderOptions, "wrapper">,
+) => render(ui, { wrapper: AllTheProviders, ...options });
 
 export default customRender;

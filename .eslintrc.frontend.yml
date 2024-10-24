@@ -87,7 +87,7 @@ rules:
 
   # --------------------------- FORMATTING --------------------------
   # lints falsely formated code, easier to fix and will be subsequently enforced by ci/cd as well
-  prettier/prettier: "error"
+  prettier/prettier: "warn"
 
 settings:
   # makes sure that eslint can resolve aliased imports derived from the paths config in tsconfig
