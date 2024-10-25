@@ -1,8 +1,11 @@
-import type { Config } from "jest";
+import { pathsToModuleNameMapper, JestConfigWithTsJest } from "ts-jest";
+import tsconfig from "../../../../../tsconfig.json";
 
-const config: Config = {
+console.log("tsconfig", tsconfig);
+
+const config: JestConfigWithTsJest = {
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.(ts|tsx)$": ["ts-jest", {}],
   },
   verbose: true,
   setupFilesAfterEnv: ["<rootDir>/config/tests/unit/browser/jest/setup.ts"],
@@ -10,16 +13,13 @@ const config: Config = {
   // missing transform for fluent icons
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
   // missing imports from ts-jest for tsconfig paths
-  moduleNameMapper: {},
+  // moduleNameMapper: pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
+  //   prefix: "<rootDir>/",
+  // }),
   // missing test pattern
   testMatch: ["**/tests.{ts,tsx}"],
   // roots: ["<rootDir>/apps/frontend/ui/src"],
   rootDir: "../../../../../",
-  globals: {
-    "ts-jest": {
-      tsconfig: "<rootDir>/config/tests/unit/browser/tsconfig.json",
-    },
-  },
 };
 
 export default config;
