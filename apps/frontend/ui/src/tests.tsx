@@ -1,5 +1,3 @@
-import React from "react";
-
 import { render } from "@tests-unit-browser/react-testing-library";
 
 import "@testing-library/jest-dom";
