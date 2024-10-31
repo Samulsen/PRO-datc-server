@@ -1,13 +1,15 @@
 import { exec } from "child_process";
 import chalk = require("chalk");
-import { target } from "../../constants";
+import { selectTarget } from "../../constants";
 
 const unitTestRootBrowser = "config/tests/unit/browser";
 const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`;
 const jestConfigForBrowserEnvironment = `${unitTestRootBrowser}/jest/config.ts`;
 const jestConfiguredForBrowser = `npx ts-node --project ${tsConfigForJestBrowserEnvironment} node_modules/.bin/jest --config ${jestConfigForBrowserEnvironment} --color`;
 
-const runTests = (path: string) => {
+const runTests = (path: string, tag: string) => {
+  console.log(chalk.bgBlue(`--> Running tests for ${tag}`));
+
   const command = `${jestConfiguredForBrowser} ${path}`;
   exec(command, (error, stdout, stderr) => {
     if (error) {
@@ -24,12 +26,22 @@ const runTests = (path: string) => {
 };
 
 // Get command-line arguments
-const args = process.argv.slice(2);
+const targetString = process.argv[2];
 
-if (args.length === 0) {
-  console.error("Please provide a path to run tests.");
+if (!targetString) {
+  console.log(chalk.red("Please provide a target to run tests for."));
   process.exit(1);
 }
 
-// Run tests for each provided path
-args.forEach(runTests);
+if (
+  targetString === "frontendUI" ||
+  targetString === "frontendAdmin" ||
+  targetString === "libTheme" ||
+  targetString === "libComponents"
+) {
+  const { path, tag } = selectTarget(targetString, "src");
+  runTests(path, tag);
+} else {
+  console.log(chalk.red("Invalid target provided."));
+  process.exit(1);
+}
