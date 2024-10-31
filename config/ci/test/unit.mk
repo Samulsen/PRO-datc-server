@@ -1,13 +1,21 @@
-jestConfiguredForBrowser=npx ts-node --project config/tests/unit/browser/tsconfig.json node_modules/.bin/jest --config config/tests/unit/browser/jest/config.ts
+p=test-unit-
 
-test-app-frontend-ui:
+unitTestRootBrowser = config/tests/unit/browser
+
+tsConfigForJestBrowserEnvironment = $(unitTestRootBrowser)/tsconfig.json
+
+jestConfigForBrowserEnvironment = $(unitTestRootBrowser)/jest/config.ts
+
+jestConfiguredForBrowser = npx ts-node --project $(tsConfigForJestBrowserEnvironment) node_modules/.bin/jest --config $(jestConfigForBrowserEnvironment)
+
+$(p)app-frontend-ui:
 	$(jestConfiguredForBrowser) apps/frontend/ui/src/
 
-test-app-frontend-admin:
+$(p)app-frontend-admin:
 	$(jestConfiguredForBrowser) apps/frontend/admin/src/
 
-test-lib-components:
+$(p)lib-components:
 	$(jestConfiguredForBrowser) libs/components/src/
 
-test-lib-theme:
+$(p)lib-theme:
 	$(jestConfiguredForBrowser) libs/theme/src/
