@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     // needed for ts-node / jest
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
+    // "resolveJsonModule": true,
+    // "esModuleInterop": true,
     // Further linting
     "strict": true,
     "noImplicitAny": true,

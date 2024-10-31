@@ -1,3 +1,8 @@
 {
-  "extends": "../../../../tsconfig.frontend.json"
+  "extends": "../../../../tsconfig.frontend.json",
+  "compilerOptions": {
+    // needed for ts-node / jest
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  }
 }

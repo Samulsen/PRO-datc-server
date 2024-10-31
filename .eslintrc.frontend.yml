@@ -115,3 +115,7 @@ overrides:
       react/require-default-props:
         - error
         - functions: "defaultArguments"
+  # test files, usual naming does not apply do needs to re-disable certain rules
+  - files: ["**/*tests.ts", "**/*tests.tsx"]
+    rules:
+      import/no-extraneous-dependencies: off
