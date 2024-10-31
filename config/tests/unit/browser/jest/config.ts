@@ -17,6 +17,10 @@ const config = {
       },
     ],
   },
+  transformIgnorePatterns: [
+    // @fluentui/react-icons
+    "node_modules/(?!(@fluentui/react-icons)/)",
+  ],
   verbose: true,
   setupFilesAfterEnv: ["<rootDir>/config/tests/unit/browser/jest/setup.ts"],
   moduleFileExtensions: ["ts", "tsx", "js"],
