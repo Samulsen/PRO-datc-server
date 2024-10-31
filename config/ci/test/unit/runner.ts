@@ -1,5 +1,6 @@
 import { exec } from "child_process";
 import chalk = require("chalk");
+import { target } from "../../constants";
 
 const unitTestRootBrowser = "config/tests/unit/browser";
 const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`;
