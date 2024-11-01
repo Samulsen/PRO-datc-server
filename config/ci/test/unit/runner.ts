@@ -7,19 +7,46 @@ const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`
 const jestConfigForBrowserEnvironment = `${unitTestRootBrowser}/jest/config.ts`;
 const jestConfiguredForBrowser = `npx ts-node --project ${tsConfigForJestBrowserEnvironment} node_modules/.bin/jest --config ${jestConfigForBrowserEnvironment} --color`;
 
+// TODO: Silence mode (no console out apart from wrapper) &&  only coverage report && all regular output to file
+
 const runTests = (path: string, tag: string) => {
-  console.log(chalk.bgBlue(`--> Running tests for ${tag}`));
+  console.log(
+    "-->",
+    chalk.blueBright("Running unit tests for:"),
+    chalk.bgMagentaBright(tag),
+  );
 
   const command = `${jestConfiguredForBrowser} ${path}`;
   exec(command, (error, stdout, stderr) => {
     if (error) {
       console.log(error.message);
       console.log(stdout);
+      console.log(
+        "-->",
+        chalk.redBright("Unit Tests failed for:"),
+        chalk.bgMagentaBright(tag),
+      );
+      console.log(
+        "-->",
+        chalk.blueBright("Will exit with"),
+        chalk.bgRedBright("error code"),
+        "1",
+      );
       process.exit(1); // Exit with error code
     }
     if (stderr) {
       console.log(stderr);
       console.log(stdout);
+      console.log(
+        chalk.greenBright("--> Unit Tests passed for:"),
+        chalk.bgMagentaBright(tag),
+      );
+      console.log(
+        "-->",
+        chalk.blueBright("Will exit with"),
+        chalk.bgGreenBright("success code"),
+        "0",
+      );
       process.exit(0); // Exit with success code
     }
   });
