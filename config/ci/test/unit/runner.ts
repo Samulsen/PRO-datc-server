@@ -28,9 +28,8 @@ const runTests = (path: string, tag: string) => {
       );
       console.log(
         "-->",
-        chalk.blueBright("Will exit with"),
-        chalk.bgRedBright("error code"),
-        "1",
+        chalk.blueBright("Will exit with error code"),
+        chalk.bgRedBright("1"),
       );
       process.exit(1); // Exit with error code
     }
@@ -43,9 +42,8 @@ const runTests = (path: string, tag: string) => {
       );
       console.log(
         "-->",
-        chalk.blueBright("Will exit with"),
-        chalk.bgGreenBright("success code"),
-        "0",
+        chalk.blueBright("Will exit with success code"),
+        chalk.bgGreenBright("0"),
       );
       process.exit(0); // Exit with success code
     }
