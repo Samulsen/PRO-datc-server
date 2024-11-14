@@ -50,3 +50,5 @@ if (
   console.log(chalk.red("Invalid target provided."));
   process.exit(1);
 }
+
+export default runLint;

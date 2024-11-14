@@ -46,9 +46,11 @@ if (
   targetString === "libTheme" ||
   targetString === "libComponents"
 ) {
-  const { root, tag } = selectTarget(targetString, "src");
-  runCompile(root, tag);
+  const { path, tag } = selectTarget(targetString, "root");
+  runCompile(path, tag);
 } else {
   console.log(chalk.red("Invalid target provided."));
   process.exit(1);
 }
+
+export default runCompile;
