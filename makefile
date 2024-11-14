@@ -1,8 +1,8 @@
 include ./env/dev.mk
 include ./config/ci/lint/caller.mk
+include ./config/ci/compile/caller.mk
 include ./config/ci/unit-tests/caller.mk
 
-run=npm run
 
 help:
 	@echo "Available targets:"

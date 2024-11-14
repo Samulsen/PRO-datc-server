@@ -1,14 +1,14 @@
-p=unit-tests-
-runner=npx ts-node config/ci/unit-tests/runner.ts
+p=ci-unit-tests-
+utest_runner=npx ts-node config/ci/unit-tests/runner.ts
 
 $(p)app-frontend-ui:
-	@$(runner) frontendUI
+	@$(utest_runner) frontendUI
 
 $(p)app-frontend-admin:
-	@$(runner) frontendAdmin
+	@$(utest_runner) frontendAdmin
 
 $(p)lib-components:
-	@$(runner) libComponents
+	@$(utest_runner) libComponents
 
 $(p)lib-theme:
-	@$(runner) libTheme
+	@$(utest_runner) libTheme
