@@ -1,6 +1,13 @@
 import { exec } from "child_process";
 import chalk = require("chalk");
-import { selectTarget } from "../../constants";
+import { selectTarget } from "../constants";
+import {
+  startRunnerLog,
+  failExitRunnerLog,
+  failIndicatorRunnerLog,
+  successExitRunnerLog,
+  successIndicatorRunnerLog,
+} from "config/ci/helper";
 
 const unitTestRootBrowser = "config/tests/unit/browser";
 const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`;
@@ -8,42 +15,22 @@ const jestConfigForBrowserEnvironment = `${unitTestRootBrowser}/jest/config.ts`;
 const jestConfiguredForBrowser = `npx ts-node --project ${tsConfigForJestBrowserEnvironment} node_modules/.bin/jest --config ${jestConfigForBrowserEnvironment} --color`;
 
 const runTests = (path: string, tag: string) => {
-  console.log(
-    "-->",
-    chalk.blueBright("Running unit tests for:"),
-    chalk.bgMagentaBright(tag),
-  );
+  startRunnerLog("Running unit tests for", tag);
 
   const command = `${jestConfiguredForBrowser} ${path}`;
   exec(command, (error, stdout, stderr) => {
     if (error) {
       console.log(error.message);
       console.log(stdout);
-      console.log(
-        "-->",
-        chalk.redBright("Unit Tests failed for:"),
-        chalk.bgMagentaBright(tag),
-      );
-      console.log(
-        "-->",
-        chalk.blueBright("Will exit with error code"),
-        chalk.bgRedBright("1"),
-      );
+      failIndicatorRunnerLog("Unit Tests failed for", tag);
+      failExitRunnerLog();
       process.exit(1); // Exit with error code
     }
     if (stderr) {
       console.log(stderr);
       console.log(stdout);
-      console.log(
-        "-->",
-        chalk.greenBright("Unit Tests passed for:"),
-        chalk.bgMagentaBright(tag),
-      );
-      console.log(
-        "-->",
-        chalk.blueBright("Will exit with success code"),
-        chalk.bgGreenBright("0"),
-      );
+      successIndicatorRunnerLog("Unit Tests passed for", tag);
+      successExitRunnerLog();
       process.exit(0); // Exit with success code
     }
   });
