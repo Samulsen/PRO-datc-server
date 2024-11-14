@@ -1,13 +1,14 @@
 p=lint-
+runner=npx ts-node config/ci/lint/runner.ts
 
-${p}admin:
-	${run} lint:admin
+$(p)app-frontend-ui:
+	@$(runner) frontendUI
 
-${p}ui:
-	${run} lint:ui
+$(p)app-frontend-admin:
+	@$(runner) frontendAdmin
 
-${p}theme:
-	${run} lint:theme
+$(p)lib-components:
+	@$(runner) libComponents
 
-${p}components:
-	${run} lint:components
+$(p)lib-theme:
+	@$(runner) libTheme

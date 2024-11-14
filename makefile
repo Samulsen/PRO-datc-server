@@ -1,6 +1,6 @@
 include ./env/dev.mk
-include ./config/ci/lint.mk
-include ./config/ci/test/unit/caller.mk
+include ./config/ci/lint/caller.mk
+include ./config/ci/unit-tests/caller.mk
 
 run=npm run
 

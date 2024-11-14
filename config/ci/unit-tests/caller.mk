@@ -1,5 +1,5 @@
-p=test-unit-
-runner=npx ts-node config/ci/test/unit/runner.ts
+p=unit-tests-
+runner=npx ts-node config/ci/unit-tests/runner.ts
 
 # start the unit tests for the app: ui from the frontend domain
 $(p)app-frontend-ui:

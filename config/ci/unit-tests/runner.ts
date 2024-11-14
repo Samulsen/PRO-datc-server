@@ -7,14 +7,14 @@ import {
   failIndicatorRunnerLog,
   successExitRunnerLog,
   successIndicatorRunnerLog,
-} from "config/ci/helper";
+} from "../helper";
 
 const unitTestRootBrowser = "config/tests/unit/browser";
 const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`;
 const jestConfigForBrowserEnvironment = `${unitTestRootBrowser}/jest/config.ts`;
 const jestConfiguredForBrowser = `npx ts-node --project ${tsConfigForJestBrowserEnvironment} node_modules/.bin/jest --config ${jestConfigForBrowserEnvironment} --color`;
 
-const runTests = (path: string, tag: string) => {
+function runTests(path: string, tag: string) {
   startRunnerLog("Running unit tests for", tag);
 
   const command = `${jestConfiguredForBrowser} ${path}`;
@@ -34,7 +34,7 @@ const runTests = (path: string, tag: string) => {
       process.exit(0); // Exit with success code
     }
   });
-};
+}
 
 // Get command-line arguments
 const targetString = process.argv[2];
