@@ -17,9 +17,8 @@ function runLint(path: string, tag: string) {
   startRunnerLog("Running eslint for:", tag);
   const command = `${eslintBin} ${path}`;
 
-  exec(command, (error, stdout, stderr) => {
+  exec(command, (error, stdout) => {
     if (error) {
-      // console.log(error.message);
       console.log(stdout);
       failIndicatorRunnerLog("Eslint failed for", tag);
       failExitRunnerLog();

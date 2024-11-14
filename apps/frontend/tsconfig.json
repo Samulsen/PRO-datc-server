@@ -1,4 +1,3 @@
 {
-  "extends": "../../tsconfig.frontend.json",
-  "include": ["admin", "ui"]
+  "extends": "../../tsconfig.frontend.json"
 }

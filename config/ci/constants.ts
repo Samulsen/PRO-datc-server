@@ -25,7 +25,11 @@ function selectTarget(
     },
   } as const;
 
-  return { path: targetMap[target][as], tag: targetMap[target].tag };
+  return {
+    path: targetMap[target][as],
+    tag: targetMap[target].tag,
+    root: targetMap[target].root,
+  };
 }
 
 export { selectTarget };
