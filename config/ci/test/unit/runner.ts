@@ -7,8 +7,6 @@ const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`
 const jestConfigForBrowserEnvironment = `${unitTestRootBrowser}/jest/config.ts`;
 const jestConfiguredForBrowser = `npx ts-node --project ${tsConfigForJestBrowserEnvironment} node_modules/.bin/jest --config ${jestConfigForBrowserEnvironment} --color`;
 
-// TODO: Silence mode (no console out apart from wrapper) &&  only coverage report && all regular output to file
-
 const runTests = (path: string, tag: string) => {
   console.log(
     "-->",
@@ -37,7 +35,8 @@ const runTests = (path: string, tag: string) => {
       console.log(stderr);
       console.log(stdout);
       console.log(
-        chalk.greenBright("--> Unit Tests passed for:"),
+        "-->",
+        chalk.greenBright("Unit Tests passed for:"),
         chalk.bgMagentaBright(tag),
       );
       console.log(

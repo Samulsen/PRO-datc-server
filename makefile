@@ -2,6 +2,7 @@ include ./env/dev.mk
 include ./config/ci/lint.mk
 include ./config/ci/test/unit/caller.mk
 
+run=npm run
 
 help:
 	@echo "Available targets:"

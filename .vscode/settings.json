@@ -8,6 +8,12 @@
     "libs/components"
   ],
 
+  "workbench.editor.customLabels.enabled": true,
+  "workbench.editor.customLabels.patterns": {
+    "**/config/ci/**/caller.mk": "${dirname}.caller",
+    "**/config/ci/**/runner.ts": "${dirname}.runner"
+  },
+
   "material-icon-theme.files.associations": {
     "stories.ts": "Storybook",
     "tests.tsx": "Test-jsx",
