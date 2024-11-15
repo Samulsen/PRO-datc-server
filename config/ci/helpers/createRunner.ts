@@ -15,23 +15,21 @@ import {
  * @param startMessage - the message to be displayed when the run starts
  * @param successMessage - the message to be displayed when the run is successful
  * @param failureMessage - the message to be displayed when the run fails
+ * @param isJest - flag to indicate if the command is a jest command, in which case the error message is in stderr
+ *
  */
 function createRunner(
   commandTemplate: string,
   startMessage: string,
   successMessage: string,
   failureMessage: string,
+  isJest = false,
 ) {
   /**
    * @param target - The target to run the command on, needs to be a valid lib or app
    * @param selectTargetPath - The path to run the command on, either root or src, usually src (in case of ts-compile needs to be root because of tsconfig.json location)
-   * @param isJest - flag to indicate if the command is a jest command, in which case the error message is in stderr
    */
-  return function run(
-    target: string,
-    selectTargetPath: TTargetPathOption,
-    isJest = false,
-  ) {
+  return function run(target: string, selectTargetPath: TTargetPathOption) {
     if (!target) {
       console.log(chalk.red("Please provide a target."));
       process.exit(1);
