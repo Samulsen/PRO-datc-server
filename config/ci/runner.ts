@@ -15,8 +15,44 @@ const targets = Object.keys(targetMap) as TTarget[];
 
 const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
-targets.forEach((target) => {
-  runCompile(target, "root");
-  runLint(target, "src");
-  runTest(target, "src");
-});
+async function runTargetWithAllSteps(target: TTarget) {
+  const { tag } = selectTarget(target, "src");
+  console.log("\n");
+  console.log(chalk.blue("\nCurrent:"), chalk.yellowBright(tag));
+  await Promise.all([
+    runLint(target, "src"),
+    runCompile(target, "root"),
+    runTest(target, "src"),
+  ]).then(() => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        console.clear();
+        resolve();
+      }, 1000);
+    });
+  });
+}
+
+async function runAllTargets() {
+  console.log(chalk.blue("Running CI on all targets..."));
+  bar.start(targets.length, 0);
+  await runTargetWithAllSteps("frontendAdmin");
+
+  console.log(chalk.blue("Running CI on all targets..."));
+  bar.increment();
+  await runTargetWithAllSteps("frontendUI");
+
+  console.log(chalk.blue("Running CI on all targets..."));
+  bar.increment();
+  await runTargetWithAllSteps("libTheme");
+
+  console.log(chalk.blue("Running CI on all targets..."));
+  bar.increment();
+  await runTargetWithAllSteps("libComponents");
+
+  bar.increment();
+  bar.stop();
+  console.log(chalk.green("All targets passed!"));
+}
+
+runAllTargets();
