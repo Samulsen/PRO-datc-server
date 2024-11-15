@@ -5,8 +5,8 @@ const tscBin = "node_modules/.bin/tsc --noEmit --pretty --project";
 const runCompile = createRunner(
   tscBin,
   "Running compile check for:",
-  "Compile check passed for",
-  "Compile check failed for",
+  "Compile check passed for:",
+  "Compile check failed for:",
 );
 
 const targetString = process.argv[2];

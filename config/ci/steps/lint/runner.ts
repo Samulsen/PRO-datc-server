@@ -7,8 +7,8 @@ const targetString = process.argv[2];
 const runLint = createRunner(
   eslintBin,
   "Running eslint for:",
-  "Eslint passed for",
-  "Eslint failed for",
+  "Eslint passed for:",
+  "Eslint failed for:",
 );
 
 runLint(targetString, "src");
