@@ -21,10 +21,11 @@ const targetMap = {
   },
 } as const;
 
-function selectTarget(
-  target: "frontendUI" | "frontendAdmin" | "libTheme" | "libComponents",
-  as: "root" | "src",
-) {
+export type TTarget = keyof typeof targetMap;
+
+export type TTargetPathOption = "root" | "src";
+
+function selectTarget(target: TTarget, as: TTargetPathOption) {
   return {
     path: targetMap[target][as],
     tag: targetMap[target].tag,
