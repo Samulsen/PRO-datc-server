@@ -105,6 +105,10 @@ settings:
 # --------------------------- Overrides ------------------------------
 # Note: In general, always denote the reasoning for the override, so that the next person can understand the context
 overrides:
+  # for index files, named exports should be allowed
+  - files: ["index.ts", "index.tsx", "hooks.ts", "hooks.tsx"]
+    rules:
+      import/prefer-default-export: off
   # is located at src location, but runs devDeps only
   - files: ["vite.config.mts"]
     rules:

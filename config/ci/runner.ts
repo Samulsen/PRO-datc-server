@@ -7,13 +7,7 @@ import runLint from "./steps/lint/def";
 
 import { selectTarget, targetMap } from "./helpers/constants";
 
-import {
-  startRunnerLog,
-  failExitRunnerLog,
-  failIndicatorRunnerLog,
-  successExitRunnerLog,
-  successIndicatorRunnerLog,
-} from "./helpers/loggers";
+import { failExitRunnerLog, successExitRunnerLog } from "./helpers/loggers";
 
 type TTarget = keyof typeof targetMap;
 
@@ -23,6 +17,6 @@ const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
 targets.forEach((target) => {
   runCompile(target, "root");
-  // runLint(target, "src");
-  // runTest(target, "src");
+  runLint(target, "src");
+  runTest(target, "src");
 });

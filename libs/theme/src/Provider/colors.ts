@@ -28,7 +28,7 @@ const darkTheme: Theme = {
   ...createDarkTheme(myNewTheme),
 };
 
-darkTheme.colorBrandForeground1 = myNewTheme[110];
-darkTheme.colorBrandForeground2 = myNewTheme[120];
+[darkTheme.colorBrandForeground1] = [myNewTheme[110]];
+[darkTheme.colorBrandForeground2] = [myNewTheme[120]];
 
 export default { light: lightTheme, dark: darkTheme };
