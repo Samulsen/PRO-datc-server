@@ -1,5 +1,5 @@
 p=ci-unit-tests-
-utest_runner=npx ts-node config/ci/unit-tests/runner.ts
+utest_runner=npx ts-node config/ci/steps/unit-tests/runner.ts
 
 $(p)app-frontend-ui:
 	@$(utest_runner) frontendUI

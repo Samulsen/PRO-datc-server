@@ -1,5 +1,5 @@
 p=ci-ts-compile-
-com_runner=npx ts-node config/ci/compile/runner.ts
+com_runner=npx ts-node config/ci/steps/compile/runner.ts
 
 $(p)app-frontend-ui:
 	@$(com_runner) frontendUI

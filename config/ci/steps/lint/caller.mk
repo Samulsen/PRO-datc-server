@@ -1,5 +1,5 @@
 p=ci-eslint-
-lint_runner=npx ts-node config/ci/lint/runner.ts
+lint_runner=npx ts-node config/ci/steps/lint/runner.ts
 
 $(p)app-frontend-ui:
 	@$(lint_runner) frontendUI
