@@ -25,8 +25,13 @@ function createRunner(
   /**
    * @param target - The target to run the command on, needs to be a valid lib or app
    * @param selectTargetPath - The path to run the command on, either root or src, usually src (in case of ts-compile needs to be root because of tsconfig.json location)
+   * @param isJest - flag to indicate if the command is a jest command, in which case the error message is in stderr
    */
-  return function run(target: string, selectTargetPath: TTargetPathOption) {
+  return function run(
+    target: string,
+    selectTargetPath: TTargetPathOption,
+    isJest = false,
+  ) {
     if (!target) {
       console.log(chalk.red("Please provide a target."));
       process.exit(1);
@@ -56,14 +61,16 @@ function createRunner(
     exec(command, (error, stdout, stderr) => {
       // for eslint, jest and ts-compile error messages containing the failure message will passed down here
       if (error) {
+        if (isJest) console.log(stderr);
         console.log(stdout);
         failIndicatorRunnerLog(failureMessage, tag);
         failExitRunnerLog();
         process.exit(1); // Exit with error code
       }
-      // in case of jest, an success is indicated by stderr containing the success message
-      if (stderr) {
+      // in case of jest, an success is indicated by stderr containing the success message and in stdout containing coverage information
+      if (stderr && isJest) {
         console.log(stderr);
+        console.log(stdout);
       }
       // in all the other cases (eslint, ts-compile) success is indicated by stdout containing the success message (which is actually empty)
       successIndicatorRunnerLog(successMessage, tag);
