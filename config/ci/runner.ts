@@ -7,8 +7,6 @@ import runLint from "./steps/lint/def";
 
 import { selectTarget, targetMap } from "./helpers/constants";
 
-import { failExitRunnerLog, successExitRunnerLog } from "./helpers/loggers";
-
 type TTarget = keyof typeof targetMap;
 
 const targets = Object.keys(targetMap) as TTarget[];
@@ -20,9 +18,9 @@ async function runTargetWithAllSteps(target: TTarget) {
   console.log("\n");
   console.log(chalk.blue("\nCurrent:"), chalk.yellowBright(tag));
   await Promise.all([
-    runLint(target, "src"),
-    runCompile(target, "root"),
-    runTest(target, "src"),
+    runLint(target, "src", true),
+    runCompile(target, "root", true),
+    runTest(target, "src", true),
   ]).then(() => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {

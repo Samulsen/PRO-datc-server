@@ -1,31 +1,45 @@
 import chalk = require("chalk");
 
-function startRunnerLog(action: string, target: string) {
-  console.log("-->", chalk.blueBright(action), chalk.bgMagentaBright(target));
-}
-
-function failIndicatorRunnerLog(action: string, target: string) {
-  console.log("-->", chalk.redBright(action), chalk.bgMagentaBright(target));
-}
-
-function failExitRunnerLog() {
+function createLog(
+  info: string,
+  step: string,
+  target: string,
+  emitTargetFlag: boolean,
+) {
   console.log(
     "-->",
-    chalk.blueBright("Will exit with error code"),
-    chalk.bgRedBright("1"),
+    info,
+    step,
+    emitTargetFlag ? "" : `for: ${chalk.yellow(target)}`,
   );
 }
 
-function successIndicatorRunnerLog(action: string, target: string) {
-  console.log("-->", chalk.greenBright(action), chalk.bgMagentaBright(target));
+function startRunnerLog(step: string, target: string, emitTargetFlag: boolean) {
+  createLog(chalk.blue("Running"), step, target, emitTargetFlag);
+}
+
+function failIndicatorRunnerLog(
+  step: string,
+  target: string,
+  emitTargetFlag: boolean,
+) {
+  createLog(chalk.red("Failed"), step, target, emitTargetFlag);
+}
+
+function successIndicatorRunnerLog(
+  step: string,
+  target: string,
+  emitTargetFlag: boolean,
+) {
+  createLog(chalk.green("Success"), step, target, emitTargetFlag);
 }
 
 function successExitRunnerLog() {
-  console.log(
-    "-->",
-    chalk.blueBright("Will exit with success code"),
-    chalk.bgGreenBright("0"),
-  );
+  console.log("-->", chalk.blueBright("Will exit with success code"), "0");
+}
+
+function failExitRunnerLog() {
+  console.log("-->", chalk.blueBright("Will exit with error code"), "1");
 }
 
 export {

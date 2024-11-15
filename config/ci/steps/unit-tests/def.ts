@@ -1,4 +1,5 @@
 import createRunner from "../../helpers/createRunner";
+import chalk = require("chalk");
 
 const unitTestRootBrowser = "config/tests/unit/browser";
 const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`;
@@ -7,9 +8,7 @@ const jestConfiguredForBrowser = `npx ts-node --project ${tsConfigForJestBrowser
 
 const runTests = createRunner(
   jestConfiguredForBrowser,
-  "Running unit tests for:",
-  "Unit Tests passed for:",
-  "Unit Tests failed for:",
+  chalk.hex("#FFA500")("Jest RTL Unit Tests"),
   true,
 );
 
