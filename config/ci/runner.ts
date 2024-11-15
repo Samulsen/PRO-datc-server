@@ -1,10 +1,10 @@
 import chalk = require("chalk");
 
-import runCompile from "./compile/runner";
-import runTest from "./unit-tests/runner";
-import runLint from "./lint/runner";
+import runCompile from "./steps/compile/runner";
+import runTest from "./steps/unit-tests/runner";
+import runLint from "./steps/lint/runner";
 
-import { selectTarget, targetMap } from "./constants";
+import { selectTarget, targetMap } from "./helpers/constants";
 
 import {
   startRunnerLog,
@@ -12,7 +12,7 @@ import {
   failIndicatorRunnerLog,
   successExitRunnerLog,
   successIndicatorRunnerLog,
-} from "./helper";
+} from "./helpers/loggers";
 
 type TTarget = keyof typeof targetMap;
 

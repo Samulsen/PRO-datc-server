@@ -1,13 +1,13 @@
 import { exec } from "child_process";
 import chalk = require("chalk");
-import { selectTarget } from "../constants";
+import { selectTarget } from "../../helpers/constants";
 import {
   startRunnerLog,
   failExitRunnerLog,
   failIndicatorRunnerLog,
   successExitRunnerLog,
   successIndicatorRunnerLog,
-} from "../helper";
+} from "../../helpers/loggers";
 
 const unitTestRootBrowser = "config/tests/unit/browser";
 const tsConfigForJestBrowserEnvironment = `${unitTestRootBrowser}/tsconfig.json`;

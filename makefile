@@ -1,7 +1,7 @@
 include ./env/dev.mk
-include ./config/ci/lint/caller.mk
-include ./config/ci/compile/caller.mk
-include ./config/ci/unit-tests/caller.mk
+include ./config/ci/steps/lint/caller.mk
+include ./config/ci/steps/compile/caller.mk
+include ./config/ci/steps/unit-tests/caller.mk
 
 
 help:
