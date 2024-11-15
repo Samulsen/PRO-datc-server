@@ -1,5 +1,6 @@
 import runLint from "./def";
+import processExitPromiseWrapper from "../../helpers/processExitPromiseWrapper";
 
 const targetString = process.argv[2];
 
-runLint(targetString, "src");
+processExitPromiseWrapper(runLint)(targetString, "src");

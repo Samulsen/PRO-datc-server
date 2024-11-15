@@ -1,5 +1,6 @@
 import runTests from "./def";
+import processExitPromiseWrapper from "../../helpers/processExitPromiseWrapper";
 
 const targetString = process.argv[2];
 
-runTests(targetString, "src");
+processExitPromiseWrapper(runTests)(targetString, "src");
