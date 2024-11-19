@@ -2,6 +2,7 @@ include ./env/dev.mk
 include ./config/ci/steps/lint/caller.mk
 include ./config/ci/steps/compile/caller.mk
 include ./config/ci/steps/unit-tests/caller.mk
+include ./config/ci/caller.mk
 
 
 help:
