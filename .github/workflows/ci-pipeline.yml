@@ -1,0 +1,31 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  combined-checks:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/datc-base-env:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install packages
+        run: npm install
+
+      - name: Frontend Admin Checks
+        run: make ci-combined-app-frontend-admin
+
+      - name: Frontend UI Checks
+        run: make ci-combined-app-frontend-ui
+
+      - name: Library Components Checks
+        run: make ci-combined-lib-components
+
+      - name: Library Theme Checks
+        run: make ci-combined-lib-theme
