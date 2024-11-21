@@ -7,8 +7,3 @@ ARG NODE_VERSION
 RUN apk update && apk add --no-cache nodejs=${NODE_VERSION} npm
 
 WORKDIR /workspaces/datc
-
-# COPY package.json .
-# COPY package-lock.json .
-
-# RUN npm install
