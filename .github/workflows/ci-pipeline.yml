@@ -6,41 +6,68 @@ on:
       - development
 
 jobs:
-  combined-checks:
+  setup:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/${{ github.repository_owner }}/datc-base-env:latest
-      # Add volume mount for npm cache
-      options: --user root -v /home/runner/.npm:/.npm
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache npm packages
-        uses: actions/cache@v3
-        with:
-          path: /.npm # Changed to match the volume mount
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-
-      - name: Install packages
+      - name: Install packages with caching
         run: |
-          # Ensure cache directory has correct permissions
-          mkdir -p /.npm
-          chown -R $(id -u):$(id -g) /.npm
-          npm install
+          echo "Setting up npm cache..."
+          npm config set cache /github/home/.npm --global
+          npm ci --prefer-offline
 
-      # Rest of your steps remain the same
-      - name: Frontend Admin Checks
+  frontend-admin:
+    needs: setup
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/datc-base-env:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install packages
+        run: npm ci
+      - name: Run Checks
         run: make ci-combined-app-frontend-admin
 
-      - name: Frontend UI Checks
+  frontend-ui:
+    needs: setup
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/datc-base-env:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install packages
+        run: npm ci
+      - name: Run Checks
         run: make ci-combined-app-frontend-ui
 
-      - name: Library Components Checks
+  lib-components:
+    needs: setup
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/datc-base-env:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install packages
+        run: npm ci
+      - name: Run Checks
         run: make ci-combined-lib-components
 
-      - name: Library Theme Checks
+  lib-theme:
+    needs: setup
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/datc-base-env:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install packages
+        run: npm ci
+      - name: Run Checks
         run: make ci-combined-lib-theme
