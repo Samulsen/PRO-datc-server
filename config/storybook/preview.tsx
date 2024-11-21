@@ -1,7 +1,16 @@
 import { Preview } from "@storybook/react";
-import { ThemeProvider } from "@lib-theme";
+import { ThemeProvider, tokens } from "@lib-theme";
 
 const preview: Preview = {
+  parameters: {
+    backgrounds: {
+      values: [
+        { name: "Dark", value: "#292929" },
+        { name: "Light", value: "#F7F9F2" },
+      ],
+      default: "Dark",
+    },
+  },
   decorators: [
     (Story) => (
       <ThemeProvider>
