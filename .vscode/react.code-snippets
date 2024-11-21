@@ -1,0 +1,34 @@
+{
+  "Component Styles": {
+    "prefix": "resty",
+    "description": "Creates a styles file with makeStyles hook",
+    "body": [
+      "import { makeStyles } from \"@lib-theme\";",
+      "",
+      "const use${TM_DIRECTORY/.*\\/(.*?)$/$1/}Classes = makeStyles({",
+      "  root: {",
+      "  },",
+      "});",
+      "",
+      "export default use${TM_DIRECTORY/.*\\/(.*?)$/$1/}Classes;",
+    ],
+  },
+  "React Functional Component": {
+    "prefix": "reco",
+    "description": "Creates a React functional component with styles",
+    "body": [
+      "import type { JSX } from \"react\";",
+      "",
+      "import use${TM_DIRECTORY/.*\\/(.*?)$/$1/}Classes from \"./styles\";",
+      "",
+      "type TProps = {",
+      "  $1",
+      "};",
+      "",
+      "export default function ${TM_DIRECTORY/.*\\/(.*?)$/$1/}({}: TProps): JSX.Element {",
+      "  const classes = use${TM_DIRECTORY/.*\\/(.*?)$/$1/}Classes();",
+      "  return <div className={classes.root}>${TM_DIRECTORY/.*\\/(.*?)$/$1/}</div>;",
+      "}",
+    ],
+  },
+}
