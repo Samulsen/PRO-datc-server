@@ -1,1 +1,1 @@
-export * from "./lib/components";
+export { Button } from "@lib-components/atoms";
