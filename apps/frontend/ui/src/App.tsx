@@ -8,3 +8,5 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+const ; new err
