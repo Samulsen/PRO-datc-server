@@ -1,13 +1,8 @@
 {
   "scripts": {
-    "dev:storybook": "storybook dev -c config/storybook -p 4400 --no-open",
+    "dev:storybook": "npx storybook dev -c config/storybook -p 4400 --no-open",
     "dev:admin": "npx vite apps/frontend/admin/",
-    "dev:ui": "npx vite apps/frontend/ui/",
-    "dev:server": "",
-    "lint:admin": "npx eslint apps/frontend/admin/",
-    "lint:ui": "npx eslint apps/frontend/ui/",
-    "lint:theme": "npx eslint apps/libs/theme/",
-    "lint:components": "npx eslint apps/libs/components/"
+    "dev:ui": "npx vite apps/frontend/ui/"
   },
   "dependencies": {
     "@fluentui/react-components": "^9.55.0",
