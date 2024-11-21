@@ -11,6 +11,7 @@ const preview: Preview = {
       default: "Dark",
     },
   },
+  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <ThemeProvider>
