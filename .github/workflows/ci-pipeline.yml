@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/${{ github.repository_owner }}/datc-base-env:latest
+      # Add volume mount for npm cache
+      options: --user root -v /home/runner/.npm:/.npm
 
     steps:
       - name: Checkout repository
@@ -18,14 +20,19 @@ jobs:
       - name: Cache npm packages
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: /.npm # Changed to match the volume mount
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-
 
       - name: Install packages
-        run: npm install
+        run: |
+          # Ensure cache directory has correct permissions
+          mkdir -p /.npm
+          chown -R $(id -u):$(id -g) /.npm
+          npm install
 
+      # Rest of your steps remain the same
       - name: Frontend Admin Checks
         run: make ci-combined-app-frontend-admin
 
