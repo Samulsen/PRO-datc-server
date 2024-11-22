@@ -1,17 +1,31 @@
+/* eslint-disable jest/expect-expect */
 import { render, screen } from "@tests-unit-browser";
 import "@testing-library/jest-dom";
 
 import { Logo } from "@lib-theme";
 import logoConst from "@lib-theme/Logo/const";
 
+function defaultMediumExpect(LogoElement: HTMLElement) {
+  expect(LogoElement).toHaveStyle("width: 32px");
+  expect(LogoElement).toHaveStyle("height: 32px");
+}
+
+function defaultFilledExpect(svgString: string) {
+  expect(svgString).toContain(`fill="#2BA5E7"`);
+  expect(svgString).toContain(`fill="#EF5198"`);
+  expect(svgString).toContain(`fill="#32B9A6"`);
+  expect(svgString).toContain(`fill="#FAC710"`);
+}
+
 describe("Logo", () => {
   describe("with no props", () => {
     render(<Logo />);
     it("should render with medium dimensions and as filled", () => {
       const LogoElement = screen.getByTestId(logoConst.dataTestId);
+      const svgString = LogoElement.innerHTML;
 
-      expect(LogoElement).toHaveStyle("width: 32px");
-      expect(LogoElement).toHaveStyle("height: 32px");
+      defaultMediumExpect(LogoElement);
+      defaultFilledExpect(svgString);
     });
   });
   describe("with size prop", () => {
@@ -33,8 +47,7 @@ describe("Logo", () => {
       render(<Logo size="medium" />);
       const LogoElement = screen.getByTestId(logoConst.dataTestId);
 
-      expect(LogoElement).toHaveStyle("width: 32px");
-      expect(LogoElement).toHaveStyle("height: 32px");
+      defaultMediumExpect(LogoElement);
     });
     it("should render with large dimensions", () => {
       render(<Logo size="large" />);
@@ -56,10 +69,7 @@ describe("Logo", () => {
       render(<Logo appereance="filled" />);
       const LogoElement = screen.getByTestId(logoConst.dataTestId);
       const svgString = LogoElement.innerHTML;
-      expect(svgString).toContain(`fill="#2BA5E7"`);
-      expect(svgString).toContain(`fill="#EF5198"`);
-      expect(svgString).toContain(`fill="#32B9A6"`);
-      expect(svgString).toContain(`fill="#FAC710"`);
+      defaultFilledExpect(svgString);
     });
     it("should render as outlined", () => {
       render(<Logo appereance="outlined" />);
