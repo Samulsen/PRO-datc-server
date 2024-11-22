@@ -1,6 +1,3 @@
 export type TLogoSize = "small" | "medium" | "large";
 
-export type TLogoAppereance =
-  | "filled"
-  | "outlined-neutral"
-  | "outlined-colored";
+export type TLogoAppereance = "filled" | "outlined-neutral" | "outlined";

@@ -2,11 +2,19 @@ import type { JSX } from "react";
 
 import useLogoClasses from "./styles";
 
-import filled from "@lib-theme/Logo/svg/filled.svg";
+import svg from "@lib-theme/Logo/svg";
 
-type TProps = {};
+import type { TLogoAppereance, TLogoSize } from "@lib-theme/Logo/types";
 
-export default function Logo({}: TProps): JSX.Element {
+type TProps = {
+  appereance?: TLogoAppereance;
+  size?: TLogoSize;
+};
+
+export default function Logo({
+  appereance = "filled",
+  size = "medium",
+}: TProps): JSX.Element {
   const classes = useLogoClasses();
-  return <div className={classes.root}>Logo</div>;
+  return <div className={classes.root}>{svg[appereance]}</div>;
 }

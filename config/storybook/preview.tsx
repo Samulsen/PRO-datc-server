@@ -1,5 +1,5 @@
 import { Preview } from "@storybook/react";
-import { ThemeProvider, tokens } from "@lib-theme";
+import { ThemeProvider } from "@lib-theme";
 
 const preview: Preview = {
   parameters: {
