@@ -31,4 +31,16 @@
       "}",
     ],
   },
+  "React Component Test": {
+    "prefix": "retes",
+    "body": [
+      "import { render, screen } from '@tests-unit-browser';",
+      "import '@testing-library/jest-dom';",
+      "",
+      "describe('${TM_DIRECTORY/.*\\/(.*)$/$1/}', () => {",
+      "  it('should render', () => {});",
+      "});",
+    ],
+    "description": "Creates a test file for a React component",
+  },
 }
