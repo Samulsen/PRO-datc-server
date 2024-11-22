@@ -1,4 +1,5 @@
 p=dev-
+run=npm run
 
 ${p}admin:
 	$(run) dev:admin

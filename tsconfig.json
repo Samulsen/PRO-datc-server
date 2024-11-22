@@ -8,6 +8,7 @@
     "baseUrl": ".",
     "paths": {
       //config
+      "@tests-unit-browser": ["config/tests/unit/browser/index.ts"],
       "@tests-unit-browser/*": ["config/tests/unit/browser/*"],
       // apps
       "@app-admin/*": ["apps/frontend/admin/src/*"],
