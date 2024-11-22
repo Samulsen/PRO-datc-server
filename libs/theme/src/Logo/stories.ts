@@ -5,6 +5,10 @@ import Logo from "@lib-theme/Logo";
 const meta: Meta = {
   title: "Theme/Logo",
   component: Logo,
+  args: {
+    appereance: "filled",
+    size: "medium",
+  },
 };
 
 export default meta;
