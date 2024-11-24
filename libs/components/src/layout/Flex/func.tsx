@@ -12,14 +12,14 @@ import {
   useMargin,
   usePadding,
   useShorthandDimension,
-} from "@lib-fluent/components/layout/Flex/hooks";
+} from "@lib-components/layout/Flex/hooks";
 
 import type {
   TFlexDirection,
   TFlexOption,
   TFlexWrap,
   TFlexShorthandDimensions,
-} from "@lib-fluent/components/layout/Flex/types";
+} from "@lib-components/layout/Flex/types";
 
 type TProps = {
   children: ReactNode;

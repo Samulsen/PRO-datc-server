@@ -1,4 +1,4 @@
-import { usePaddingClasses } from "@lib-fluent/components/layout/Flex/styles";
+import { usePaddingClasses } from "@lib-components/layout/Flex/styles";
 import { mergeClasses } from "@lib-theme";
 
 import type { TThemeShorthandSpacing } from "@lib-theme";

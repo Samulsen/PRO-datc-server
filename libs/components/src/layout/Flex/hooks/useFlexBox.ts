@@ -1,12 +1,12 @@
 import { mergeClasses } from "@lib-theme";
 
-import { useFlexBoxClasses } from "@lib-fluent/components/layout/Flex/styles";
+import { useFlexBoxClasses } from "@lib-components/layout/Flex/styles";
 
 import type {
   TFlexDirection,
   TFlexOption,
   TFlexWrap,
-} from "@lib-fluent/components/layout/Flex/types";
+} from "@lib-components/layout/Flex/types";
 
 export default function useFlexBox(
   justifyContent?: TFlexOption,

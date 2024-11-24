@@ -1,4 +1,4 @@
-import { useGapClasses } from "@lib-fluent/components/layout/Flex/styles";
+import { useGapClasses } from "@lib-components/layout/Flex/styles";
 import type { TThemeSpacing } from "@lib-theme";
 
 function useGap(gap?: TThemeSpacing) {

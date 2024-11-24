@@ -1,3 +1,3 @@
-import Flex from "@lib-fluent/components/layout/Flex/func";
+import Flex from "@lib-components/layout/Flex/func";
 
 export default Flex;

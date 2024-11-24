@@ -1,8 +1,8 @@
 import { mergeClasses } from "@lib-theme";
 
-import { useDimensionClasses } from "@lib-fluent/components/layout/Flex/styles";
+import { useDimensionClasses } from "@lib-components/layout/Flex/styles";
 
-import type { TFlexShorthandDimensions } from "@lib-fluent/components/layout/Flex/types";
+import type { TFlexShorthandDimensions } from "@lib-components/layout/Flex/types";
 
 export default function useShorthandDimension(
   shorthandWidth: TFlexShorthandDimensions,
