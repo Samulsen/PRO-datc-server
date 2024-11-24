@@ -1,12 +1,13 @@
 import { render, screen } from "@tests-unit-browser";
 import "@testing-library/jest-dom";
 
+import { makeStyles } from "@lib-theme";
 import { Flex } from "@lib-components";
 
 describe("Flex", () => {
   it("should render without required props default config", () => {
-    render(<Flex testId="flexId">FlexChild</Flex>);
-    const FlexElement = screen.getByTestId("flexId");
+    render(<Flex>FlexChild</Flex>);
+    const FlexElement = screen.getByText("FlexChild");
 
     expect(FlexElement).toBeInTheDocument();
     expect(FlexElement).toHaveTextContent("FlexChild");
@@ -209,6 +210,86 @@ describe("Flex", () => {
         render(<Flex padding={["XS", "L", "XL", "XXL"]}>FlexChild</Flex>);
         const FlexElement = screen.getByText("FlexChild");
         expect(FlexElement).toHaveStyle("padding: 0.25rem 1rem 1.25rem 1.5rem");
+      });
+    });
+    describe("for shHeight", () => {
+      it("should render with height 100%", () => {
+        render(<Flex shHeight="100%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("height: 100%");
+      });
+      it("should render with height 25%", () => {
+        render(<Flex shHeight="25%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("height: 25%");
+      });
+      it("should render with height 50%", () => {
+        render(<Flex shHeight="50%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("height: 50%");
+      });
+      it("should render with height 75%", () => {
+        render(<Flex shHeight="75%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("height: 75%");
+      });
+      it("should render with height auto", () => {
+        render(<Flex shHeight="auto">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("height: auto");
+      });
+    });
+    describe("for shWidth", () => {
+      it("should render with width 100%", () => {
+        render(<Flex shWidth="100%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("width: 100%");
+      });
+      it("should render with width 25%", () => {
+        render(<Flex shWidth="25%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("width: 25%");
+      });
+      it("should render with width 50%", () => {
+        render(<Flex shWidth="50%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("width: 50%");
+      });
+      it("should render with width 75%", () => {
+        render(<Flex shWidth="75%">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("width: 75%");
+      });
+      it("should render with width auto", () => {
+        render(<Flex shWidth="auto">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("width: auto");
+      });
+    });
+    describe("for className", () => {
+      it("should render with the properties applied from the class and override any other props styles", () => {
+        const useClasses = makeStyles({
+          testClass: {
+            height: "100px",
+            border: "1px solid black",
+          },
+        });
+
+        function Wrapper() {
+          return <Flex className={useClasses().testClass}>FlexChild</Flex>;
+        }
+
+        render(<Wrapper />);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("height: 100px");
+        expect(FlexElement).toHaveStyle("border: 1px solid black");
+      });
+    });
+    describe("for testId", () => {
+      it("should render with data-testid", () => {
+        render(<Flex testId="testId">FlexChild</Flex>);
+        const FlexElement = screen.getByTestId("testId");
+        expect(FlexElement).toBeInTheDocument();
       });
     });
   });
