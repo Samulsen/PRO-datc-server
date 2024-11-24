@@ -1,4 +1,5 @@
 export type TFlexDirection = "row" | "column";
+
 export type TFlexOption =
   | "start"
   | "center"
@@ -7,6 +8,7 @@ export type TFlexOption =
   | "spaceAround"
   | "spaceEvenly"
   | "stretch";
+
 export type TFlexWrap = "wrap" | "nowrap";
 
 export type TFlexShorthandDimensions = "25%" | "50%" | "75%" | "100%" | "auto";
