@@ -66,5 +66,37 @@ describe("Flex", () => {
         expect(FlexElement).toHaveStyle("justify-content: stretch");
       });
     });
+    describe("for alignItems", () => {
+      it("should render with alignItems center", () => {
+        render(<Flex alignItems="center">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("align-items: center");
+      });
+      it("should render with alignItems end", () => {
+        render(<Flex alignItems="end">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("align-items: flex-end");
+      });
+      it("should render with alignItems spaceBetween", () => {
+        render(<Flex alignItems="spaceBetween">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("align-items: space-between");
+      });
+      it("should render with alignItems spaceAround", () => {
+        render(<Flex alignItems="spaceAround">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("align-items: space-around");
+      });
+      it("should render with alignItems spaceEvenly", () => {
+        render(<Flex alignItems="spaceEvenly">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("align-items: space-evenly");
+      });
+      it("should render with alignItems stretch", () => {
+        render(<Flex alignItems="stretch">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("align-items: stretch");
+      });
+    });
   });
 });
