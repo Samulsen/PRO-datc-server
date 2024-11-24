@@ -1,7 +1,6 @@
-import React from "react";
 import type { ReactNode } from "react";
 
-import constants from "@lib-components/const";
+import constants from "@lib-components/defaults";
 
 import { mergeClasses } from "@lib-theme";
 import type { TThemeSpacing, TThemeShorthandSpacing } from "@lib-theme";
@@ -82,8 +81,8 @@ export default function Flex({
   padding = ["None"],
   shHeight = "auto",
   shWidth = "auto",
-  className = constants.DefaultPropsValues.undefinedClassString,
-  testId = constants.DefaultPropsValues.undefinedDataTestId,
+  className = constants.propsValues.undefinedClassString,
+  testId = constants.propsValues.undefinedDataTestId,
   children,
 }: TProps) {
   const flexBoxClass = useFlexBox(justifyContent, alignItems, direction, wrap);

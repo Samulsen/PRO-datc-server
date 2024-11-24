@@ -11,11 +11,14 @@
   "workbench.editor.customLabels.enabled": true,
   "workbench.editor.customLabels.patterns": {
     "**/config/ci/**/caller.mk": "${dirname}.caller",
-    "**/config/ci/**/runner.ts": "${dirname}.runner"
+    "**/config/ci/**/runner.ts": "${dirname}.runner",
+    // react-func pattern
+    "**/src/**/func.tsx": "${dirname}.func"
   },
 
   "material-icon-theme.files.associations": {
     "stories.ts": "Storybook",
+    "stories.tsx": "Storybook",
     "tests.tsx": "Test-jsx",
     "styles.ts": "Css",
     "func.tsx": "SVGr",

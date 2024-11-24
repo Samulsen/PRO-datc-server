@@ -1,8 +1,6 @@
-import React from "react";
-
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex } from "@lib-fluent/components";
+import { Flex } from "@lib-components";
 import { makeStyles } from "@lib-theme";
 
 import type { TThemeSpacing } from "@lib-theme";
@@ -72,6 +70,7 @@ export const Default: TStory = {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const classes = useClasses();
     return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
       <Flex {...args} className={classes.root}>
         {args.children}
       </Flex>

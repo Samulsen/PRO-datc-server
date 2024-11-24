@@ -1,5 +1,5 @@
 export default {
-  DefaultPropsValues: {
+  propsValues: {
     undefinedClassString: "$$!!NoClassString!!$$",
     undefinedDataTestId: "$$!!NoDataTestId!!$$",
   },
