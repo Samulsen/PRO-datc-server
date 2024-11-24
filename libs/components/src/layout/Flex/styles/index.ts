@@ -1,0 +1,13 @@
+import useFlexBoxClasses from "@lib-fluent/components/layout/Flex/styles/flexBox";
+import useMarginClasses from "@lib-fluent/components/layout/Flex/styles/margin";
+import usePaddingClasses from "@lib-fluent/components/layout/Flex/styles/padding";
+import useGapClasses from "@lib-fluent/components/layout/Flex/styles/gap";
+import useDimensionClasses from "@lib-fluent/components/layout/Flex/styles/dimensions";
+
+export {
+  useDimensionClasses,
+  useFlexBoxClasses,
+  useMarginClasses,
+  usePaddingClasses,
+  useGapClasses,
+};
