@@ -7,7 +7,7 @@ import type { TThemeSpacing } from "@lib-theme";
 
 const meta: Meta<typeof Flex> = {
   component: Flex,
-  title: "Libs/Fluent/Components/Layout/Flex",
+  title: "Components/Layout/Flex",
   args: {
     children: (
       <>

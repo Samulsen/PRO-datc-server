@@ -3,7 +3,7 @@ import { render, screen } from "@tests-unit-browser";
 import "@testing-library/jest-dom";
 
 import { Logo } from "@lib-theme";
-import logoConst from "@lib-theme/Logo/const";
+import logoConst from "@lib-theme/Logo/constants";
 
 function defaultMediumExpect(LogoElement: HTMLElement) {
   expect(LogoElement).toHaveStyle("width: 32px");

@@ -4,7 +4,7 @@ import useLogoClasses from "@lib-theme/Logo/styles";
 
 import type { TLogoAppereance, TLogoSize } from "@lib-theme/Logo/types";
 
-import logoConst from "@lib-theme/Logo/const";
+import logoConst from "@lib-theme/Logo/constants";
 import svg from "@lib-theme/Logo/svg";
 
 type TProps = {
