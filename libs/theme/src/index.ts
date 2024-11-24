@@ -1,4 +1,4 @@
-import { makeStyles, tokens } from "@fluentui/react-components";
+import { makeStyles, tokens, mergeClasses } from "@fluentui/react-components";
 
 import { EThemeDimensions, EThemeIconSizes } from "@lib-theme/tokens";
 
@@ -9,4 +9,4 @@ export { ThemeProvider, Logo };
 
 export { EThemeDimensions, EThemeIconSizes };
 
-export { makeStyles, tokens };
+export { makeStyles, mergeClasses, tokens };

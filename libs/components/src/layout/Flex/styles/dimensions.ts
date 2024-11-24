@@ -1,4 +1,4 @@
-import { makeStyles } from "@lib-fluent/theme";
+import { makeStyles } from "@lib-theme";
 
 const useDimensionClasses = makeStyles({
   autoWidth: {

@@ -1,4 +1,4 @@
-import { mergeClasses } from "@lib-fluent/theme";
+import { mergeClasses } from "@lib-theme";
 
 import { useFlexBoxClasses } from "@lib-fluent/components/layout/Flex/styles";
 

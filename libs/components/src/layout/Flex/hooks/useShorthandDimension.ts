@@ -1,4 +1,4 @@
-import { mergeClasses } from "@lib-fluent/theme";
+import { mergeClasses } from "@lib-theme";
 
 import { useDimensionClasses } from "@lib-fluent/components/layout/Flex/styles";
 

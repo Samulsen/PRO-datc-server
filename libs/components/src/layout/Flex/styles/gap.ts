@@ -1,4 +1,4 @@
-import { makeStyles, EThemeSpacing } from "@lib-fluent/theme";
+import { makeStyles, EThemeSpacing } from "@lib-theme";
 
 const useGapClasses = makeStyles({
   gapNone: {

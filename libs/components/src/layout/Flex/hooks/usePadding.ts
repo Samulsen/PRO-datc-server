@@ -1,7 +1,7 @@
 import { usePaddingClasses } from "@lib-fluent/components/layout/Flex/styles";
-import { mergeClasses } from "@lib-fluent/theme";
+import { mergeClasses } from "@lib-theme";
 
-import type { TThemeShorthandSpacing } from "@lib-fluent/theme";
+import type { TThemeShorthandSpacing } from "@lib-theme";
 
 function usePadding(padding?: TThemeShorthandSpacing) {
   const classes = usePaddingClasses();

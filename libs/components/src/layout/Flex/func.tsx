@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 
 import { DefaultPropsValues } from "@constants";
 
-import { mergeClasses } from "@lib-fluent/theme";
-import type { TThemeSpacing, TThemeShorthandSpacing } from "@lib-fluent/theme";
+import { mergeClasses } from "@lib-theme";
+import type { TThemeSpacing, TThemeShorthandSpacing } from "@lib-theme";
 
 import {
   useGap,
