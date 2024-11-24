@@ -1,7 +1,7 @@
 import React from "react";
 import type { ReactNode } from "react";
 
-import { DefaultPropsValues } from "@constants";
+import constants from "@lib-components/const";
 
 import { mergeClasses } from "@lib-theme";
 import type { TThemeSpacing, TThemeShorthandSpacing } from "@lib-theme";
@@ -80,11 +80,10 @@ export default function Flex({
   gap = "None",
   margin = ["None"],
   padding = ["None"],
-  className = DefaultPropsValues.undefinedClassString,
-  testId = DefaultPropsValues.undefinedDataTestId,
-  // TODO: Update stories for shorthand Width and Height + test cases
   shHeight = "auto",
   shWidth = "auto",
+  className = constants.DefaultPropsValues.undefinedClassString,
+  testId = constants.DefaultPropsValues.undefinedDataTestId,
   children,
 }: TProps) {
   const flexBoxClass = useFlexBox(justifyContent, alignItems, direction, wrap);
