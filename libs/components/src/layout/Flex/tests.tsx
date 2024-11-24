@@ -167,5 +167,49 @@ describe("Flex", () => {
         expect(FlexElement).toHaveStyle("gap: 2rem");
       });
     });
+    describe("for margin", () => {
+      it("should render with margin None", () => {
+        render(<Flex margin={["None"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("margin: 0rem");
+      });
+      it("should render with margin XS, L", () => {
+        render(<Flex margin={["XS", "L"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("margin: 0.25rem 1rem 0.25rem 1rem");
+      });
+      it("should render with margin XS, L, XL", () => {
+        render(<Flex margin={["XS", "L", "XL"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("margin: 0.25rem 1rem 1.25rem 1rem");
+      });
+      it("should render with margin XS, L, XL, XXL", () => {
+        render(<Flex margin={["XS", "L", "XL", "XXL"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("margin: 0.25rem 1rem 1.25rem 1.5rem");
+      });
+    });
+    describe("for padding", () => {
+      it("should render with padding None", () => {
+        render(<Flex padding={["None"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("padding: 0rem");
+      });
+      it("should render with padding XS, L", () => {
+        render(<Flex padding={["XS", "L"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("padding: 0.25rem 1rem 0.25rem 1rem");
+      });
+      it("should render with padding XS, L, XL", () => {
+        render(<Flex padding={["XS", "L", "XL"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("padding: 0.25rem 1rem 1.25rem 1rem");
+      });
+      it("should render with padding XS, L, XL, XXL", () => {
+        render(<Flex padding={["XS", "L", "XL", "XXL"]}>FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("padding: 0.25rem 1rem 1.25rem 1.5rem");
+      });
+    });
   });
 });
