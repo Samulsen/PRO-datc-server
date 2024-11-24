@@ -67,6 +67,8 @@ type TProps = {
  *
  * ```
  * - `testId`: passed down the data-testid attribute
+ * - `shWidth`: shorthand for width property
+ * - `shHeight`: shorthand for height property
  *
  * @default
  * direction = "row", justifyContent = "start", alignItems = "start", wrap = "nowrap", gap = "None", margin = ["None"], padding = ["None"], className = "NoClass"
