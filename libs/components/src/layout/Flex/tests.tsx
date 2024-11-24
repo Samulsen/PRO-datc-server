@@ -21,4 +21,18 @@ describe("Flex", () => {
     expect(FlexElement).toHaveStyle("height: auto");
     expect(FlexElement).toHaveStyle("width: auto");
   });
+  describe("when props are passed", () => {
+    describe("for direction", () => {
+      it("should render with direction column", () => {
+        render(<Flex direction="column">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("flex-direction: column");
+      });
+      it("should render with direction row", () => {
+        render(<Flex direction="row">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("flex-direction: row");
+      });
+    });
+  });
 });
