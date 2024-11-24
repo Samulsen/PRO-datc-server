@@ -3,11 +3,11 @@ import { render, screen } from "@tests-unit-browser";
 import "@testing-library/jest-dom";
 
 import { Logo } from "@lib-theme";
-import logoConst from "@lib-theme/Logo/const";
+import logoConst from "@lib-theme/Logo/constants";
 
 function defaultMediumExpect(LogoElement: HTMLElement) {
-  expect(LogoElement).toHaveStyle("width: 32px");
-  expect(LogoElement).toHaveStyle("height: 32px");
+  expect(LogoElement).toHaveStyle("width: 2rem");
+  expect(LogoElement).toHaveStyle("height: 2rem");
 }
 
 function defaultFilledExpect(svgString: string) {
@@ -33,15 +33,15 @@ describe("Logo", () => {
       render(<Logo size="extraSmall" />);
       const LogoElement = screen.getByTestId(logoConst.dataTestId);
 
-      expect(LogoElement).toHaveStyle("width: 16px");
-      expect(LogoElement).toHaveStyle("height: 16px");
+      expect(LogoElement).toHaveStyle("width: 1rem");
+      expect(LogoElement).toHaveStyle("height: 1rem");
     });
     it("should render with small dimensions", () => {
       render(<Logo size="small" />);
       const LogoElement = screen.getByTestId(logoConst.dataTestId);
 
-      expect(LogoElement).toHaveStyle("width: 24px");
-      expect(LogoElement).toHaveStyle("height: 24px");
+      expect(LogoElement).toHaveStyle("width: 1.5rem");
+      expect(LogoElement).toHaveStyle("height: 1.5rem");
     });
     it("should render with medium dimensions", () => {
       render(<Logo size="medium" />);
@@ -53,15 +53,15 @@ describe("Logo", () => {
       render(<Logo size="large" />);
       const LogoElement = screen.getByTestId(logoConst.dataTestId);
 
-      expect(LogoElement).toHaveStyle("width: 64px");
-      expect(LogoElement).toHaveStyle("height: 64px");
+      expect(LogoElement).toHaveStyle("width: 4rem");
+      expect(LogoElement).toHaveStyle("height: 4rem");
     });
     it("should render with extraLarge dimensions", () => {
       render(<Logo size="extraLarge" />);
       const LogoElement = screen.getByTestId(logoConst.dataTestId);
 
-      expect(LogoElement).toHaveStyle("width: 96px");
-      expect(LogoElement).toHaveStyle("height: 96px");
+      expect(LogoElement).toHaveStyle("width: 6rem");
+      expect(LogoElement).toHaveStyle("height: 6rem");
     });
   });
   describe("with appearance prop", () => {

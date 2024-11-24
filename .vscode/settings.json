@@ -11,11 +11,20 @@
   "workbench.editor.customLabels.enabled": true,
   "workbench.editor.customLabels.patterns": {
     "**/config/ci/**/caller.mk": "${dirname}.caller",
-    "**/config/ci/**/runner.ts": "${dirname}.runner"
+    "**/config/ci/**/runner.ts": "${dirname}.runner",
+    // react-func pattern
+    "**/src/**/func.tsx": "${dirname(-3)}.${dirname}.func",
+    "**/src/**/styles.ts": "${dirname}.styles",
+    "**/src/**/stories.{ts,tsx}": "${dirname}.stories",
+    "**/src/**/index.ts": "${dirname}.module",
+    "**/src/**/constants.ts": "${dirname}.constants",
+    "**/src/**/tests.tsx": "${dirname}.tests",
+    "**/src/**/types.ts": "${dirname}.types"
   },
 
   "material-icon-theme.files.associations": {
     "stories.ts": "Storybook",
+    "stories.tsx": "Storybook",
     "tests.tsx": "Test-jsx",
     "styles.ts": "Css",
     "func.tsx": "SVGr",

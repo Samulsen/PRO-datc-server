@@ -1,1 +1,1 @@
-export { Button } from "@lib-components/atoms";
+export { Flex } from "@lib-components/layout";
