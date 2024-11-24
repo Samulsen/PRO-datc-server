@@ -34,5 +34,37 @@ describe("Flex", () => {
         expect(FlexElement).toHaveStyle("flex-direction: row");
       });
     });
+    describe("for justifyContent", () => {
+      it("should render with justifyContent center", () => {
+        render(<Flex justifyContent="center">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("justify-content: center");
+      });
+      it("should render with justifyContent end", () => {
+        render(<Flex justifyContent="end">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("justify-content: flex-end");
+      });
+      it("should render with justifyContent spaceBetween", () => {
+        render(<Flex justifyContent="spaceBetween">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("justify-content: space-between");
+      });
+      it("should render with justifyContent spaceAround", () => {
+        render(<Flex justifyContent="spaceAround">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("justify-content: space-around");
+      });
+      it("should render with justifyContent spaceEvenly", () => {
+        render(<Flex justifyContent="spaceEvenly">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("justify-content: space-evenly");
+      });
+      it("should render with justifyContent stretch", () => {
+        render(<Flex justifyContent="stretch">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("justify-content: stretch");
+      });
+    });
   });
 });
