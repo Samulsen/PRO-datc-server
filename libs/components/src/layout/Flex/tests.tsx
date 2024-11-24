@@ -98,5 +98,74 @@ describe("Flex", () => {
         expect(FlexElement).toHaveStyle("align-items: stretch");
       });
     });
+    describe("for wrap", () => {
+      it("should render with wrap wrap", () => {
+        render(<Flex wrap="wrap">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("flex-wrap: wrap");
+      });
+      it("should render with wrap nowrap", () => {
+        render(<Flex wrap="nowrap">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("flex-wrap: nowrap");
+      });
+    });
+    describe("for gap", () => {
+      it("should render with gap None", () => {
+        render(<Flex gap="None">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 0rem");
+      });
+      it("should render with gap XXS", () => {
+        render(<Flex gap="XXS">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 0.125rem");
+      });
+      it("should render with gap XS", () => {
+        render(<Flex gap="XS">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 0.25rem");
+      });
+      it("should render with gap SNudge", () => {
+        render(<Flex gap="SNudge">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 0.375rem");
+      });
+      it("should render with gap S", () => {
+        render(<Flex gap="S">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 0.5rem");
+      });
+      it("should render with gap MNudge", () => {
+        render(<Flex gap="MNudge">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 0.625rem");
+      });
+      it("should render with gap M", () => {
+        render(<Flex gap="M">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 0.75rem");
+      });
+      it("should render with gap L", () => {
+        render(<Flex gap="L">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 1rem");
+      });
+      it("should render with gap XL", () => {
+        render(<Flex gap="XL">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 1.25rem");
+      });
+      it("should render with gap XXL", () => {
+        render(<Flex gap="XXL">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 1.5rem");
+      });
+      it("should render with gap XXXL", () => {
+        render(<Flex gap="XXXL">FlexChild</Flex>);
+        const FlexElement = screen.getByText("FlexChild");
+        expect(FlexElement).toHaveStyle("gap: 2rem");
+      });
+    });
   });
 });
