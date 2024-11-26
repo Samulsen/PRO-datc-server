@@ -8,7 +8,6 @@ const useSidebarClasses = makeStyles({
   buttonOverride: {
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 0,
-    // border: "none",
   },
 });
 
