@@ -1,7 +1,9 @@
-import { makeStyles } from "@lib-theme";
+import { makeStyles, tokens } from "@lib-theme";
 
 const useSidebarClasses = makeStyles({
-  root: {},
+  root: {
+    backgroundColor: tokens.colorNeutralBackground1,
+  },
 });
 
 export default useSidebarClasses;

@@ -22,14 +22,14 @@ export const Index: TStory = {
         backgroundColor: "black",
         gap: "1rem",
         padding: "1rem",
+        height: "700px",
       }}
     >
       <Sidebar />
       <div
         style={{
           width: "100%",
-          height: "600px",
-          backgroundColor: tokens.colorNeutralBackground2,
+          backgroundColor: tokens.colorNeutralBackground1,
         }}
       />
     </div>

@@ -5,9 +5,28 @@ import { Logo } from "@lib-theme";
 
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
 
-type TProps = {};
+type TProps = {
+  isExpanded: boolean;
+  toggleExpandAction: (isExpanded: boolean) => void;
+};
 
-export default function Sidebar({}: TProps): JSX.Element {
+export default function Sidebar({
+  isExpanded,
+  toggleExpandAction,
+}: TProps): JSX.Element {
   const classes = useSidebarClasses();
-  return <Flex className={classes.root}>Sidebar</Flex>;
+  return (
+    <Flex
+      className={classes.root}
+      direction="column"
+      justifyContent="start"
+      padding={["SNudge"]}
+    >
+      <Logo size="extraLarge" />
+      <Divider appearance="subtle" />
+      <Flex shHeight="100%" shWidth="100%">
+        Content
+      </Flex>
+    </Flex>
+  );
 }
