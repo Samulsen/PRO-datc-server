@@ -5,7 +5,11 @@ const useSidebarClasses = makeStyles({
     backgroundColor: tokens.colorNeutralBackground1,
     borderRadius: tokens.borderRadiusLarge,
   },
-  buttonOverride: {},
+  buttonOverride: {
+    borderTopRightRadius: 0,
+    borderBottomLeftRadius: 0,
+    // border: "none",
+  },
 });
 
 export default useSidebarClasses;

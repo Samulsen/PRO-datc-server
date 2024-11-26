@@ -14,7 +14,7 @@ import { Logo } from "@lib-theme";
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
 
 type TProps = {
-  defaultTab: "overview" | "browse" | "contribute";
+  defaultTab: "overview" | "browse";
   isExpanded: boolean;
   toggleExpandAction: () => void;
   overviewTabAction: () => void;
@@ -83,7 +83,7 @@ export default function Sidebar({
       <Button
         className={classes.buttonOverride}
         icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
-        appearance="subtle"
+        appearance="secondary"
         size="small"
         onClick={toggleExpandAction}
       />
