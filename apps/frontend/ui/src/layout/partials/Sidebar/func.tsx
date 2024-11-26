@@ -36,20 +36,24 @@ export default function Sidebar({
       padding={["SNudge"]}
       gap="S"
     >
-      <Logo size="extraLarge" />
+      <Logo size={isExpanded ? "extraLarge" : "medium"} />
       <Divider appearance="subtle" />
       <Flex
         shHeight="100%"
         shWidth="100%"
-        // justifyContent="center"
-        margin={["None", "XS", "None", "M"]}
+        justifyContent={isExpanded ? "start" : "center"}
+        margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
       >
         <TabList vertical defaultSelectedValue={defaultTab}>
-          <Tab icon={<LightbulbFilled />} value="overview">
-            Overview
+          <Tab
+            icon={<LightbulbFilled />}
+            value="overview"
+            onClick={overviewTabAction}
+          >
+            {isExpanded && "Overview"}
           </Tab>
-          <Tab icon={<SearchFilled />} value="browse">
-            Browse
+          <Tab icon={<SearchFilled />} value="browse" onClick={browseTabAction}>
+            {isExpanded && "Browse"}
           </Tab>
           <Tooltip
             content="Will be available in 2.0"
@@ -59,7 +63,7 @@ export default function Sidebar({
             positioning="below-end"
           >
             <Tab icon={<HandshakeFilled />} value="contribute" disabled>
-              Contribute
+              {isExpanded && "Contribute"}
             </Tab>
           </Tooltip>
         </TabList>
