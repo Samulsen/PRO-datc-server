@@ -4,9 +4,10 @@ import {
   LightbulbFilled,
   SearchFilled,
   HandshakeFilled,
+  ChevronLeftFilled,
 } from "@fluentui/react-icons";
 
-import { Flex, Divider, TabList, Tab, Tooltip } from "@lib-components";
+import { Flex, Divider, TabList, Tab, Tooltip, Button } from "@lib-components";
 import { Logo } from "@lib-theme";
 
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
@@ -31,43 +32,54 @@ export default function Sidebar({
     <Flex
       className={classes.root}
       direction="column"
-      justifyContent="start"
-      alignItems="center"
-      padding={["SNudge"]}
-      gap="S"
+      justifyContent="spaceBetween"
+      alignItems="end"
     >
-      <Logo size={isExpanded ? "extraLarge" : "medium"} />
-      <Divider appearance="subtle" />
       <Flex
-        shHeight="100%"
-        shWidth="100%"
-        justifyContent={isExpanded ? "start" : "center"}
-        margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
+        direction="column"
+        justifyContent="start"
+        alignItems="center"
+        padding={["SNudge"]}
+        gap="S"
       >
-        <TabList vertical defaultSelectedValue={defaultTab}>
-          <Tab
-            icon={<LightbulbFilled />}
-            value="overview"
-            onClick={overviewTabAction}
-          >
-            {isExpanded && "Overview"}
-          </Tab>
-          <Tab icon={<SearchFilled />} value="browse" onClick={browseTabAction}>
-            {isExpanded && "Browse"}
-          </Tab>
-          <Tooltip
-            content="Will be available in 2.0"
-            relationship="label"
-            appearance="inverted"
-            withArrow
-            positioning="below-end"
-          >
-            <Tab icon={<HandshakeFilled />} value="contribute" disabled>
-              {isExpanded && "Contribute"}
+        <Logo size={isExpanded ? "extraLarge" : "medium"} />
+        <Divider appearance="subtle" />
+        <Flex
+          shHeight="100%"
+          shWidth="100%"
+          justifyContent={isExpanded ? "start" : "center"}
+          margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
+        >
+          <TabList vertical defaultSelectedValue={defaultTab}>
+            <Tab
+              icon={<LightbulbFilled />}
+              value="overview"
+              onClick={overviewTabAction}
+            >
+              {isExpanded && "Overview"}
             </Tab>
-          </Tooltip>
-        </TabList>
+            <Tab
+              icon={<SearchFilled />}
+              value="browse"
+              onClick={browseTabAction}
+            >
+              {isExpanded && "Browse"}
+            </Tab>
+            <Tooltip
+              content="Will be available in 2.0"
+              relationship="label"
+              appearance="inverted"
+              withArrow
+              positioning="below-end"
+            >
+              <Tab icon={<HandshakeFilled />} value="contribute" disabled>
+                {isExpanded && "Contribute"}
+              </Tab>
+            </Tooltip>
+          </TabList>
+        </Flex>
       </Flex>
+      <Button icon={<ChevronLeftFilled />} appearance="subtle" size="small" />
     </Flex>
   );
 }
