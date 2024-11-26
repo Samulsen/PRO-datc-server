@@ -2,6 +2,7 @@ import { makeStyles, tokens, mergeClasses } from "@fluentui/react-components";
 
 import ThemeProvider from "@lib-theme/Provider";
 import Logo from "@lib-theme/Logo";
+import { useFuiProviderNode } from "@lib-theme/hooks";
 
 export {
   EThemeDimensions,
@@ -15,6 +16,6 @@ export type {
   TThemeShorthandSpacing,
 } from "@lib-theme/types";
 
-export { ThemeProvider, Logo };
+export { ThemeProvider, Logo, useFuiProviderNode };
 
 export { makeStyles, mergeClasses, tokens };

@@ -2,12 +2,16 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import Sidebar from "@app-ui/layout/partials/Sidebar";
 
-import { Flex } from "@lib-components";
 import { tokens } from "@lib-theme";
 
 const meta: Meta = {
   title: "App/UI/Layout/Partials/Sidebar",
   component: Sidebar,
+  args: {
+    defaultTab: "overview",
+    isExpanded: true,
+    toggleExpandAction: (_: boolean) => _,
+  },
 };
 
 export default meta;
@@ -15,7 +19,7 @@ export default meta;
 type TStory = StoryObj<typeof Sidebar>;
 
 export const Index: TStory = {
-  render: () => (
+  render: (args) => (
     <div
       style={{
         display: "flex",
@@ -25,7 +29,7 @@ export const Index: TStory = {
         height: "700px",
       }}
     >
-      <Sidebar />
+      <Sidebar {...args} />
       <div
         style={{
           width: "100%",
