@@ -5,6 +5,7 @@ import {
   SearchFilled,
   HandshakeFilled,
   ChevronLeftFilled,
+  ChevronRightFilled,
 } from "@fluentui/react-icons";
 
 import { Flex, Divider, TabList, Tab, Tooltip, Button } from "@lib-components";
@@ -15,7 +16,7 @@ import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
 type TProps = {
   defaultTab: "overview" | "browse" | "contribute";
   isExpanded: boolean;
-  toggleExpandAction: (isExpanded: boolean) => void;
+  toggleExpandAction: () => void;
   overviewTabAction: () => void;
   browseTabAction: () => void;
 };
@@ -79,7 +80,13 @@ export default function Sidebar({
           </TabList>
         </Flex>
       </Flex>
-      <Button icon={<ChevronLeftFilled />} appearance="subtle" size="small" />
+      <Button
+        className={classes.buttonOverride}
+        icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
+        appearance="subtle"
+        size="small"
+        onClick={toggleExpandAction}
+      />
     </Flex>
   );
 }
