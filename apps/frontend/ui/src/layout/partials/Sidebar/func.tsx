@@ -11,6 +11,8 @@ import {
 import { Flex, Divider, TabList, Tab, Tooltip, Button } from "@lib-components";
 import { Logo } from "@lib-theme";
 
+import { TabTemplate } from "@app-ui/layout/partials/Sidebar/templates";
+
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
 
 type TProps = {
