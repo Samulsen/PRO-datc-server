@@ -8,6 +8,12 @@ const useSidebarClasses = makeStyles({
   buttonOverride: {
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 0,
+    borderBottom: "1px solid transparent",
+    borderRight: "1px solid transparent",
+    ":hover": {
+      borderBottom: "1px solid transparent",
+      borderRight: "1px solid transparent",
+    },
   },
 });
 
