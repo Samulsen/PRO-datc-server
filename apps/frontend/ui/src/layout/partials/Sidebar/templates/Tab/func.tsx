@@ -5,7 +5,7 @@ import { Tab as OriginalTab, Flex } from "@lib-components";
 import { EThemeIconSizes } from "@lib-theme";
 import type { TFluentIcon } from "@lib-theme";
 
-import useTabsClasses from "./styles";
+import useTabClasses from "@app-ui/layout/partials/Sidebar/templates/Tab/styles";
 
 type TProps = {
   action: () => void;
@@ -14,6 +14,7 @@ type TProps = {
   iconFuncFilled: TFluentIcon;
   iconFuncRegular: TFluentIcon;
   isExpanded: boolean;
+  disabled?: boolean;
 };
 
 export default function Tab({
@@ -23,11 +24,17 @@ export default function Tab({
   iconFuncFilled: TabIconFilled,
   iconFuncRegular: TabIconRegular,
   isExpanded,
+  disabled = false,
 }: TProps): JSX.Element {
-  const classes = useTabsClasses();
+  const classes = useTabClasses();
   const isSelected = selfValue === currentValue;
   return (
-    <OriginalTab value={selfValue} onClick={action}>
+    <OriginalTab
+      value={selfValue}
+      onClick={action}
+      className={isExpanded ? classes.root : ""}
+      disabled={disabled}
+    >
       <Flex shWidth="100%" gap="S" justifyContent="center" alignItems="center">
         {isSelected ? (
           <TabIconFilled fontSize={EThemeIconSizes.XS} />

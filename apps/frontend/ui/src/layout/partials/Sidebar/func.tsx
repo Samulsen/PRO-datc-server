@@ -6,24 +6,22 @@ import {
   LightbulbRegular,
   SearchFilled,
   SearchRegular,
-  HandshakeFilled,
   ChevronLeftFilled,
   ChevronRightFilled,
 } from "@fluentui/react-icons";
 
-import { Flex, Divider, TabList, Tab, Tooltip, Button } from "@lib-components";
+import { Flex, Divider, TabList, Button } from "@lib-components";
 import { Logo } from "@lib-theme";
 
 import { TabTemplate } from "@app-ui/layout/partials/Sidebar/templates";
-
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
 
 type TProps = {
   defaultTab: "Overview" | "Browse";
-  isExpanded: boolean;
   toggleExpandAction: () => void;
   overviewTabAction: () => void;
   browseTabAction: () => void;
+  isExpanded: boolean;
 };
 
 export default function Sidebar({
@@ -49,7 +47,10 @@ export default function Sidebar({
         padding={["SNudge"]}
         gap="S"
       >
-        <Logo size={isExpanded ? "extraLarge" : "medium"} />
+        <Logo
+          size={isExpanded ? "extraLarge" : "medium"}
+          appereance={isExpanded ? "filled" : "outlined"}
+        />
         <Divider appearance="subtle" />
         <Flex
           shHeight="100%"
@@ -80,16 +81,6 @@ export default function Sidebar({
               currentValue={tabValue}
               isExpanded={isExpanded}
             />
-            <Tooltip
-              content="Will be available in 2.0"
-              relationship="label"
-              withArrow
-              positioning="below-end"
-            >
-              <Tab icon={<HandshakeFilled />} value="contribute" disabled>
-                {isExpanded && "Contribute"}
-              </Tab>
-            </Tooltip>
           </TabList>
         </Flex>
       </Flex>

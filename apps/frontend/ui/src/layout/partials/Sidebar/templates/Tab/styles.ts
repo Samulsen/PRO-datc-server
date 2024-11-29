@@ -1,10 +1,12 @@
 import { makeStyles, EThemeDimensions, tokens } from "@lib-theme";
 
 const useTabsClasses = makeStyles({
-  root: {},
+  root: {
+    marginRight: tokens.spacingHorizontalM,
+  },
   dot: {
-    width: "6px",
-    height: "6px",
+    width: EThemeDimensions.XS1,
+    height: EThemeDimensions.XS1,
     backgroundColor: tokens.colorNeutralBackgroundInverted,
     borderRadius: tokens.borderRadiusCircular,
     marginRight: tokens.spacingHorizontalXXS,
