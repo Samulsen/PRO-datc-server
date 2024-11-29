@@ -85,7 +85,7 @@ export default function Sidebar({
         </Flex>
       </Flex>
       <Button
-        className={classes.buttonOverride}
+        className={classes.button}
         icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
         appearance="secondary"
         size="small"
