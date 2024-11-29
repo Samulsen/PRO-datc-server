@@ -1,8 +1,25 @@
-// import { render, screen } from "@tests-unit-browser";
+import { render, screen } from "@tests-unit-browser";
 import "@testing-library/jest-dom";
 
+import constants from "@app-ui/layout/partials/Sidebar/constants";
+import SidebarPartial from "@app-ui/layout/partials/Sidebar";
+
 describe("Sidebar", () => {
-  it("should render", () => {
-    expect(true).toBe(true);
+  describe("when specified", () => {
+    it("defaultTab as Overview should render this tab default", () => {
+      render(
+        <SidebarPartial
+          defaultTab="Overview"
+          isExpanded
+          toggleExpandAction={() => {}}
+          overviewTabAction={() => {}}
+          browseTabAction={() => {}}
+        />,
+      );
+      const OverviewButton = screen.getByTestId(constants.overviewTabButtonId);
+      const BrowseButton = screen.getByTestId(constants.browseTabButtonId);
+      expect(OverviewButton).toHaveAttribute("aria-selected", "true");
+      expect(BrowseButton).toHaveAttribute("aria-selected", "false");
+    });
   });
 });

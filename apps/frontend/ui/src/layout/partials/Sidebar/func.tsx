@@ -13,6 +13,8 @@ import {
 import { Flex, Divider, TabList, Button, Tooltip } from "@lib-components";
 import { Logo } from "@lib-theme";
 
+import constants from "@app-ui/layout/partials/Sidebar/constants";
+
 import { TabTemplate } from "@app-ui/layout/partials/Sidebar/templates";
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
 
@@ -69,6 +71,7 @@ export default function Sidebar({
               selfValue="Overview"
               currentValue={tabValue}
               isExpanded={isExpanded}
+              dataTestId={constants.overviewTabButtonId}
             />
             <TabTemplate
               action={() => {
@@ -80,6 +83,7 @@ export default function Sidebar({
               selfValue="Browse"
               currentValue={tabValue}
               isExpanded={isExpanded}
+              dataTestId={constants.browseTabButtonId}
             />
           </TabList>
         </Flex>
@@ -90,6 +94,7 @@ export default function Sidebar({
         relationship="label"
       >
         <Button
+          data-testid={constants.toggleExpandButtonId}
           className={classes.button}
           icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
           appearance="secondary"
