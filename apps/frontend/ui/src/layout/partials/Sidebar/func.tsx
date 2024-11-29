@@ -54,6 +54,13 @@ export default function Sidebar({
           margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
         >
           <TabList vertical defaultSelectedValue={defaultTab}>
+            <TabTemplate
+              action={() => {}}
+              iconFunc={LightbulbFilled}
+              value="new"
+              label="New"
+              isExpanded={isExpanded}
+            />
             <Tab
               icon={<LightbulbFilled />}
               value="overview"

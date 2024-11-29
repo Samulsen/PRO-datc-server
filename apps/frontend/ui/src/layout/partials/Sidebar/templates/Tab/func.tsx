@@ -1,28 +1,38 @@
 import type { JSX } from "react";
 
-import { Tab as OriginalTab } from "@lib-components";
+import { Tab as OriginalTab, Flex } from "@lib-components";
+
+import { EThemeIconSizes } from "@lib-theme";
+import type { TFluentIcon } from "@lib-theme";
 
 import useTabsClasses from "./styles";
 
 type TProps = {
-  tabAction: () => void;
-  tabValue: string;
-  tabLabel: string;
-  tabIcon: JSX.Element;
+  action: () => void;
+  value: string;
+  label: string;
+  iconFunc: TFluentIcon;
+  isExpanded: boolean;
 };
 
 export default function Tab({
-  tabAction,
-  tabValue,
-  tabIcon,
-  tabLabel,
+  action,
+  value,
+  iconFunc: TabIcon,
+  label,
+  isExpanded,
 }: TProps): JSX.Element {
   const classes = useTabsClasses();
   return (
-    <OriginalTab value={tabValue} onClick={tabAction}>
-      <span>
-        {tabIcon} - {tabLabel}
-      </span>
+    <OriginalTab value={value} onClick={action}>
+      <Flex shWidth="100%" gap="S" justifyContent="center" alignItems="center">
+        <TabIcon fontSize={EThemeIconSizes.XS} />
+        {isExpanded && (
+          <>
+            <span className={classes.dot} /> {label}
+          </>
+        )}
+      </Flex>
     </OriginalTab>
   );
 }
