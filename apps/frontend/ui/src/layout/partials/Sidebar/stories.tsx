@@ -10,7 +10,7 @@ const meta: Meta = {
   title: "App/UI/Layout/Partials/Sidebar",
   component: Sidebar,
   args: {
-    defaultTab: "overview",
+    defaultTab: "Overview",
     isExpanded: true,
     toggleExpandAction: () => {},
     overviewTabAction: () => {},

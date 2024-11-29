@@ -1,8 +1,11 @@
+import { useState } from "react";
 import type { JSX } from "react";
 
 import {
   LightbulbFilled,
+  LightbulbRegular,
   SearchFilled,
+  SearchRegular,
   HandshakeFilled,
   ChevronLeftFilled,
   ChevronRightFilled,
@@ -16,7 +19,7 @@ import { TabTemplate } from "@app-ui/layout/partials/Sidebar/templates";
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
 
 type TProps = {
-  defaultTab: "overview" | "browse";
+  defaultTab: "Overview" | "Browse";
   isExpanded: boolean;
   toggleExpandAction: () => void;
   overviewTabAction: () => void;
@@ -31,6 +34,7 @@ export default function Sidebar({
   browseTabAction,
 }: TProps): JSX.Element {
   const classes = useSidebarClasses();
+  const [tabValue, setTabValue] = useState(defaultTab);
   return (
     <Flex
       className={classes.root}
@@ -53,32 +57,32 @@ export default function Sidebar({
           justifyContent={isExpanded ? "start" : "center"}
           margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
         >
-          <TabList vertical defaultSelectedValue={defaultTab}>
+          <TabList vertical selectedValue={tabValue}>
             <TabTemplate
-              action={() => {}}
-              iconFunc={LightbulbFilled}
-              value="new"
-              label="New"
+              action={() => {
+                overviewTabAction();
+                setTabValue("Overview");
+              }}
+              iconFuncFilled={LightbulbFilled}
+              iconFuncRegular={LightbulbRegular}
+              selfValue="Overview"
+              currentValue={tabValue}
               isExpanded={isExpanded}
             />
-            <Tab
-              icon={<LightbulbFilled />}
-              value="overview"
-              onClick={overviewTabAction}
-            >
-              {isExpanded && "Overview"}
-            </Tab>
-            <Tab
-              icon={<SearchFilled />}
-              value="browse"
-              onClick={browseTabAction}
-            >
-              {isExpanded && "Browse"}
-            </Tab>
+            <TabTemplate
+              action={() => {
+                browseTabAction();
+                setTabValue("Browse");
+              }}
+              iconFuncFilled={SearchFilled}
+              iconFuncRegular={SearchRegular}
+              selfValue="Browse"
+              currentValue={tabValue}
+              isExpanded={isExpanded}
+            />
             <Tooltip
               content="Will be available in 2.0"
               relationship="label"
-              appearance="inverted"
               withArrow
               positioning="below-end"
             >
