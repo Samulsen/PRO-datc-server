@@ -11,6 +11,7 @@ import {
   useMargin,
   usePadding,
   useShorthandDimension,
+  useAriaProps,
 } from "@lib-components/layout/Flex/hooks";
 
 import type {
@@ -30,9 +31,9 @@ type TProps = {
   gap?: TThemeSpacing;
   margin?: TThemeShorthandSpacing;
   padding?: TThemeShorthandSpacing;
-  testId?: string;
   shWidth?: TFlexShorthandDimensions;
   shHeight?: TFlexShorthandDimensions;
+  testId?: string;
 };
 
 /**
@@ -86,15 +87,19 @@ export default function Flex({
   className = constants.propsValues.undefinedClassString,
   testId = constants.propsValues.undefinedDataTestId,
   children,
+  ...rest
 }: TProps) {
   const flexBoxClass = useFlexBox(justifyContent, alignItems, direction, wrap);
   const gapClass = useGap(gap);
   const marginClass = useMargin(margin);
   const paddingClass = usePadding(padding);
   const dimensionClass = useShorthandDimension(shWidth, shHeight);
-
+  const ariaProps = useAriaProps(rest);
   return (
     <div
+      // spreading of implicit aria props is okay here
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...ariaProps}
       data-testid={testId}
       className={mergeClasses(
         flexBoxClass,

@@ -37,6 +37,7 @@ export default function Sidebar({
   const [tabValue, setTabValue] = useState(defaultTab);
   return (
     <Flex
+      aria-expanded={isExpanded}
       className={classes.root}
       direction="column"
       justifyContent="spaceBetween"
