@@ -21,5 +21,20 @@ describe("Sidebar", () => {
       expect(OverviewButton).toHaveAttribute("aria-selected", "true");
       expect(BrowseButton).toHaveAttribute("aria-selected", "false");
     });
+    it("defaultTab as Browse should render this tab default", () => {
+      render(
+        <SidebarPartial
+          defaultTab="Browse"
+          isExpanded
+          toggleExpandAction={() => {}}
+          overviewTabAction={() => {}}
+          browseTabAction={() => {}}
+        />,
+      );
+      const OverviewButton = screen.getByTestId(constants.overviewTabButtonId);
+      const BrowseButton = screen.getByTestId(constants.browseTabButtonId);
+      expect(OverviewButton).toHaveAttribute("aria-selected", "false");
+      expect(BrowseButton).toHaveAttribute("aria-selected", "true");
+    });
   });
 });
