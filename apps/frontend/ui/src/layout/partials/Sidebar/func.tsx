@@ -10,7 +10,7 @@ import {
   ChevronRightFilled,
 } from "@fluentui/react-icons";
 
-import { Flex, Divider, TabList, Button } from "@lib-components";
+import { Flex, Divider, TabList, Button, Tooltip } from "@lib-components";
 import { Logo } from "@lib-theme";
 
 import { TabTemplate } from "@app-ui/layout/partials/Sidebar/templates";
@@ -84,13 +84,19 @@ export default function Sidebar({
           </TabList>
         </Flex>
       </Flex>
-      <Button
-        className={classes.button}
-        icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
-        appearance="secondary"
-        size="small"
-        onClick={toggleExpandAction}
-      />
+      <Tooltip
+        content={isExpanded ? "Collapse" : "Expand"}
+        positioning="below-end"
+        relationship="label"
+      >
+        <Button
+          className={classes.button}
+          icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
+          appearance="secondary"
+          size="small"
+          onClick={toggleExpandAction}
+        />
+      </Tooltip>
     </Flex>
   );
 }
