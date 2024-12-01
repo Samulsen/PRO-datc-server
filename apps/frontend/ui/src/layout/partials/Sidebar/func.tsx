@@ -37,6 +37,7 @@ export default function Sidebar({
   const [tabValue, setTabValue] = useState(defaultTab);
   return (
     <Flex
+      aria-label="Sidebar"
       aria-expanded={isExpanded}
       className={classes.root}
       direction="column"
@@ -54,7 +55,9 @@ export default function Sidebar({
           size={isExpanded ? "extraLarge" : "medium"}
           appereance={isExpanded ? "filled" : "outlined"}
         />
-        <Divider appearance="subtle" />
+        <Divider appearance="subtle">
+          {isExpanded ? "Pages" : undefined}
+        </Divider>
         <Flex
           shHeight="100%"
           shWidth="100%"
@@ -88,6 +91,9 @@ export default function Sidebar({
             />
           </TabList>
         </Flex>
+        <Divider appearance="subtle">
+          {isExpanded ? "History" : undefined}
+        </Divider>
       </Flex>
       <Tooltip
         content={isExpanded ? "Collapse" : "Expand"}
