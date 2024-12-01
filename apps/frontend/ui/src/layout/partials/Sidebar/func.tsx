@@ -35,6 +35,7 @@ export default function Sidebar({
 }: TProps): JSX.Element {
   const classes = useSidebarClasses();
   const [tabValue, setTabValue] = useState(defaultTab);
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <Flex
       aria-label="Sidebar"
@@ -43,6 +44,12 @@ export default function Sidebar({
       direction="column"
       justifyContent="spaceBetween"
       alignItems="end"
+      onMouseEnter={() => {
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
     >
       <Flex
         direction="column"
@@ -95,20 +102,26 @@ export default function Sidebar({
           {isExpanded ? "History" : undefined}
         </Divider>
       </Flex>
-      <Tooltip
-        content={isExpanded ? "Collapse" : "Expand"}
-        positioning="below-end"
-        relationship="label"
-      >
-        <Button
-          data-testid={constants.toggleExpandButtonId}
-          className={classes.button}
-          icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
-          appearance="secondary"
-          size="small"
-          onClick={toggleExpandAction}
-        />
-      </Tooltip>
+      {isHovered && (
+        <Tooltip
+          content={isExpanded ? "Collapse" : "Expand"}
+          positioning="below-end"
+          relationship="label"
+          showDelay={1000}
+        >
+          <Button
+            data-testid={constants.toggleExpandButtonId}
+            className={classes.button}
+            icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
+            appearance="secondary"
+            size="small"
+            onClick={() => {
+              toggleExpandAction();
+              setIsHovered(false);
+            }}
+          />
+        </Tooltip>
+      )}
     </Flex>
   );
 }

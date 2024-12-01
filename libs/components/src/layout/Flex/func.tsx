@@ -34,6 +34,8 @@ type TProps = {
   shWidth?: TFlexShorthandDimensions;
   shHeight?: TFlexShorthandDimensions;
   testId?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 };
 
 /**
@@ -87,6 +89,8 @@ export default function Flex({
   className = constants.propsValues.undefinedClassString,
   testId = constants.propsValues.undefinedDataTestId,
   children,
+  onMouseEnter = undefined,
+  onMouseLeave = undefined,
   ...rest
 }: TProps) {
   const flexBoxClass = useFlexBox(justifyContent, alignItems, direction, wrap);
@@ -97,6 +101,8 @@ export default function Flex({
   const ariaProps = useAriaProps(rest);
   return (
     <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       // spreading of implicit aria props is okay here
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...ariaProps}
