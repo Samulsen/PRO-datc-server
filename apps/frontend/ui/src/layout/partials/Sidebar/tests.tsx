@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { render, screen, fireEvent } from "@tests-unit-browser";
 import "@testing-library/jest-dom";
 
@@ -80,6 +82,45 @@ describe("Sidebar", () => {
         expect(BrowseButton).toHaveAttribute("aria-selected", "false");
       });
     });
-    describe("on the expand button should toggle the sidebar", () => {});
+    describe("on the expand button should toggle the sidebar", () => {
+      function Wrapper({ isExpandedDef }: { isExpandedDef: boolean }) {
+        const [isExpanded, setIsExpanded] = useState(isExpandedDef);
+        return (
+          <SidebarPartial
+            defaultTab="Overview"
+            isExpanded={isExpanded}
+            toggleExpandAction={() => {
+              setIsExpanded((prevState) => !prevState);
+            }}
+            overviewTabAction={() => {}}
+            browseTabAction={() => {}}
+          />
+        );
+      }
+
+      it("click will minimize", () => {
+        render(<Wrapper isExpandedDef />);
+        const SidebarRoot = screen.getByLabelText("Sidebar");
+        expect(SidebarRoot).toHaveAttribute("aria-expanded", "true");
+        fireEvent.mouseEnter(SidebarRoot);
+
+        const ToggleButton = screen.getByTestId(constants.toggleExpandButtonId);
+        fireEvent.click(ToggleButton);
+        expect(SidebarRoot).toHaveAttribute("aria-expanded", "false");
+        expect(ToggleButton).not.toBeInTheDocument();
+      });
+
+      it("click will maximize", () => {
+        render(<Wrapper isExpandedDef={false} />);
+        const SidebarRoot = screen.getByLabelText("Sidebar");
+        expect(SidebarRoot).toHaveAttribute("aria-expanded", "false");
+        fireEvent.mouseEnter(SidebarRoot);
+
+        const ToggleButton = screen.getByTestId(constants.toggleExpandButtonId);
+        fireEvent.click(ToggleButton);
+        expect(SidebarRoot).toHaveAttribute("aria-expanded", "true");
+        expect(ToggleButton).not.toBeInTheDocument();
+      });
+    });
   });
 });
