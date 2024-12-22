@@ -46,8 +46,8 @@
     "description": "Creates a test file for a React component",
   },
 
-  "Storybook Meta and Story": {
-    "prefix": "stbk",
+  "React Storybook": {
+    "prefix": "rebook",
     "body": [
       "import type { Meta, StoryObj } from \"@storybook/react\";",
       "",
