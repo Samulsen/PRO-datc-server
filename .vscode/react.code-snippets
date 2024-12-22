@@ -45,4 +45,25 @@
     ],
     "description": "Creates a test file for a React component",
   },
+
+  "Storybook Meta and Story": {
+    "prefix": "stbk",
+    "body": [
+      "import type { Meta, StoryObj } from \"@storybook/react\";",
+      "",
+      "const meta: Meta = {",
+      "  title: \"\",",
+      "  component: \"\",",
+      "  args: {},",
+      "};",
+      "",
+      "export default meta;",
+      "",
+      "type Story = StoryObj<{}>;",
+      "",
+      "export const Index: Story = {};",
+      "",
+    ],
+    "description": "Snippet for Storybook Meta and Story",
+  },
 }
