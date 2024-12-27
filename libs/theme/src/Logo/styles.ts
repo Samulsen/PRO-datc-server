@@ -1,5 +1,5 @@
 import { makeStyles } from "@fluentui/react-components";
-import { EThemeDimensions } from "@lib-theme/tokens";
+import { EThemeDimensions } from "fluentui-helpers";
 
 const useLogoClasses = makeStyles({
   extraSmall: {
