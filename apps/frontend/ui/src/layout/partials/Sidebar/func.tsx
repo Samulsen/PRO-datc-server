@@ -52,6 +52,7 @@ export default function Sidebar({
         direction="column"
         justifyContent="spaceBetween"
         alignItems="end"
+        shHeight="100%"
       >
         <Flex
           direction="column"
