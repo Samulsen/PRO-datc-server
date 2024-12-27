@@ -6,4 +6,4 @@ export { Button } from "@fluentui/react-components";
 export { Collapse } from "@fluentui/react-motion-components-preview";
 
 export { Tooltip } from "@lib-components/atoms";
-export { Flex } from "@lib-components/layout";
+export { Flex } from "fluentui-helpers";
