@@ -101,9 +101,6 @@ export default function Sidebar({
               />
             </TabList>
           </Flex>
-          <Divider appearance="subtle">
-            {isExpanded ? "History" : undefined}
-          </Divider>
         </Flex>
         {isHovered && (
           <Tooltip
