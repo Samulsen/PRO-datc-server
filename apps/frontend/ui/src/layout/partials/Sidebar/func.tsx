@@ -37,13 +37,7 @@ export default function Sidebar({
   const [tabValue, setTabValue] = useState(defaultTab);
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <Flex
-      aria-label="Sidebar"
-      aria-expanded={isExpanded}
-      className={classes.root}
-      direction="column"
-      justifyContent="spaceBetween"
-      alignItems="end"
+    <div
       onMouseEnter={() => {
         setIsHovered(true);
       }}
@@ -52,76 +46,85 @@ export default function Sidebar({
       }}
     >
       <Flex
+        aria-label="Sidebar"
+        aria-expanded={isExpanded}
+        className={classes.root}
         direction="column"
-        justifyContent="start"
-        alignItems="center"
-        padding={["SNudge"]}
-        gap="S"
+        justifyContent="spaceBetween"
+        alignItems="end"
       >
-        <Logo
-          size={isExpanded ? "extraLarge" : "medium"}
-          appereance={isExpanded ? "filled" : "outlined"}
-        />
-        <Divider appearance="subtle">
-          {isExpanded ? "Pages" : undefined}
-        </Divider>
         <Flex
-          shHeight="100%"
-          shWidth="100%"
-          justifyContent={isExpanded ? "start" : "center"}
-          margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
+          direction="column"
+          justifyContent="start"
+          alignItems="center"
+          padding={["SNudge"]}
+          gap="S"
         >
-          <TabList vertical selectedValue={tabValue}>
-            <TabTemplate
-              action={() => {
-                overviewTabAction();
-                setTabValue("Overview");
-              }}
-              iconFuncFilled={LightbulbFilled}
-              iconFuncRegular={LightbulbRegular}
-              selfValue="Overview"
-              currentValue={tabValue}
-              isExpanded={isExpanded}
-              dataTestId={constants.overviewTabButtonId}
-            />
-            <TabTemplate
-              action={() => {
-                browseTabAction();
-                setTabValue("Browse");
-              }}
-              iconFuncFilled={SearchFilled}
-              iconFuncRegular={SearchRegular}
-              selfValue="Browse"
-              currentValue={tabValue}
-              isExpanded={isExpanded}
-              dataTestId={constants.browseTabButtonId}
-            />
-          </TabList>
-        </Flex>
-        <Divider appearance="subtle">
-          {isExpanded ? "History" : undefined}
-        </Divider>
-      </Flex>
-      {isHovered && (
-        <Tooltip
-          content={isExpanded ? "Collapse" : "Expand"}
-          positioning="below-end"
-          relationship="label"
-          showDelay={1000}
-        >
-          <Button
-            data-testid={constants.toggleExpandButtonId}
-            className={classes.button}
-            icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
-            appearance="secondary"
-            size="small"
-            onClick={() => {
-              toggleExpandAction();
-              setIsHovered(false);
-            }}
+          <Logo
+            size={isExpanded ? "extraLarge" : "medium"}
+            appereance={isExpanded ? "filled" : "outlined"}
           />
-        </Tooltip>
-      )}
-    </Flex>
+          <Divider appearance="subtle">
+            {isExpanded ? "Pages" : undefined}
+          </Divider>
+          <Flex
+            shHeight="100%"
+            shWidth="100%"
+            justifyContent={isExpanded ? "start" : "center"}
+            margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
+          >
+            <TabList vertical selectedValue={tabValue}>
+              <TabTemplate
+                action={() => {
+                  overviewTabAction();
+                  setTabValue("Overview");
+                }}
+                iconFuncFilled={LightbulbFilled}
+                iconFuncRegular={LightbulbRegular}
+                selfValue="Overview"
+                currentValue={tabValue}
+                isExpanded={isExpanded}
+                dataTestId={constants.overviewTabButtonId}
+              />
+              <TabTemplate
+                action={() => {
+                  browseTabAction();
+                  setTabValue("Browse");
+                }}
+                iconFuncFilled={SearchFilled}
+                iconFuncRegular={SearchRegular}
+                selfValue="Browse"
+                currentValue={tabValue}
+                isExpanded={isExpanded}
+                dataTestId={constants.browseTabButtonId}
+              />
+            </TabList>
+          </Flex>
+          <Divider appearance="subtle">
+            {isExpanded ? "History" : undefined}
+          </Divider>
+        </Flex>
+        {isHovered && (
+          <Tooltip
+            content={isExpanded ? "Collapse" : "Expand"}
+            positioning="below-end"
+            relationship="label"
+            showDelay={1000}
+          >
+            <Button
+              data-testid={constants.toggleExpandButtonId}
+              className={classes.button}
+              icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
+              appearance="secondary"
+              size="small"
+              onClick={() => {
+                toggleExpandAction();
+                setIsHovered(false);
+              }}
+            />
+          </Tooltip>
+        )}
+      </Flex>
+    </div>
   );
 }

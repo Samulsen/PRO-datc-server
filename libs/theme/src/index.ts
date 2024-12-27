@@ -2,7 +2,7 @@ import { makeStyles, tokens, mergeClasses } from "@fluentui/react-components";
 
 import ThemeProvider from "@lib-theme/Provider";
 import Logo from "@lib-theme/Logo";
-import { useFuiProviderNode } from "@lib-theme/hooks";
+import { useFuiProviderNode } from "fluentui-helpers";
 
 export type { FluentIcon as TFluentIcon } from "@fluentui/react-icons";
 
@@ -10,13 +10,7 @@ export {
   EThemeDimensions,
   EThemeIconSizes,
   EThemeSpacing,
-} from "@lib-theme/tokens";
-
-export type {
-  TThemeSpacing,
-  TThemeShorthand,
-  TThemeShorthandSpacing,
-} from "@lib-theme/types";
+} from "fluentui-helpers";
 
 export { ThemeProvider, Logo, useFuiProviderNode };
 
