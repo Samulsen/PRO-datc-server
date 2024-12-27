@@ -1,25 +1,23 @@
 import { useState } from "react";
 import type { JSX } from "react";
 
-import {
-  LightbulbFilled,
-  LightbulbRegular,
-  SearchFilled,
-  SearchRegular,
-  ChevronLeftFilled,
-  ChevronRightFilled,
-} from "@fluentui/react-icons";
+import { ChevronLeftFilled, ChevronRightFilled } from "@fluentui/react-icons";
 
-import { Flex, Divider, TabList, Button, Tooltip } from "@lib-components";
+import { Flex, Divider, Button, Tooltip } from "@lib-components";
 import { Logo } from "@lib-theme";
 
 import constants from "@app-ui/layout/partials/Sidebar/constants";
 
-import { TabTemplate } from "@app-ui/layout/partials/Sidebar/templates";
+import {
+  MenuListShard,
+  ToggleButtonShard,
+} from "@app-ui/layout/partials/Sidebar/shards";
+
 import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
+import type { TUiSidebarPageOption } from "@app-ui/layout/partials/Sidebar/types";
 
 type TProps = {
-  defaultTab: "Overview" | "Browse";
+  defaultTab: TUiSidebarPageOption;
   toggleExpandAction: () => void;
   overviewTabAction: () => void;
   browseTabAction: () => void;
@@ -65,42 +63,14 @@ export default function Sidebar({
             size={isExpanded ? "extraLarge" : "medium"}
             appereance={isExpanded ? "filled" : "outlined"}
           />
-          <Divider appearance="subtle">
-            {isExpanded ? "Pages" : undefined}
-          </Divider>
-          <Flex
-            shHeight="100%"
-            shWidth="100%"
-            justifyContent={isExpanded ? "start" : "center"}
-            margin={isExpanded ? ["None", "XS", "None", "M"] : ["None"]}
-          >
-            <TabList vertical selectedValue={tabValue}>
-              <TabTemplate
-                action={() => {
-                  overviewTabAction();
-                  setTabValue("Overview");
-                }}
-                iconFuncFilled={LightbulbFilled}
-                iconFuncRegular={LightbulbRegular}
-                selfValue="Overview"
-                currentValue={tabValue}
-                isExpanded={isExpanded}
-                dataTestId={constants.overviewTabButtonId}
-              />
-              <TabTemplate
-                action={() => {
-                  browseTabAction();
-                  setTabValue("Browse");
-                }}
-                iconFuncFilled={SearchFilled}
-                iconFuncRegular={SearchRegular}
-                selfValue="Browse"
-                currentValue={tabValue}
-                isExpanded={isExpanded}
-                dataTestId={constants.browseTabButtonId}
-              />
-            </TabList>
-          </Flex>
+          <Divider appearance="subtle" />
+          <MenuListShard
+            isExpanded={isExpanded}
+            overviewTabAction={overviewTabAction}
+            browseTabAction={browseTabAction}
+            tabValue={tabValue}
+            setTabValue={setTabValue}
+          />
         </Flex>
         {isHovered && (
           <Tooltip

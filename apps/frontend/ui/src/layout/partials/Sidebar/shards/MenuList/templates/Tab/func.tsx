@@ -5,7 +5,7 @@ import { Tab as OriginalTab, Flex } from "@lib-components";
 import { EThemeIconSizes } from "@lib-theme";
 import type { TFluentIcon } from "@lib-theme";
 
-import useTabClasses from "@app-ui/layout/partials/Sidebar/templates/Tab/styles";
+import useTabClasses from "@app-ui/layout/partials/Sidebar/shards/MenuList/templates/Tab/styles";
 
 type TProps = {
   action: () => void;
