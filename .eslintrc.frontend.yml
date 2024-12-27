@@ -123,3 +123,9 @@ overrides:
   - files: ["**/*tests.ts", "**/*tests.tsx"]
     rules:
       import/no-extraneous-dependencies: off
+  # storybook files
+  - files: ["**/*stories.ts", "**/*stories.tsx"]
+    rules:
+      import/no-extraneous-dependencies: off
+      react/jsx-props-no-spreading: off
+      react-hooks/rules-of-hooks: off
