@@ -1,12 +1,8 @@
 import { useState } from "react";
 import type { JSX } from "react";
 
-import { ChevronLeftFilled, ChevronRightFilled } from "@fluentui/react-icons";
-
-import { Flex, Divider, Button, Tooltip } from "@lib-components";
+import { Flex, Divider } from "@lib-components";
 import { Logo } from "@lib-theme";
-
-import constants from "@app-ui/layout/partials/Sidebar/constants";
 
 import {
   MenuListShard,
@@ -73,24 +69,11 @@ export default function Sidebar({
           />
         </Flex>
         {isHovered && (
-          <Tooltip
-            content={isExpanded ? "Collapse" : "Expand"}
-            positioning="below-end"
-            relationship="label"
-            showDelay={1000}
-          >
-            <Button
-              data-testid={constants.toggleExpandButtonId}
-              className={classes.button}
-              icon={isExpanded ? <ChevronLeftFilled /> : <ChevronRightFilled />}
-              appearance="secondary"
-              size="small"
-              onClick={() => {
-                toggleExpandAction();
-                setIsHovered(false);
-              }}
-            />
-          </Tooltip>
+          <ToggleButtonShard
+            isExpanded={isExpanded}
+            toggleExpandAction={toggleExpandAction}
+            setIsHovered={setIsHovered}
+          />
         )}
       </Flex>
     </div>
