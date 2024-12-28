@@ -11,8 +11,8 @@ help:
 
 .PHONY: help
 
-sync-production:
+git-sync-production:
 	git fetch origin production:production
 
-sync-development:
+git-sync-development:
 	git fetch origin development:development
