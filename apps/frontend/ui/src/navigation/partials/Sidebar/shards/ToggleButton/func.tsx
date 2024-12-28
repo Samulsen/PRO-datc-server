@@ -3,9 +3,9 @@ import type { JSX, Dispatch, SetStateAction } from "react";
 import { ChevronLeftFilled, ChevronRightFilled } from "@fluentui/react-icons";
 import { Button, Tooltip } from "@lib-components";
 
-import constants from "@app-ui/layout/partials/Sidebar/constants";
+import constants from "@app-ui/navigation/partials/Sidebar/constants";
 
-import useToggleButtonClasses from "@app-ui/layout/partials/Sidebar/shards/ToggleButton/styles";
+import useToggleButtonClasses from "@app-ui/navigation/partials/Sidebar/shards/ToggleButton/styles";
 
 type TProps = {
   isExpanded: boolean;

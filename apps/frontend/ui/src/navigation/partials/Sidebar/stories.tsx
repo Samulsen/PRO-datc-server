@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Sidebar from "@app-ui/layout/partials/Sidebar";
+import Sidebar from "@app-ui/navigation/partials/Sidebar";
 
 import { tokens } from "@lib-theme";
 

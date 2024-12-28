@@ -9,10 +9,10 @@ import {
 
 import { Flex, TabList } from "@lib-components";
 
-import constants from "@app-ui/layout/partials/Sidebar/constants";
-import type { TUiSidebarPageOption } from "@app-ui/layout/partials/Sidebar/types";
+import constants from "@app-ui/navigation/partials/Sidebar/constants";
+import type { TUiSidebarPageOption } from "@app-ui/navigation/partials/Sidebar/types";
 
-import { TabTemplate } from "@app-ui/layout/partials/Sidebar/shards/MenuList/templates";
+import { TabTemplate } from "@app-ui/navigation/partials/Sidebar/shards/MenuList/templates";
 
 type TProps = {
   isExpanded: boolean;

@@ -7,10 +7,10 @@ import { Logo } from "@lib-theme";
 import {
   MenuListShard,
   ToggleButtonShard,
-} from "@app-ui/layout/partials/Sidebar/shards";
+} from "@app-ui/navigation/partials/Sidebar/shards";
 
-import useSidebarClasses from "@app-ui/layout/partials/Sidebar/styles";
-import type { TUiSidebarPageOption } from "@app-ui/layout/partials/Sidebar/types";
+import useSidebarClasses from "@app-ui/navigation/partials/Sidebar/styles";
+import type { TUiSidebarPageOption } from "@app-ui/navigation/partials/Sidebar/types";
 
 type TProps = {
   defaultTab: TUiSidebarPageOption;

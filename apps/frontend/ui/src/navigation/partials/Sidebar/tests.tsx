@@ -3,8 +3,8 @@ import { useState } from "react";
 import { render, screen, fireEvent } from "@tests-unit-browser";
 import "@testing-library/jest-dom";
 
-import constants from "@app-ui/layout/partials/Sidebar/constants";
-import SidebarPartial from "@app-ui/layout/partials/Sidebar";
+import constants from "@app-ui/navigation/partials/Sidebar/constants";
+import SidebarPartial from "@app-ui/navigation/partials/Sidebar";
 
 describe("Sidebar", () => {
   describe("when specified", () => {
