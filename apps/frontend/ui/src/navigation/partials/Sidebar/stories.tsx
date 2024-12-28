@@ -7,7 +7,7 @@ import Sidebar from "@app-ui/navigation/partials/Sidebar";
 import { tokens } from "@lib-theme";
 
 const meta: Meta = {
-  title: "App/UI/Layout/Partials/Sidebar",
+  title: "App/UI/Navigation/Partials/Sidebar",
   component: Sidebar,
   args: {
     defaultTab: "Overview",
