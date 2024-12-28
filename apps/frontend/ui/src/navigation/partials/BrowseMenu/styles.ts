@@ -22,9 +22,6 @@ const useBrowseMenuClasses = makeStyles({
     borderRadius: tokens.borderRadiusSmall,
     backgroundColor: "red",
   },
-  border: {
-    alignSelf: "stretch",
-  },
 });
 
 export default useBrowseMenuClasses;

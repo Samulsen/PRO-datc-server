@@ -29,7 +29,7 @@ export default function BrowseMenu({
         <LargeTitle>Browse</LargeTitle>
         <Button icon={<ChevronRightRegular />} size="small" />
       </Flex>
-      <Flex className={classes.border}>
+      <Flex alignSelf="stretch">
         <div className={classes.backbone} />
       </Flex>
       <Flex>
