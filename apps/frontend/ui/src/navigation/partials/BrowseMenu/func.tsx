@@ -29,20 +29,23 @@ export default function BrowseMenu({
         <LargeTitle>Browse</LargeTitle>
         <Button icon={<ChevronRightRegular />} size="small" />
       </Flex>
-      <Flex
-        alignSelf="stretch"
-        alignItems="center"
-        margin={["XL", "None"]}
-        direction="column"
-        position="relative"
-        className={classes.betterGap}
-      >
-        <div className={classes.backbone} />
+      <Flex alignSelf="stretch" alignItems="center">
         <div className={classes.connector} />
-        <div className={classes.connector} />
-        <div className={classes.connector} />
-        <div className={classes.connector} />
-        <div className={classes.connector} />
+        <Flex
+          alignSelf="stretch"
+          alignItems="center"
+          margin={["XL", "None"]}
+          direction="column"
+          position="relative"
+          className={classes.betterGap}
+        >
+          <div className={classes.backbone} />
+          <div className={classes.connector} />
+          <div className={classes.connector} />
+          <div className={classes.connector} />
+          <div className={classes.connector} />
+          <div className={classes.connector} />
+        </Flex>
       </Flex>
       <Flex>
         <TabList vertical size="large" className={classes.tabListGap}>

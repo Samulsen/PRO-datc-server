@@ -21,24 +21,17 @@ const useBrowseMenuClasses = makeStyles({
     width: EThemeDimensions.XS1,
     borderRadius: tokens.borderRadiusSmall,
     transform: "translateX(-32px)",
-    backgroundColor: "red",
+    backgroundColor: tokens.colorNeutralStencil1,
     position: "absolute",
   },
   betterGap: {
     gap: "63px",
-    // width: "128px",
   },
   connector: {
     width: EThemeDimensions.S4,
     height: EThemeDimensions.XS1,
     borderRadius: tokens.borderRadiusSmall,
-    backgroundColor: "red",
-  },
-  connectorLong: {
-    width: EThemeDimensions.S9,
-    height: EThemeDimensions.XS1,
-    borderRadius: tokens.borderRadiusSmall,
-    backgroundColor: "red",
+    backgroundColor: tokens.colorNeutralStencil1,
   },
 });
 
