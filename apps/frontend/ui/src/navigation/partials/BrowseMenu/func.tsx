@@ -24,13 +24,25 @@ export default function BrowseMenu({
 }: TProps): JSX.Element {
   const classes = useBrowseMenuClasses();
   return (
-    <Flex alignItems="center" gap="XL" className={classes.root}>
+    <Flex alignItems="center" gap="M" className={classes.root}>
       <Flex gap="M" alignItems="center">
         <LargeTitle>Browse</LargeTitle>
         <Button icon={<ChevronRightRegular />} size="small" />
       </Flex>
-      <Flex alignSelf="stretch">
+      <Flex
+        alignSelf="stretch"
+        alignItems="center"
+        margin={["XL", "None"]}
+        direction="column"
+        position="relative"
+        className={classes.betterGap}
+      >
         <div className={classes.backbone} />
+        <div className={classes.connector} />
+        <div className={classes.connector} />
+        <div className={classes.connector} />
+        <div className={classes.connector} />
+        <div className={classes.connector} />
       </Flex>
       <Flex>
         <TabList vertical size="large" className={classes.tabListGap}>
