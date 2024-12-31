@@ -3,5 +3,5 @@ export type TUiBrowseMenuOption =
   | "Concepts"
   | "Random"
   | "Word"
-  | "Advanced"
+  | "Filter"
   | "None";

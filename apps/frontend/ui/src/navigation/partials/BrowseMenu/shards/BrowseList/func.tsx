@@ -28,7 +28,7 @@ export default function BrowseList({
       <TabTemplate value="Concepts" onClick={setCurrentSelection} />
       <TabTemplate value="Random" onClick={setCurrentSelection} />
       <TabTemplate value="Word" onClick={setCurrentSelection} />
-      <TabTemplate value="Advanced" onClick={setCurrentSelection} />
+      <TabTemplate value="Filter" onClick={setCurrentSelection} />
     </TabList>
   );
 }
