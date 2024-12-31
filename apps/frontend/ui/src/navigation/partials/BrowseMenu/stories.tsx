@@ -5,7 +5,12 @@ import BrowseMenu from "@app-ui/navigation/partials/BrowseMenu";
 const meta: Meta = {
   title: "App/UI/Navigation/Partials/BrowseMenu",
   component: BrowseMenu,
-  args: {},
+  args: {
+    optionSlot: <div>Option Slot</div>,
+    currentSelection: "Concepts",
+    setCurrentSelection: () => {},
+    isExpanded: true,
+  },
 };
 
 export default meta;
