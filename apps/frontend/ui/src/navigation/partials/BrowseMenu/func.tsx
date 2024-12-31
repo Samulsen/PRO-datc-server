@@ -10,14 +10,15 @@ import type { TUiBrowseMenuOption } from "@app-ui/navigation/partials/BrowseMenu
 import {
   BrowseListShard,
   BrowseToListConnectorShard,
+  ListToBrowseConnectorShard,
 } from "@app-ui/navigation/partials/BrowseMenu/shards";
 
 type TProps = {
   currentSelection: TUiBrowseMenuOption;
   setCurrentSelection: (selection: TUiBrowseMenuOption) => void;
-  optionSlot: JSX.Element;
   isExpanded: boolean;
   toggleExpand: () => void;
+  optionSlot: JSX.Element;
 };
 
 export default function BrowseMenu({
@@ -49,11 +50,9 @@ export default function BrowseMenu({
           setCurrentSelection={setCurrentSelection}
         />
       )}
-      <Flex>
-        <Flex>Connector</Flex>
-        <Flex>Backbone</Flex>
-        <Flex>Connector</Flex>
-      </Flex>
+      {isExpanded && (
+        <ListToBrowseConnectorShard currentSelection={currentSelection} />
+      )}
       <Flex>{optionSlot}</Flex>
     </Flex>
   );
