@@ -17,21 +17,23 @@ const useBrowseMenuClasses = makeStyles({
     gap: EThemeSpacing.XXL,
   },
   backbone: {
-    height: "100%",
     width: EThemeDimensions.XS1,
-    borderRadius: tokens.borderRadiusSmall,
-    transform: "translateX(-32px)",
     backgroundColor: tokens.colorNeutralStencil1,
+
+    borderRadius: tokens.borderRadiusSmall,
+    transform: "translateX(-24px)",
     position: "absolute",
+    height: "100%",
   },
   betterGap: {
     gap: "63px",
   },
   connector: {
-    width: EThemeDimensions.S4,
     height: EThemeDimensions.XS1,
-    borderRadius: tokens.borderRadiusSmall,
     backgroundColor: tokens.colorNeutralStencil1,
+
+    width: EThemeDimensions.S2,
+    borderRadius: tokens.borderRadiusSmall,
   },
 });
 

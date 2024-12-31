@@ -2,7 +2,11 @@ import type { JSX } from "react";
 
 import useBrowseMenuClasses from "./styles";
 
-import { ChevronRightRegular, ChevronLeftRegular } from "@fluentui/react-icons";
+import {
+  ChevronRightRegular,
+  ChevronLeftRegular,
+  ArrowRightFilled,
+} from "@fluentui/react-icons";
 
 import { Flex, TabList, Tab, Button, Tooltip } from "@lib-components";
 import { LargeTitle, Title1 } from "@lib-theme";
@@ -24,15 +28,19 @@ export default function BrowseMenu({
 }: TProps): JSX.Element {
   const classes = useBrowseMenuClasses();
   return (
-    <Flex alignItems="center" gap="M" className={classes.root}>
+    <Flex
+      alignItems="center"
+      alignContent="stretch"
+      gap="M"
+      className={classes.root}
+    >
       <Flex gap="M" alignItems="center">
         <LargeTitle>Browse</LargeTitle>
         <Button icon={<ChevronRightRegular />} size="small" />
       </Flex>
-      <Flex alignSelf="stretch" alignItems="center">
+      <Flex alignItems="center">
         <div className={classes.connector} />
         <Flex
-          alignSelf="stretch"
           alignItems="center"
           margin={["XL", "None"]}
           direction="column"
@@ -66,7 +74,11 @@ export default function BrowseMenu({
           </Tab>
         </TabList>
       </Flex>
-      <Flex>Connector</Flex>
+      <Flex>
+        <Flex>Connector</Flex>
+        <Flex>Backbone</Flex>
+        <Flex>Connector</Flex>
+      </Flex>
       <Flex>Slot</Flex>
     </Flex>
   );
