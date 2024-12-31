@@ -1,14 +1,14 @@
-import { makeStyles, tokens, EThemeDimensions } from "@lib-theme";
+import { makeStyles } from "@lib-theme";
 import shared from "@app-ui/navigation/partials/BrowseMenu/shared";
 
 const useBrowseToListConnectorClasses = makeStyles({
   root: {
-    gap: "63px",
+    gap: shared.connectorGap,
   },
   connectorVertical: {
     width: shared.connectorThickness,
     backgroundColor: shared.connectorColor,
-    borderRadius: tokens.borderRadiusSmall,
+    borderRadius: shared.connectorBorderRadius,
     transform: "translateX(-24px)",
     position: "absolute",
     height: "100%",
@@ -16,8 +16,8 @@ const useBrowseToListConnectorClasses = makeStyles({
   connectorHorizontal: {
     height: shared.connectorThickness,
     backgroundColor: shared.connectorColor,
-    width: EThemeDimensions.S2,
-    borderRadius: tokens.borderRadiusSmall,
+    width: shared.connectorMinLength,
+    borderRadius: shared.connectorBorderRadius,
   },
 });
 
