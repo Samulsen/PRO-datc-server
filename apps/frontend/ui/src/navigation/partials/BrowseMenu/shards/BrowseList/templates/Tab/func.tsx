@@ -16,7 +16,7 @@ export default function Tab({ value, onClick }: TProps): JSX.Element {
   return (
     <OriginalTab
       value={value}
-      onSelect={() => {
+      onClick={() => {
         onClick(value);
       }}
     >
