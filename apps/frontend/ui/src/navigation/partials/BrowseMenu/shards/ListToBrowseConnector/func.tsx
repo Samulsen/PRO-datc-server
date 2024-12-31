@@ -17,6 +17,10 @@ export default function ListToBrowseConnector({
   currentSelection,
 }: TProps): JSX.Element {
   const classes = useListToBrowseConnectorClasses();
+  const createFinalClass = useDirectConnectorClass(
+    classes.connectorHorizontalBase,
+    classes.activeLine,
+  );
   return (
     <Flex>
       <Flex
@@ -25,32 +29,32 @@ export default function ListToBrowseConnector({
         className={classes.connectorContainer}
       >
         <div
-          className={mergeClasses(
-            classes.connectorHorizontalBase,
+          className={createFinalClass(
+            currentSelection === "Catalogue",
             classes.connectorCatalogue,
           )}
         />
         <div
-          className={mergeClasses(
-            classes.connectorHorizontalBase,
+          className={createFinalClass(
+            currentSelection === "Concepts",
             classes.connectorConcepts,
           )}
         />
         <div
-          className={mergeClasses(
-            classes.connectorHorizontalBase,
+          className={createFinalClass(
+            currentSelection === "Random",
             classes.connectorRandom,
           )}
         />
         <div
-          className={mergeClasses(
-            classes.connectorHorizontalBase,
+          className={createFinalClass(
+            currentSelection === "Word",
             classes.connectorWord,
           )}
         />
         <div
-          className={mergeClasses(
-            classes.connectorHorizontalBase,
+          className={createFinalClass(
+            currentSelection === "Filter",
             classes.connectorFilter,
           )}
         />
@@ -58,9 +62,16 @@ export default function ListToBrowseConnector({
       <Flex className={classes.backboneContainer}>
         <div className={classes.connectorVerticalBase} />
       </Flex>
-      <Flex alignItems="center">
-        <div className={classes.connectorHorizontalBase} />
-      </Flex>
+      {currentSelection !== "None" && (
+        <Flex alignItems="center">
+          <div
+            className={mergeClasses(
+              classes.connectorHorizontalBase,
+              classes.activeLine,
+            )}
+          />
+        </Flex>
+      )}
     </Flex>
   );
 }
