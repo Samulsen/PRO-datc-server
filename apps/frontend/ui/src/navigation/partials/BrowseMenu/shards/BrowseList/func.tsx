@@ -28,7 +28,7 @@ export default function BrowseList({
       <TabTemplate
         value="Catalogue"
         onClick={setCurrentSelection}
-        dataTestId={constants.tesdIdCatalogueTab}
+        dataTestId={constants.testIdCatalogueTab}
       />
       <TabTemplate
         value="Concepts"

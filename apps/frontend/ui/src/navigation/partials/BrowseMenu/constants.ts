@@ -1,6 +1,6 @@
 export default {
   testIdExpandButton: "expand-button",
-  tesdIdCatalogueTab: "catalogue-tab",
+  testIdCatalogueTab: "catalogue-tab",
   testIdConceptsTab: "concepts-tab",
   testIdRandomTab: "random-tab",
   testIdWordTab: "word-tab",
