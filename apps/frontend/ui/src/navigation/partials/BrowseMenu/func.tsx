@@ -19,7 +19,7 @@ type TProps = {
   setCurrentSelection: (selection: TUiBrowseMenuOption) => void;
   isExpanded: boolean;
   toggleExpand: () => void;
-  optionSlot: JSX.Element;
+  optionSlot: JSX.Element | null;
 };
 
 export default function BrowseMenu({

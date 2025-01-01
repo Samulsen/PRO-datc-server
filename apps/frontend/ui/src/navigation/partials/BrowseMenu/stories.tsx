@@ -22,12 +22,12 @@ type Story = StoryObj<typeof BrowseMenu>;
 export const Index: Story = {
   render: (props) => {
     const [currentSelection, setCurrentSelection] =
-      useState<TUiBrowseMenuOption>("Concepts");
+      useState<TUiBrowseMenuOption>("None");
     const [isExpanded, setIsExpanded] = useState(true);
 
     return (
       <BrowseMenu
-        {...props}
+        optionSlot={currentSelection === "None" ? null : props.optionSlot}
         currentSelection={currentSelection}
         setCurrentSelection={(self) => {
           setCurrentSelection(self);
