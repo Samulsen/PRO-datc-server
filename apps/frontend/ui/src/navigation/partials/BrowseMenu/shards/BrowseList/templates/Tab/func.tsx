@@ -9,12 +9,18 @@ import useTabClasses from "@app-ui/navigation/partials/BrowseMenu/shards/BrowseL
 type TProps = {
   value: TUiBrowseMenuOption;
   onClick: (value: TUiBrowseMenuOption) => void;
+  dataTestId: string;
 };
 
-export default function Tab({ value, onClick }: TProps): JSX.Element {
+export default function Tab({
+  value,
+  onClick,
+  dataTestId,
+}: TProps): JSX.Element {
   const classes = useTabClasses();
   return (
     <OriginalTab
+      data-testid={dataTestId}
       value={value}
       onClick={() => {
         onClick(value);

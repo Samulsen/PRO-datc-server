@@ -5,6 +5,7 @@ import { ChevronRightRegular, ChevronLeftRegular } from "@fluentui/react-icons";
 import { Flex, Button, Tooltip } from "@lib-components";
 import { LargeTitle } from "@lib-theme";
 
+import constants from "@app-ui/navigation/partials/BrowseMenu/constants";
 import type { TUiBrowseMenuOption } from "@app-ui/navigation/partials/BrowseMenu/types";
 
 import {
@@ -37,6 +38,7 @@ export default function BrowseMenu({
           relationship="label"
         >
           <Button
+            data-testid={constants.testIdExpandButton}
             icon={isExpanded ? <ChevronLeftRegular /> : <ChevronRightRegular />}
             size="small"
             onClick={toggleExpand}
@@ -53,7 +55,7 @@ export default function BrowseMenu({
       {isExpanded && (
         <ListToBrowseConnectorShard currentSelection={currentSelection} />
       )}
-      <Flex>{optionSlot}</Flex>
+      {optionSlot}
     </Flex>
   );
 }

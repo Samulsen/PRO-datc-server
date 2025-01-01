@@ -3,6 +3,7 @@ import type { JSX } from "react";
 import { TabList } from "@lib-components";
 
 import type { TUiBrowseMenuOption } from "@app-ui/navigation/partials/BrowseMenu/types";
+import constants from "@app-ui/navigation/partials/BrowseMenu/constants";
 
 import useBrowseListClasses from "@app-ui/navigation/partials/BrowseMenu/shards/BrowseList/styles";
 import { TabTemplate } from "@app-ui/navigation/partials/BrowseMenu/shards/BrowseList/templates";
@@ -24,11 +25,31 @@ export default function BrowseList({
       selectedValue={currentSelection}
       className={classes.root}
     >
-      <TabTemplate value="Catalogue" onClick={setCurrentSelection} />
-      <TabTemplate value="Concepts" onClick={setCurrentSelection} />
-      <TabTemplate value="Random" onClick={setCurrentSelection} />
-      <TabTemplate value="Word" onClick={setCurrentSelection} />
-      <TabTemplate value="Filter" onClick={setCurrentSelection} />
+      <TabTemplate
+        value="Catalogue"
+        onClick={setCurrentSelection}
+        dataTestId={constants.tesdIdCatalogueTab}
+      />
+      <TabTemplate
+        value="Concepts"
+        onClick={setCurrentSelection}
+        dataTestId={constants.testIdConceptsTab}
+      />
+      <TabTemplate
+        value="Random"
+        onClick={setCurrentSelection}
+        dataTestId={constants.testIdRandomTab}
+      />
+      <TabTemplate
+        value="Word"
+        onClick={setCurrentSelection}
+        dataTestId={constants.testIdWordTab}
+      />
+      <TabTemplate
+        value="Filter"
+        onClick={setCurrentSelection}
+        dataTestId={constants.testIdFilterTab}
+      />
     </TabList>
   );
 }
