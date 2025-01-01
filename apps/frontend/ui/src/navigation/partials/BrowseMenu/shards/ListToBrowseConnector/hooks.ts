@@ -1,7 +1,7 @@
 import { mergeClasses } from "@lib-theme";
 
-function useDirectConnectorClass(baseClass: string, activeClass: string) {
-  return (isCurrentlySelected: boolean, specialClass: string) => {
+function useEnhancedConnectorClass(baseClass: string, activeClass: string) {
+  return (isCurrentlySelected: boolean, specialClass?: string) => {
     return mergeClasses(
       baseClass,
       specialClass,
@@ -10,4 +10,4 @@ function useDirectConnectorClass(baseClass: string, activeClass: string) {
   };
 }
 
-export { useDirectConnectorClass };
+export { useEnhancedConnectorClass };

@@ -5,7 +5,7 @@ import { mergeClasses } from "@lib-theme";
 
 import type { TUiBrowseMenuOption } from "@app-ui/navigation/partials/BrowseMenu/types";
 
-import { useDirectConnectorClass } from "@app-ui/navigation/partials/BrowseMenu/shards/ListToBrowseConnector/hooks";
+import { useEnhancedConnectorClass } from "@app-ui/navigation/partials/BrowseMenu/shards/ListToBrowseConnector/hooks";
 
 import useListToBrowseConnectorClasses from "@app-ui/navigation/partials/BrowseMenu/shards/ListToBrowseConnector/styles";
 
@@ -17,11 +17,11 @@ export default function ListToBrowseConnector({
   currentSelection,
 }: TProps): JSX.Element {
   const classes = useListToBrowseConnectorClasses();
-  const createFinalClass = useDirectConnectorClass(
+  const createHorConnClass = useEnhancedConnectorClass(
     classes.connectorHorizontalBase,
     classes.activeLine,
   );
-  const createFinalHorClass = useDirectConnectorClass(
+  const createVerConnClass = useEnhancedConnectorClass(
     classes.connectorVerticalBase,
     classes.activeLine,
   );
@@ -33,55 +33,49 @@ export default function ListToBrowseConnector({
         className={classes.connectorContainer}
       >
         <div
-          className={createFinalClass(
+          className={createHorConnClass(
             currentSelection === "Catalogue",
             classes.connectorCatalogue,
           )}
         />
         <div
-          className={createFinalClass(
+          className={createHorConnClass(
             currentSelection === "Concepts",
             classes.connectorConcepts,
           )}
         />
         <div
-          className={createFinalClass(
+          className={createHorConnClass(
             currentSelection === "Random",
             classes.connectorRandom,
           )}
         />
         <div
-          className={createFinalClass(
+          className={createHorConnClass(
             currentSelection === "Word",
             classes.connectorWord,
           )}
         />
         <div
-          className={createFinalClass(
+          className={createHorConnClass(
             currentSelection === "Filter",
             classes.connectorFilter,
           )}
         />
       </Flex>
       <Flex className={classes.backboneContainer} direction="column">
+        <div className={createVerConnClass(currentSelection === "Catalogue")} />
         <div
-          className={createFinalHorClass(currentSelection === "Catalogue", "")}
-        />
-        <div
-          className={createFinalHorClass(
+          className={createVerConnClass(
             currentSelection === "Concepts" || currentSelection === "Catalogue",
-            "",
           )}
         />
         <div
-          className={createFinalHorClass(
+          className={createVerConnClass(
             currentSelection === "Word" || currentSelection === "Filter",
-            "",
           )}
         />
-        <div
-          className={createFinalHorClass(currentSelection === "Filter", "")}
-        />
+        <div className={createVerConnClass(currentSelection === "Filter")} />
       </Flex>
       {currentSelection !== "None" && (
         <Flex alignItems="center">
