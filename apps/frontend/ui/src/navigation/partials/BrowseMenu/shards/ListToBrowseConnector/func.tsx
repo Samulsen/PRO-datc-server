@@ -21,6 +21,10 @@ export default function ListToBrowseConnector({
     classes.connectorHorizontalBase,
     classes.activeLine,
   );
+  const createFinalHorClass = useDirectConnectorClass(
+    classes.connectorVerticalBase,
+    classes.activeLine,
+  );
   return (
     <Flex>
       <Flex
@@ -59,14 +63,32 @@ export default function ListToBrowseConnector({
           )}
         />
       </Flex>
-      <Flex className={classes.backboneContainer}>
-        <div className={classes.connectorVerticalBase} />
+      <Flex className={classes.backboneContainer} direction="column">
+        <div
+          className={createFinalHorClass(currentSelection === "Catalogue", "")}
+        />
+        <div
+          className={createFinalHorClass(
+            currentSelection === "Concepts" || currentSelection === "Catalogue",
+            "",
+          )}
+        />
+        <div
+          className={createFinalHorClass(
+            currentSelection === "Word" || currentSelection === "Filter",
+            "",
+          )}
+        />
+        <div
+          className={createFinalHorClass(currentSelection === "Filter", "")}
+        />
       </Flex>
       {currentSelection !== "None" && (
         <Flex alignItems="center">
           <div
             className={mergeClasses(
               classes.connectorHorizontalBase,
+              classes.horizontalShift,
               classes.activeLine,
             )}
           />

@@ -4,7 +4,10 @@ import shared from "@app-ui/navigation/partials/BrowseMenu/shared";
 const useListToBrowseConnectorClasses = makeStyles({
   root: {},
   backboneContainer: {
-    // transform: "translateX(-4px)",
+    transform: "translateX(-4px)",
+  },
+  horizontalShift: {
+    transform: "translateX(-8px)",
   },
   connectorContainer: {
     gap: shared.connectorGap,
@@ -12,11 +15,12 @@ const useListToBrowseConnectorClasses = makeStyles({
   },
   connectorVerticalBase: {
     width: shared.connectorThickness,
-    backgroundColor: shared.connectorColor,
+    height: "68px",
   },
   connectorHorizontalBase: {
     height: shared.connectorThickness,
-    width: shared.connectorMinLength,
+    minWidth: shared.connectorMinLength,
+    borderRadius: shared.connectorBorderRadius,
   },
 
   activeLine: {
