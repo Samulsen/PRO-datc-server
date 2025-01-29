@@ -31,8 +31,14 @@ describe("OptionConcepts", () => {
     expect(searchButton).toBeDisabled();
     expect(onSearch).not.toHaveBeenCalled();
 
-    fireEvent.click(concept1.parentElement as HTMLElement);
+    // issues around here
+    const concept1Radio = concept1.closest("[role='menuitemradio']");
+    expect(concept1Radio).toBeInTheDocument();
+
+    fireEvent.click(concept1Radio as HTMLElement);
     expect(searchButton).not.toBeDisabled();
+    // issues around here
+
     expect(onSearch).toHaveBeenCalledTimes(1);
     expect(onSearch).toHaveBeenCalledWith("concept1");
   });
