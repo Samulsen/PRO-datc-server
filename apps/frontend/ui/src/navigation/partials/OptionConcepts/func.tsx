@@ -30,7 +30,7 @@ export default function OptionConcepts({
         onCheckedValueChange={onChange}
       >
         {concepts.map((concept) => (
-          <MenuItemRadioTemplate value={concept} />
+          <MenuItemRadioTemplate key={`${concept}-key`} value={concept} />
         ))}
       </MenuList>
       <Button

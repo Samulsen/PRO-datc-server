@@ -8,7 +8,7 @@ type TProps = {
 
 export default function MenuItemRadio({ value }: TProps): JSX.Element {
   return (
-    <MenuItemRadioOrigin name="option" value={value}>
+    <MenuItemRadioOrigin name="concept" value={value}>
       {value}
     </MenuItemRadioOrigin>
   );
