@@ -1,11 +1,11 @@
-import { useState } from "react";
 import type { JSX } from "react";
 
-import { Flex, Button, MenuItemRadio, MenuList } from "@lib-components";
+import { Flex, Button, MenuList } from "@lib-components";
 import { Subtitle2, Caption2 } from "@lib-theme";
-import type { MenuProps as TMenuProps } from "@fluentui/react-components";
 
 import useOptionConceptsClasses from "@app-ui/navigation/partials/OptionConcepts/styles";
+import { MenuItemRadioTemplate } from "@app-ui/navigation/partials/OptionConcepts/template";
+import { useSelectionState } from "@app-ui/navigation/partials/OptionConcepts/hooks";
 
 type TProps = {
   concepts: string[];
@@ -17,15 +17,7 @@ export default function OptionConcepts({
   onSearch,
 }: TProps): JSX.Element {
   const classes = useOptionConceptsClasses();
-  const [checkedValues, setCheckedValues] = useState<Record<string, string[]>>({
-    option: [],
-  });
-  const onChange: TMenuProps["onCheckedValueChange"] = (
-    _,
-    { name, checkedItems },
-  ) => {
-    setCheckedValues((s) => ({ ...s, [name]: checkedItems }));
-  };
+  const { checkedValues, onChange } = useSelectionState();
   return (
     <Flex className={classes.root} direction="column" padding={["M"]} gap="M">
       <Flex direction="column" gap="XS">
@@ -37,18 +29,9 @@ export default function OptionConcepts({
         checkedValues={checkedValues}
         onCheckedValueChange={onChange}
       >
-        <MenuItemRadio name="option" value="option1">
-          Option 1
-        </MenuItemRadio>
-        <MenuItemRadio name="option" value="option2">
-          Option 2
-        </MenuItemRadio>
-        <MenuItemRadio name="option" value="option3">
-          Option 3
-        </MenuItemRadio>
-        <MenuItemRadio name="option" value="option4">
-          Option 4
-        </MenuItemRadio>
+        {concepts.map((concept) => (
+          <MenuItemRadioTemplate value={concept} />
+        ))}
       </MenuList>
       <Button
         appearance="primary"

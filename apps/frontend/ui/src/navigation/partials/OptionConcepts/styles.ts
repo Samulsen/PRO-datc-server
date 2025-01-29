@@ -8,7 +8,7 @@ const useOptionConceptsClasses = makeStyles({
   },
   list: {
     width: "100%",
-    maxHeight: EThemeDimensions.L6,
+    height: EThemeDimensions.M4,
     overflow: "auto",
     backgroundColor: tokens.colorNeutralBackground1,
     borderRadius: tokens.borderRadiusMedium,

@@ -1,10 +1,15 @@
 import type { JSX } from "react";
 
-import useMenuItemRadioClasses from "./styles";
+import { MenuItemRadio as MenuItemRadioOrigin } from "@lib-components";
 
-type TProps = {};
+type TProps = {
+  value: string;
+};
 
-export default function MenuItemRadio({}: TProps): JSX.Element {
-  const classes = useMenuItemRadioClasses();
-  return <div className={classes.root}>MenuItemRadio</div>;
+export default function MenuItemRadio({ value }: TProps): JSX.Element {
+  return (
+    <MenuItemRadioOrigin name="option" value={value}>
+      {value}
+    </MenuItemRadioOrigin>
+  );
 }
