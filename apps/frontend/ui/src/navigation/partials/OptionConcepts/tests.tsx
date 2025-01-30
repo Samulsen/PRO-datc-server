@@ -29,17 +29,67 @@ describe("OptionConcepts", () => {
     const searchButton = screen.getByRole("button", { name: "Search" });
     expect(searchButton).toBeInTheDocument();
     expect(searchButton).toBeDisabled();
-    expect(onSearch).not.toHaveBeenCalled();
 
-    // issues around here
-    const concept1Radio = concept1.closest("[role='menuitemradio']");
-    expect(concept1Radio).toBeInTheDocument();
+    fireEvent.click(concept1);
+    expect(searchButton).toBeEnabled();
 
-    fireEvent.click(concept1Radio as HTMLElement);
-    expect(searchButton).not.toBeDisabled();
-    // issues around here
-
-    expect(onSearch).toHaveBeenCalledTimes(1);
+    fireEvent.click(searchButton);
     expect(onSearch).toHaveBeenCalledWith("concept1");
+
+    fireEvent.click(concept2);
+    fireEvent.click(searchButton);
+    expect(onSearch).toHaveBeenCalledWith("concept2");
+
+    fireEvent.click(concept3);
+    fireEvent.click(searchButton);
+    expect(onSearch).toHaveBeenCalledWith("concept3");
+
+    expect(onSearch).toHaveBeenCalledTimes(3);
+  });
+
+  it("should render with given concepts, with overflow", () => {
+    const onSearch = jest.fn((value: string) => value);
+
+    render(
+      <OptionConcepts
+        concepts={Array.from(
+          { length: 100 },
+          (_, i) => `concept${i.toString()}`,
+        )}
+        onSearch={onSearch}
+      />,
+    );
+
+    const menuList = screen.getByRole("menu");
+    expect(menuList).toBeInTheDocument();
+    const isScrollable = menuList.scrollHeight > menuList.clientHeight;
+    expect(isScrollable).toBe(true);
+
+    const concept1 = screen.getByText("concept1");
+    expect(concept1).toBeInTheDocument();
+    const concept50 = screen.getByText("concept50");
+    expect(concept50).toBeInTheDocument();
+    const concept100 = screen.getByText("concept99");
+    expect(concept100).toBeInTheDocument();
+
+    const searchButton = screen.getByRole("button", { name: "Search" });
+    expect(searchButton).toBeInTheDocument();
+    expect(searchButton).toBeDisabled();
+
+    fireEvent.click(concept1);
+    expect(searchButton).toBeEnabled();
+
+    fireEvent.click(searchButton);
+    expect(onSearch).toHaveBeenCalledWith("concept1");
+
+    fireEvent.click(concept50);
+    fireEvent.click(searchButton);
+    expect(onSearch).toHaveBeenCalledWith("concept50");
+
+    fireEvent.click(concept100);
+    fireEvent.click(searchButton);
+    expect(onSearch).toHaveBeenCalledWith("concept99");
+
+    expect(onSearch).toHaveBeenCalledTimes(3);
   });
 });

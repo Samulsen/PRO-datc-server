@@ -3,7 +3,7 @@ import type { MenuProps as TMenuProps } from "@fluentui/react-components";
 
 function useSelectionState() {
   const [checkedValues, setCheckedValues] = useState<Record<string, string[]>>({
-    option: [],
+    concept: [],
   });
   const onChange: TMenuProps["onCheckedValueChange"] = (
     _,

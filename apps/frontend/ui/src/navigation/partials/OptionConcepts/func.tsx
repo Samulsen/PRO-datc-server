@@ -35,9 +35,9 @@ export default function OptionConcepts({
       </MenuList>
       <Button
         appearance="primary"
-        disabled={checkedValues.option.length === 0}
+        disabled={checkedValues.concept.length === 0}
         onClick={() => {
-          onSearch(checkedValues.option[0]);
+          onSearch(checkedValues.concept[0]);
         }}
       >
         Search
