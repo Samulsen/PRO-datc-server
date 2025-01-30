@@ -1,8 +1,8 @@
 import type { JSX } from "react";
 
-import { Flex, Button, MenuList } from "@lib-components";
-import { Subtitle2, Caption2 } from "@lib-theme";
+import { MenuList } from "@lib-components";
 
+import { OptionLayoutTemplate } from "@app-ui/navigation/templates";
 import useOptionConceptsClasses from "@app-ui/navigation/partials/OptionConcepts/styles";
 import { MenuItemRadioTemplate } from "@app-ui/navigation/partials/OptionConcepts/template";
 import { useSelectionState } from "@app-ui/navigation/partials/OptionConcepts/hooks";
@@ -19,11 +19,14 @@ export default function OptionConcepts({
   const classes = useOptionConceptsClasses();
   const { checkedValues, onChange } = useSelectionState();
   return (
-    <Flex className={classes.root} direction="column" padding={["M"]} gap="M">
-      <Flex direction="column" gap="XS">
-        <Subtitle2>Search through recongizable concepts</Subtitle2>
-        <Caption2>Choose from the given list below</Caption2>
-      </Flex>
+    <OptionLayoutTemplate
+      header="Search through recongizable concepts"
+      subtitle="Choose from the given list below"
+      onSearch={() => {
+        onSearch(checkedValues.concept[0]);
+      }}
+      disabledSearch={checkedValues.concept.length === 0}
+    >
       <MenuList
         className={classes.list}
         checkedValues={checkedValues}
@@ -33,15 +36,6 @@ export default function OptionConcepts({
           <MenuItemRadioTemplate key={`${concept}-key`} value={concept} />
         ))}
       </MenuList>
-      <Button
-        appearance="primary"
-        disabled={checkedValues.concept.length === 0}
-        onClick={() => {
-          onSearch(checkedValues.concept[0]);
-        }}
-      >
-        Search
-      </Button>
-    </Flex>
+    </OptionLayoutTemplate>
   );
 }
